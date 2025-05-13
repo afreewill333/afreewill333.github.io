@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)http://cn.qzs.qq.com/qzone/app/blog/v6/bloglist.html#nojump=1&page=6&catalog=list -->
+<html class=" os_winxp"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<title>日志</title>
+	<script>
+		var _bJs = function(src, c){return '<script type="text/javascript" charset="'+(c || 'utf-8')+'" src="'+src+'"><\/script>';};
+		var _bCss = function(href){return '<link rel="stylesheet" rev="stylesheet" href="http://qzonestyle.gtimg.cn'+href+'" media="screen"/>';};
+		var _dw = function(h){return document.write(h)};
+		_dw(_bJs('/qzone/v8/applib/embeded.js'));
+	</script><script type="text/javascript" charset="utf-8" src="embeded.js"></script>
+	<script>
+		window.siDomain = 'qzonestyle.gtimg.cn';
+		try{window.siDomain = parent.siDomain}catch(err){}
+		window.blogSpeedBasePoint = (new Date()).getTime();
+		if(!window.console){window.console = {log: function(){},print: function(){},dir: function(){}};}
+		if (parent.ua){
+			var htmlClass = "os_win7";
+			if (parent.ua.windows && parent.ua.windows > 6){
+				htmlClass = "os_win7"
+			}else if(parent.ua.windows && parent.ua.windows == 6){
+				htmlClass = "os_vista";
+			}else if(parent.ua.windows){
+				htmlClass = "os_winxp";
+			}else{
+				htmlClass = "os_mac";
+			}
+			document.documentElement.className += ' ' + htmlClass;
+		}
+		_dw(_bCss('/qzone_v6/gb/skin/'+parent.QZONE.FrontPage.getQzoneConfig().styleId+'.css')+_bCss('/qzone_v6/blog_app.css'));
+
+		//增加监控
+		var statPackage = (parent.QZONE.FrontPage || parent.QZONE.FP).getStatPackage();
+		var BlogListReporter = {
+			ID: 400706,
+			SUCCESS: 1,
+			FAILURE: 2,
+			points: [],
+			start: function() {
+				this.start = parent.QZFL.emptyFn;
+				var self = this;
+				setTimeout(function() {
+					self.report()
+				}, 5000);
+			},
+			report: function() {
+				this.report = parent.QZFL.emptyFn;
+				if (this.points[4] && this.points[8]) {
+					statPackage.valueStat(this.ID, this.SUCCESS, this.getCode(), {reportRate: 100});
+				} else {
+					statPackage.valueStat(this.ID, this.FAILURE, this.getCode(), {reportRate: 1});
+				}
+			},
+			markPoint: function(id) {
+				this.points[id] = 1;
+			},
+			getCode: function() {
+				var code = 0;
+				for (var i = 0; i < this.points.length; i++) {
+					if (this.points[i]) {
+						code += Math.pow(2, i - 1);
+					}
+				}
+				return code;
+			}
+		};
+		// 监控启动
+		BlogListReporter.start();
+		// 开始加载基础类库js
+		BlogListReporter.markPoint(1);
+	</script><link rel="stylesheet" rev="stylesheet" href="http://qzonestyle.gtimg.cn/qzone_v6/gb/skin/35.css" media="screen"><link rel="stylesheet" rev="stylesheet" href="http://qzonestyle.gtimg.cn/qzone_v6/blog_app.css" media="screen">
+	<style>
+		.STATE_GUEST .show_in_owner {display:none;}
+		.STATE_OWNER .show_in_guest {display:none;}
+		.blog_import .support {display:none;}
+		#searchArea {display:none;}
+	</style>
+<style type="text/css">.user-state-normal .showInNoVip{display:block !important;}</style><style type="text/css">.op_more_mouse li a {text-align:left; padding-left:8px;}</style></head>
+<body class="STATE_OWNER user-state-normal">
+	<script type="text/javascript">
+		_dw(_bJs('http://'+(window.siDomain)+'/ac/qzone/qzfl/qzfl'+parent.g_V.qz+'.js')+
+			_bJs('http://'+(window.siDomain)+'/qzone/newblog/v5/script/common.js'));
+	</script><script type="text/javascript" charset="utf-8" src="qzfl_v8_2.1.43.js"></script><script type="text/javascript" charset="utf-8" src="common.js"></script>
+	<script type="text/javascript">
+		QZBlog.Util.Statistic.addSpeedPoint(2);
+		QZFL.css.addClassName(document.body, QZBlog.Logic.SpaceHostInfo.isOwnerMode() ? 'STATE_OWNER' : 'STATE_GUEST');
+		BlogListReporter.markPoint(2);	//完成加载基础类库js
+
+		var pos = getParameter('pos');
+		var PAGE_CATALOG = getParameter('catalog') || 'list';
+		PAGE_CATALOG = getParameter('catemgr') ? 'catemgr' : PAGE_CATALOG;
+		PAGE_CATALOG = getParameter('draftlist') ? 'draft' : PAGE_CATALOG;
+
+		if(!getParameter('catalog') && pos && pos.indexOf('catalog_') >= 0){
+			PAGE_CATALOG = pos.substring(8);
+		}
+
+		//fix login logic
+		if(!QZBlog.Logic.SpaceHostInfo.isOwnerMode()){
+			switch(PAGE_CATALOG){
+				case 'draft':
+				case 'ugc':
+				case 'private':
+				case 'audit':
+				case 'setting':
+				case 'catemgr':
+				case 'friend':
+				case 'notepad':
+				location.href = QZBlog.Router.redirectTo('bloglist', {'catalog': 'audit'});
+				break;
+			}
+		}
+
+		var MAX_CATE_COUNT = 4;
+		var PAGE_DATA_ERROR_TPL = '<div class="error_cont bgr3"><span class="icon_big_hint"></span><p class="error_info">服务器正在升级维护中，建议您稍后再尝试打开。谢谢！</p><p>请尝试<a href="javascript:void(0);" onclick="location.reload();return false;" class="c_tx">刷新</a>，恢复服务</p></div>';
+		var PAGE_DATA_LOGIN_TPL = '<div class="error_cont bgr3"><span class="icon_big_hint"></span><p class="error_info">您还没有登录当前系统，请先<a href="javascript:void(0);" onclick="QZBlog.Util.showLoginBox(\'ownerOperation\',function(){location.reload();});;return false;" class="c_tx">登录系统</a>。谢谢！</p></div>';
+		var PAGE_ACCESS_ERROR = '<div class="error_cont bgr3"><span class="icon_big_hint"></span><p class="error_info">您没有权限查看主人的日志。<a id="returnMySpace" href="javascript:void(0)" onclick="return false;">返回我的主页</a></p><p class="error_help">您可以尝试联系主人开通相应权限。</p></div>';
+		var PAGE_DATA_EMPTY_TPL = QZBlog.Logic.SpaceHostInfo.isOwnerMode() ? '<div class="empty_cont"><p>您还没有日志，快去<a href="http://rc.qzone.qq.com/blog/add" target="_blank" rel="write-blog-link">写日志</a>吧</p></div>' : '<div class="empty_cont"><p>主人没有发表日志</p></div>';
+		var PAGE_DATA_EMPTY_CATE_TPL = QZBlog.Logic.SpaceHostInfo.isOwnerMode() ? '<div class="empty_cont">您在这个分类下还没有保存日志，<a href="http://rc.qzone.qq.com/blog/add" target="_blank" rel="emptycate-write-blog-link" category="">立刻添加一篇，与朋友分享您的生活吧。</a></div>' : '本分类没有日志，请查看其他分类。';
+
+		var LIST_PAGE_TPL = '<div id="listArea" class="mod_list tbor2"><ul><%if(list && list.length){%><%for(var i=0; i<list.length; i++){%><li <%if(i%2){%>class="bg3"<%}%>  rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="<%=list[i].blogId%>" style="display:none"/><span class="article"><span id="blog-priicon-<%=list[i].blogId%>" style="display:none; cursor:pointer;" blogid="<%=list[i].blogId%>" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-<%=list[i].blogId%>"></span><%if(QZFL.userAgent.ie == 6){%><span id="blog-icon-<%=list[i].blogId%>" blogid="<%=list[i].blogId%>" rel="blog-detail-link" title="" style="display:none;"></span><%}%><a href="<%=list[i].blogurl%>" target="_blank" blogid="<%=list[i].blogId%>" rel="blog-detail-link" class="c_tx2" title="<%=list[i].title%> -- 发表于<%=list[i].pubTime%>"><%if(list[i].effect1 & (1 << 1)){ %><span class="eye_catch_light" style="filter:progid:DXImageTransform.Microsoft.Glow(color=#ff6600,strength=3);"><%=list[i].shorttitle%></span><%} else {%><span><%=list[i].shorttitle%></span><%}%></a><%if(QZFL.userAgent.ie != 6){%><span id="blog-icon-<%=list[i].blogId%>" blogid="<%=list[i].blogId%>" rel="blog-detail-link" title="" style="display:none;"></span><%}%></span></div><div class="list_op c_tx3" id="blog-op-<%=list[i].blogId%>"><span title="<%=list[i].pubTime%>"><%=list[i].shortpubtime%></span>&nbsp;				<span title="评论:<%=list[i].commentNum%>"><span id="reply-cnt-<%=list[i].blogId%>" cnt="<%=list[i].commentNum%>">(<%=list[i].commentNum%></span>/<span id="view-cnt-<%=list[i].blogId%>">loading</span>)</span>&nbsp;				<span style="display:none" id="blog-operation-<%=list[i].blogId%>"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="<%=list[i].blogId%>" blogtype="<%=list[i].blogType%>">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="<%=list[i].blogId%>" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="<%=list[i].blogId%>" title="更多操作">更多操作</span></a></span><span style="display:none" id="blog-audit-op-<%=list[i].blogId%>"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="<%=list[i].blogId%>" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="<%=list[i].blogId%>" title="删除该日志">删除</a></span></div></li><%}}%></ul></div><div class="mod_drop_op bg" id="more-tpl-list"><ul class="bor2"><li><a href="javascript:;" rel="blog-delete-link" title="删除该日志" class="bg3_hover">删除日志</a></li><li style=""><a href="javascript:;" rel="blog-right-setting-link" title="日志权限设置" class="bg3_hover">设置权限</a></li><li><a href="javascript:;" rel="blog-category-modify-link" title="修改日志分类" class="bg3_hover">修改分类</a></li><li style=""><a href="javascript:;" rel="blog-set-top-link" title="设置该日志置顶" class="bg3_hover">设为置顶</a></li><li><a href="javascript:;" rel="blog-convert-private-link" title="转为私密日志" class="bg3_hover">转为私密日志</a></li></ul></div>';
+
+		var LIST_ABSTRACT_TPL = '<div id="listArea" class="mod_summary_wrap tbor2 <%if(!isOwner){%>customer_wrap<%}%>"><a href="javascript:;" rel="current-space-link" class="mod_user_head"><img class="current-space-avatar" _width="50" alt=""></a><div class="mod_summary"><ul><%if(list && list.length){%><%for(var i=0; i<list.length; i++){%><li><div class="bor2 mod_article"><div class="hd"><h4><input type="checkbox" rel="batch-blog-select" value="<%=list[i].blogId%>" style="display:none"/><span style="display:none" class="article_status" id="blog-label-<%=list[i].blogId%>"></span><a href="<%=list[i].blogurl%>" rel="blog-detail-link" blogid="<%=list[i].blogId%>" target="_blank" class="c_tx" title="<%=list[i].title%>"><%if(list[i].effect1 & (1 << 1)){ %><span class="eye_catch_light" style="filter:progid:DXImageTransform.Microsoft.Glow(color=#ff6600,strength=3);"><%=list[i].shorttitle%></span><%} else {%><span><%=list[i].shorttitle%></span><%}%></a></h4></div><div class="bd"><%if(list[i].img && list[i].img.length){%><div class="article_info"><div class="img_wrap"><%for(var j=0; j<list[i].img.length; j++){%><div class="img_show"><a title="查看全文" href="<%=list[i].blogurl%>" target="_blank" rel="blog-detail-link" blogid="<%=list[i].blogId%>" ><img src="<%=list[i].img[j].url%>" alt="图片" onload="scaleAbsImg(this)" rel="blog-detail-link" blogid="<%=list[i].blogId%>"/></a></div><%}%></div><p><%=list[i].abstract%></p></div><%} else if(list[i].video){%><div class="mod_img article_info"><div class="pic_wrap"><div class="mod_video"><div class="mod_play bor2 bg"><img src="<% if(list[i].video[0] && list[i].video[0].thumb){%><%=list[i].video[0].thumb%><% } else { %>http://imgcache.qq.com/qzone_v6/img/blog/default.png<% }%>"/><a href="<%=list[i].blogurl%>" target="_blank" rel="blog-detail-link" blogid="<%=list[i].blogId%>" class="icon_play" title="进入日志查看视频"><span>播放</span></a></div></div></div><div class="txt_details"><div class="txt_details_info"><%=list[i].abstract%></div></div></div><%} else if(list[i].music && false){%><div class="mod_img article_info"><div class="pic_wrap"><img src="http://ctc.qzonestyle.gtimg.cn/qzone_v6/img/app_mission/img_reward/1020_100x60.png" alt=""></div><div class="txt_details"><div class="txt_details_info"><div class="mod_music"><a href="javascript:;" title="试听歌曲" class="c_tx bt_play bor2 bg"><span>试听歌曲</span></a></div><strong class="music_tit"><%=list[i].title%></strong></div><p><%=list[i].abstract%></p></div></div><%} else {%><div class="mod_img article_info"><div class="txt_details"><div class="txt_details_info"><p><%=list[i].abstract%></p></div></div></div><%}%></div><div class="ft"><div class="scrap_info"><span title="<%=list[i].pubTime%>" class="c_tx3 pub_time"><%=QZBlog.Util.getSplitTime(list[i].pubTime)%></span><a href="<%=list[i].blogurl%>" target="_blank" rel="blog-detail-link" blogid="<%=list[i].blogId%>" class="c_tx3" title="查看全文">查看全文</a><a href="<%=list[i].blogurl%>" target="_blank" rel="blog-detail-link" blogid="<%=list[i].blogId%>" class="c_tx3">阅读(<span id="view-cnt-<%=list[i].blogId%>">loading</span>)</a><a href="<%=list[i].blogurl%>" target="_blank" rel="blog-detail-link" blogid="<%=list[i].blogId%>" class="c_tx3">评论(<%=list[i].commentNum%>)</a></div><div style="display:none" class="op_lists" id="blog-operation-<%=list[i].blogId%>"><ul><li class="left"><a href="javascript:;" class="c_tx3 adjust" rel="blog-edit-link" blogid="<%=list[i].blogId%>" blogtype="<%=list[i].blogType%>" title="编辑该日志">编辑</a></li><li class="left blog-op-container" id="blog-op-<%=list[i].blogId%>"><a href="javascript:;" class="c_tx3 arr_wrap" rel="list-more-menu-link" blogid="<%=list[i].blogId%>" title="更多操作">更多<span class="mod_arr" rel="list-more-menu-link" blogid="<%=list[i].blogId%>"></span></a></li></ul></div><div style="display:none" id="blog-audit-op-<%=list[i].blogId%>" class="scrap_info"><a href="javascript:;" class="c_tx3" rel="blog-report-link" blogid="<%=list[i].blogId%>" title="申诉">申诉</a><a href="javascript:;" class="c_tx3" rel="blog-delete-link" blogid="<%=list[i].blogId%>" title="删除">删除</a></div></div></div></li><%}}%></ul></div></div><div class="mod_drop_op bg" id="more-tpl-list"><ul class="bor2"><li><a href="javascript:;" rel="blog-delete-link" title="删除该日志" class="bg3_hover">删除日志</a></li><li style=""><a href="javascript:;" rel="blog-right-setting-link" title="日志权限设置" class="bg3_hover">设置权限</a></li><li><a href="javascript:;" rel="blog-category-modify-link" title="修改日志分类" class="bg3_hover">修改分类</a></li><li style=""><a href="javascript:;" rel="blog-set-top-link" title="设置该日志置顶" class="bg3_hover">设为置顶</a></li><li><a href="javascript:;" rel="blog-convert-private-link" title="转为私密日志" class="bg3_hover">转为私密日志</a></li></ul></div>';
+
+		var CATEGORY_TPL = '<div class="hd"><h4>日志分类</h4><div class="hd_other show_in_owner"><a class="c_tx" href="javascript:;" title="管理分类" rel="category-manage-link">管理</a></div></div><div class="bd" id="cateListContainer"><div class="mod_list"><ul id="cateList"><%if(cateInfo){%><li class="bg3_hover"><a class="c_tx" cate="" href="javascript:;" rel="category-select-link" catehex="" title="共<%=cateInfo.blogNum%>篇日志"><span class="left" cate="" catehex="" rel="category-select-link">全部日志</span><span class="right" cate="" catehex="" rel="category-select-link">(<%=cateInfo.blogNum%>)</span></a></li><%for(var i=0; i<cateInfo.categoryList.length && i < MAX_CATE_COUNT; i++){%><li class="bg3_hover"><a class="c_tx" href="javascript:;" rel="category-select-link" cate="<%=cateInfo.categoryList[i].category.toRealStr().URLencode()%>" catehex="<%=cateInfo.categoryList[i].cateHex%>" title="<%=cateInfo.categoryList[i].num%>篇日志"><span class="left" rel="category-select-link" cate="<%=cateInfo.categoryList[i].category.toRealStr().URLencode()%>" catehex="<%=cateInfo.categoryList[i].cateHex%>"><%=cateInfo.categoryList[i].category%></span><span class="right" rel="category-select-link" cate="<%=cateInfo.categoryList[i].category.toRealStr().URLencode()%>" catehex="<%=cateInfo.categoryList[i].cateHex%>">(<%=cateInfo.categoryList[i].num%>)</span></a></li><%}}%></ul></div><%if(cateInfo && cateInfo.categoryList.length>MAX_CATE_COUNT){%><div class="sort_more"><a href="javascript:;" class="sort_op c_tx" rel="category-toggle-more-panel">其他<%=(cateInfo.categoryList.length-MAX_CATE_COUNT)%>项分类<span class="mod_arr arr_r" rel="category-toggle-more-panel"></span></a><div class="mod_list bg bor3" id="cateListMore" style="display:none"><ul><%for(var i=MAX_CATE_COUNT; i<cateInfo.categoryList.length; i++){%><li class="bg3_hover"><a class="c_tx" href="javascript:;" inmorenav="1" rel="category-select-link" cate="<%=cateInfo.categoryList[i].category.toRealStr().URLencode()%>" catehex="<%=cateInfo.categoryList[i].cateHex%>" title="<%=cateInfo.categoryList[i].num%>篇日志"><span class="left" rel="category-select-link" cate="<%=cateInfo.categoryList[i].category.toRealStr().URLencode()%>" catehex="<%=cateInfo.categoryList[i].cateHex%>"><%=cateInfo.categoryList[i].category%></span><span class="right" rel="category-select-link" cate="<%=cateInfo.categoryList[i].category.toRealStr().URLencode()%>" catehex="<%=cateInfo.categoryList[i].cateHex%>">(<%=cateInfo.categoryList[i].num%>)</span></a></li><%}%></ul></div></div><%}%></div>';
+
+
+		//last view mode in guest status
+		var viewmode = parent['BLOG_LIST_VIEW_MODE_'+QZBlog.Logic.SpaceHostInfo.getUin()] || 0;
+
+		/*
+			这里后台使用二进制来获取标记位，三位分别代表列表信息、日历信息和分类信息
+		*/
+		var LIST_DATA = 1;
+		var CATEGORY_DATA = 2;
+		var CALENDAR_DATA = 4;
+
+		var requestParam = LIST_DATA;
+
+		//判断日历缓存，如果存在则不通过cgi拉取
+		var time = new Date(parent.g_NowTime*1000);
+		var curYear = ((time.getYear() < 1900) ? (1900+time.getYear()) : time.getYear());
+		if(!!parent.g_oCateInfoMgr && !!parent.BlogListNavigator){
+			if(!parent.g_oCateInfoMgr.getCategoryCnt || parent.g_oCateInfoMgr.getCategoryCnt() <= 0){
+				requestParam = requestParam | CATEGORY_DATA;
+			}
+
+			if(!!parent.BlogListNavigator.getCurrentDate() && typeof(parent.BlogListNavigator.getCurrentDate()["year"]) != "undefined") {
+				curYear = parent.BlogListNavigator.getCurrentDate()["year"];
+			}else{
+				requestParam = requestParam | CALENDAR_DATA;
+			}
+		}else{
+			requestParam = requestParam | CALENDAR_DATA | CATEGORY_DATA;
+		}
+
+		//判断分类缓存，如果存在则不通过cgi拉取
+		//first page parameter
+		var pageIndex = parseInt(getParameter('page'), 10) || 1;
+		var pageSize = 15;
+
+		//cate要做一次decode操作是因为从正文页跳分类过来的时候参数做了encode的处理
+		var currentDate = {year : null,month : null},
+			spanTime = {start : getParameter('starttime'),end : getParameter('endtime')},
+			sortType = 0,
+			currentCate = decodeURI(getParameter('cate')),
+			currentCatehex = '';
+
+		//判断分类及日历缓存，如果存在则直进到此分类或月份下
+		if(!!parent.BlogListNavigator){
+			if(currentCate){
+				parent.BlogListNavigator.setCurrentCate(currentCate);
+				parent.BlogListNavigator.setCurrentCatehex('');
+			}else{
+				currentCate = currentCate || parent.BlogListNavigator.getCurrentCate();
+			}
+			currentCatehex = currentCatehex || parent.BlogListNavigator.getCurrentCatehex();
+			currentDate = parent.BlogListNavigator.getCurrentDate() || currentDate;
+			spanTime = QZBlog.Util.getMonthSpanTime(parseInt(currentDate["year"],10), parseInt(currentDate["month"],10));
+			sortType = parent.BlogListNavigator.getSortType();
+		}
+
+		if(currentDate["year"] && currentDate["month"] && !!parent.BlogListNavigator){
+			parent.BlogListNavigator.setCurrentDate({'year':currentDate["year"],'month':currentDate["month"]});
+		}
+
+		var INIT_PAGE_DATA = {
+			list: [],
+			cateInfo: {categoryList: []},
+			dateInfo : {},
+			hostflag: 0,	//use default
+			code: 999
+		};
+
+		var _fixAbstract = function(str){
+			if(!str || typeof(str) != 'string'){
+				return str;
+			}
+			str = str.replace(/(.*?)\<br[^>]*>(.*?)\<br[^>]*>(.*?)\<br[^>]*>(.*)/gi, function(){
+				return arguments[1]+'<br/>'+arguments[2]+'<br/>'+arguments[3];
+			});
+			str = str.toInnerHTML()
+			str = str.cutWord(200);
+			str = str.toRealStr();
+			return str;
+		};
+
+		var scaleAbsImg = function(obj){
+			var img = new Image();
+			img.onload = function(){
+				var newW, newH, ml, mt,
+					w = this.width,
+					h = this.height;
+
+				if(w > h){
+					newH = 100;
+					newW = w/h*100;
+					ml = parseInt((newW-100)/2, 10);
+				} else {
+					newW = 100;
+					newH = h/w*100;
+					mt = parseInt((newH-100)/2, 10);
+				}
+				var s = 'width:'+newW+'px;height:'+newH+'px;'+(ml ? 'margin-left:-'+ml+'px;' : '')+(mt ? 'margin-top:-'+mt+'px;':'');
+				obj.style.cssText = s;
+			};
+			img.src = obj.src;
+		};
+
+		var _long2shorttime = function(n){
+			if(!n || (!!n && n.length < 16)){
+				return '';
+			}
+			var _now = parent.QZONE.FrontPage.getSvrTime();
+			var year = parseInt(n.substr(0, 4));
+			var month = parseInt(n.substr(5, 2));
+			var date = parseInt(n.substr(8, 2));
+
+			if (year != _now.getFullYear()){
+				return n.substr(0, 10);
+			} else if (month != (_now.getMonth() + 1) || date != _now.getDate()) {
+				return n.substr(5, 5);
+			} else {
+				return n.substr(11, 5);
+			}
+		};
+
+		var listCgiUrl = QZBlog.CGI_URL.get('get_abs') + '?' + QZBlog.Util.buildParam(QZBlog.Util.getNewBlogListUrlData({
+			absType: ((!QZBlog.Logic.SpaceHostInfo.isOwnerMode() && typeof(viewmode)!= undefined) ? viewmode : null),
+			verbose: (currentDate["year"]&&currentDate["month"]) ? 0 : 1,
+			sortType : sortType || 0,
+			reqInfo : requestParam,
+			statYear : curYear,
+			startTime : spanTime['start'] || null,
+			endTime :spanTime['end'] || null,
+			cateName: currentCate,
+			cateHex : currentCatehex,
+			pos: (pageIndex-1)*pageSize,
+			num: pageSize
+		}));
+
+		var _st = new Date().getTime();
+		if(PAGE_CATALOG == 'list'){
+			// var _Callback = function(data){
+			// 	// get_abs cgi 成功返回
+			// 	BlogListReporter.markPoint(4);
+			// 	if(data && data.data && data.code == 0){
+			// 		INIT_PAGE_DATA = QZFL.object.extend(INIT_PAGE_DATA, data.data);
+			// 		INIT_PAGE_DATA.code = data.code;
+			// 		if(!!INIT_PAGE_DATA.month_num){
+			// 			INIT_PAGE_DATA.year = curYear;
+			// 		}
+			// 		if(INIT_PAGE_DATA.list){
+			// 			INIT_PAGE_DATA.isOwner = QZBlog.Logic.SpaceHostInfo.isOwnerMode();
+			// 			for(var i=0; i<INIT_PAGE_DATA.list.length; i++){
+			// 				var blog = INIT_PAGE_DATA.list[i];
+			// 				var len = QZFL.string.getRealLen(blog.title)*2;
+			// 				INIT_PAGE_DATA.list[i]['abstract'] = _fixAbstract(blog['abstract']);
+			// 				INIT_PAGE_DATA.list[i].shorttitle = blog.title;
+			// 				INIT_PAGE_DATA.list[i].shortpubtime = _long2shorttime(blog.pubTime);
+			// 				INIT_PAGE_DATA.list[i].blogurl = 'http://'+(QZBlog.Logic.isInPengyou ? 'baseapp.pengyou.com' : 'user.qzone.qq.com')+'/'+QZBlog.Logic.SpaceHostInfo.getUin()+'/blog/'+blog.blogId;
+			// 			}
+			// 		}
+			// 	}else if(data.code == -3000){
+			// 		INIT_PAGE_DATA.error = 'login';
+			// 		QZONE.FP.showLoginBox(null, function(){
+			// 			location.reload();
+			// 		});
+			// 	}else if(data.code == -4002){
+			// 		QZONE.FP.showMsgbox(data.message,1,2000);
+			// 		INIT_PAGE_DATA.error = 'login';
+			// 		QZONE.FP.showLoginBox(null, function(){
+			// 			location.reload();
+			// 		});
+			// 	}else if(data.code == -4009){
+			// 		QZONE.FP.showMsgbox(data.message,1,2000);
+			// 		INIT_PAGE_DATA.error = 'no right';
+			// 	}
+			// 	window._Callback = null;
+			// 	QZBlog.Util.Statistic.sendRetCodeStatic({
+			// 		domain: QZBlog.CGI_URL.getDispatchDomain('get_abs'),
+			// 		cgi: '/cgi-bin/blognew/get_abs?dw',
+			// 		code: data.code,
+			// 		time: (new Date().getTime()) - _st
+			// 	});
+			// }
+			// var req = new QZBlog.Util.NetRequest({url: url,data:dataFn,method:'get',uniqueCGI:true, maxRequestInterval:0});
+			// req.onSuccess = function(retData){
+			// 	if(retData.data && retData.code == 0){
+			// 		var data = handler(retData);
+			// 		PAGE_CACHE.add(cache_key, data, _this.Config.blogListCacheTime);
+			// 		succCallback && succCallback(data);
+			// 	} else {
+			// 		errCallback && errCallback(retData);
+			// 	}
+			// };
+			// req.send();
+			// _dw(_bJs(listCgiUrl, 'gb2312'));
+			// get_abs cgi 获取列表页内容
+			BlogListReporter.markPoint(3);
+		} else {
+			BlogListReporter.markPoint(12);
+		}
+	</script>
+
+	
+	<div class="bg_mode bg">
+		<div class="box_ml bor">
+			<div class="mode_gb">
+				<div class="bor mod-tab">
+	<div class="mod-tab-list">
+		<ul id="main-nav">
+			<li><a href="http://rc.qzone.qq.com/blog" target="_blank" rel="blog-list-link" class="c-tx2 selected"><span class="item-wrap bor-tx"><span class="show_in_owner">我的</span>日志</span></a></li>
+			<li class="show_in_owner"><a href="http://rc.qzone.qq.com/blog?catalog=private" target="_blank" rel="private-blog-link" class="c-tx2"><span class="item-wrap bor-tx">私密日记</span></a></li>
+			<li class="show_in_owner"><a href="http://rc.qzone.qq.com/blog?catalog=ugc" rel="ugc-blog-link" target="_blank" class="c-tx2"><span class="item-wrap bor-tx">生活记录</span></a></li>
+			<li class="show_in_owner"><a href="http://rc.qzone.qq.com/blog?catalog=notepad" rel="notepad-link" target="_blank" class="c-tx2"><span class="item-wrap bor-tx">记事本</span></a></li>
+			<li class="show_in_owner"><a href="http://rc.qzone.qq.com/blog?catalog=friend" rel="friendblog-link" target="_blank" class="c-tx2"><span class="item-wrap bor-tx">好友日志</span></a></li>
+		</ul>
+	</div>
+	<div class="mod-tab-other">
+        <div class="photo-infos">
+            <div class="photo-info-item show_in_owner">
+                <a href="http://rc.qzone.qq.com/blog?catalog=draft" target="_blank" rel="draft-list-link" title="草稿箱"><i class="icon-m icon_draft" rel="draft-list-link"></i>草稿箱</a>
+            </div>
+            <div class="photo-info-item show_in_owner">
+                <a href="http://rc.qzone.qq.com/blog?catalog=recycle" target="_blank" rel="recycle-list-link" class="c-tx3" title="回收站"><i class="icon-m icon_rubbish" rel="recycle-list-link"></i>回收站</a>
+            </div>
+            <div class="photo-info-item show_in_owner">
+                <a href="http://rc.qzone.qq.com/blog?catalog=setting" target="_blank" rel="setting-link" class="c-tx3" title="反馈"><i class="icon-m icon_setting" rel="setting-link"></i>设置</a>
+            </div>
+            <div class="photo-info-item show_in_owner">
+                <a href="http://support.qq.com/portal/discuss_pdt/376_1.html" target="_blank" class="c-tx3" title="建议"><i class="icon-m icon_proposal"></i>建议</a>
+            </div>
+        </div>
+    </div>
+</div>
+				<div class="mode_gb_cont">
+					<div id="page-error" style="display: none; position: absolute;">
+						当前日志加载遇到了一些问题，您可以尝试通过清除浏览器缓存再试
+					</div>
+					<div class="blog_app" id="app_mod" style="display: none; min-height: 400px;"><!-- 提供给其他页面使用 --></div>
+					<div class="blog_app" id="app_mod_blog" style="min-height: 400px;"><!-- 日志页面专用 -->
+						<div class="wrap wrap_aside">
+							<div class="main">
+								<div class="inner_main">
+									<div class="mod_conts">
+										<div class="entry_wrap">
+	<div class="mod_entry show_in_owner" id="blog-top-nav">
+		<div class="exact_entry" id="write-ordinaryblog">
+			<a href="http://rc.qzone.qq.com/blog/add" target="_blank" rel="write-blog-link" class="text gb_bt2" title="写日志[alt+1]"><span class="inner_wrap" rel="write-blog-link"><i class="icon_blog_entry" rel="write-blog-link"></i>写日志</span></a>
+		    <div class="mod_themes">
+                <b class="uarr"></b>
+                <b class="uarr_in"></b>
+                <div class="mod_template">
+                    <ul id="lead-themeblog">
+                    </ul>
+                </div>
+		    </div>
+        </div>
+		<div class="exact_entry" id="write-templateblog">
+			<div class="default_entry">
+				<a href="http://rc.qzone.qq.com/blog/addtemplateblog" target="_blank" rel="write-templateblog-link" class="text gb_bt2" title="写模板日志[alt+2]">
+					<span class="inner_wrap" rel="write-templateblog-link">
+						<i class="icon_module_entry" rel="write-templateblog-link"></i>模板日志
+					</span>
+				</a>
+				<button class="dorpdown_btn gb_bt2">
+					<span class="mod_arr arr_b"></span>
+				</button>
+			</div>
+			<div class="entry_droplist">
+				<ul>
+					<li>
+						<a class="gb_bt2" href="http://rc.qzone.qq.com/blog/addgrid" target="_blank" rel="write-gridblog-link" title="写魔方日志[alt+3]"><span class="inner_wrap" rel="write-gridblog-link"><i class="icon_magic_entry" rel="write-gridblog-link"></i>魔方日志</span></a>
+					</li>
+					<li>
+						<a class="gb_bt2 last_bt" href="http://rc.qzone.qq.com/blog/addphotoblog" target="_blank" rel="write-photoblog-link"><span class="inner_wrap" rel="write-photoblog-link"><i class="icon_pic_entry" rel="write-photoblog-link"></i>图片日志</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="list_toolbar" id="list-toolbar">
+		<span class="manage"><a id="batchEditHref" href="javascript:;" rel="switch-batch-mode" title="批量管理[ctrl+a]">批量管理</a></span>
+		<div class="toolbar_other"><a href="javascript:;" id="order-by-sel" class="c_tx" title="按发表时间由新到旧排序">发表时间<span class="mod_arr"></span></a></div>
+		<span class="switch" id="toggle-view-mode"><a href="javascript:;" style="" rel="switch-abstract-mode" title="切换到摘要模式">切换到摘要</a><a href="javascript:;" style="display: none;" rel="switch-list-mode" title="切换到列表">切换到列表</a><span class="symbol c_tx3">|</span></span>
+	</div>
+</div>
+
+
+										<!-- 排序菜单 -->
+										<div class="sequence bg bor2" id="order-by-mnu" style="display: none;">
+											<ul>
+												<li style="display: none;"><a href="javascript:;" val="0" title="按发表时间由新到旧排序" class="bg3_hover">发表时间</a></li>
+												<li><a href="javascript:;" val="1" title="按最新评论时间由新到旧排序" class="bg3_hover">评论时间</a></li>
+												<li><a href="javascript:;" val="3" title="按最后修改时间由新到旧排序" class="bg3_hover">最新修改</a></li>
+												<li><a href="javascript:;" val="4" title="按评论数目由多到少排序" class="bg3_hover">评论数目</a></li>
+											</ul>
+										</div>
+
+										<div class="tbor2 group_edit" style="display: none;" id="batch-op-bar">
+											<input type="checkbox" name="ckeckAll" id="ckeckAll" rel="batch-check-all"><label for="ckeckAll">全选</label>
+											<a style="" href="javascript:;" rel="batch-delete-link">批量删除</a>
+											<a href="javascript:;" rel="batch-change-right-link" style="">权限设置</a>
+											<a href="javascript:;" rel="batch-convert-private-link">转为私密日志</a>
+											<a href="javascript:;" class="modify_type" rel="batch-change-category-menu">修改分类<span class="mod_arr" rel="batch-change-category-menu"></span></a>
+										</div>
+
+										<div id="page-container-blog"><div id="listArea" class="mod_list tbor2"><ul><li rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1366631519" style="display: none;"><span class="article"><span id="blog-priicon-1366631519" style="display:none; cursor:pointer;" blogid="1366631519" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1366631519"></span><a href="http://user.qzone.qq.com/1098939153/blog/1366631519" target="_blank" blogid="1366631519" rel="blog-detail-link" class="c_tx2" title="今日之声（4月22日） -- 发表于2013-04-22 19:51"><span>今日之声（4月22日）</span></a><span id="blog-icon-1366631519" blogid="1366631519" rel="blog-detail-link" title="日志中包含图片" class="icon icon_img"></span></span></div><div class="list_op c_tx3" id="blog-op-1366631519"><span title="2013-04-22 19:51">2013-04-22</span>&nbsp;    <span title="评论:0/阅读:0"><span id="reply-cnt-1366631519" cnt="0">(0</span>/<span id="view-cnt-1366631519">0</span>)</span>&nbsp;    <span id="blog-operation-1366631519"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1366631519" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1366631519" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1366631519" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1366631519"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1366631519" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1366631519" title="删除该日志">删除</a></span></div></li><li class="bg3" rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1366607411" style="display: none;"><span class="article"><span id="blog-priicon-1366607411" style="display:none; cursor:pointer;" blogid="1366607411" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1366607411"></span><a href="http://user.qzone.qq.com/1098939153/blog/1366607411" target="_blank" blogid="1366607411" rel="blog-detail-link" class="c_tx2" title="江苏泰州一工业园书记吃天价餐 被发现围堵后当众下跪 -- 发表于2013-04-22 13:10"><span>江苏泰州一工业园书记吃天价餐 被发现围堵后当众下跪</span></a><span id="blog-icon-1366607411" blogid="1366607411" rel="blog-detail-link" title="日志中包含图片" class="icon icon_img"></span></span></div><div class="list_op c_tx3" id="blog-op-1366607411"><span title="2013-04-22 13:10">2013-04-22</span>&nbsp;    <span title="评论:0/阅读:0"><span id="reply-cnt-1366607411" cnt="0">(0</span>/<span id="view-cnt-1366607411">0</span>)</span>&nbsp;    <span id="blog-operation-1366607411"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1366607411" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1366607411" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1366607411" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1366607411"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1366607411" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1366607411" title="删除该日志">删除</a></span></div></li><li rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1366389084" style="display: none;"><span class="article"><span id="blog-priicon-1366389084" style="display:none; cursor:pointer;" blogid="1366389084" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1366389084"></span><a href="http://user.qzone.qq.com/1098939153/blog/1366389084" target="_blank" blogid="1366389084" rel="blog-detail-link" class="c_tx2" title="《汉尼拔》第一季3 -- 发表于2013-04-20 00:31"><span>《汉尼拔》第一季3</span></a><span id="blog-icon-1366389084" blogid="1366389084" rel="blog-detail-link" title="日志中包含图片" class="icon icon_img"></span></span></div><div class="list_op c_tx3" id="blog-op-1366389084"><span title="2013-04-20 00:31">2013-04-20</span>&nbsp;    <span title="评论:0/阅读:0"><span id="reply-cnt-1366389084" cnt="0">(0</span>/<span id="view-cnt-1366389084">0</span>)</span>&nbsp;    <span id="blog-operation-1366389084"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1366389084" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1366389084" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1366389084" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1366389084"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1366389084" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1366389084" title="删除该日志">删除</a></span></div></li><li class="bg3" rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1366384752" style="display: none;"><span class="article"><span id="blog-priicon-1366384752" style="display:none; cursor:pointer;" blogid="1366384752" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1366384752"></span><a href="http://user.qzone.qq.com/1098939153/blog/1366384752" target="_blank" blogid="1366384752" rel="blog-detail-link" class="c_tx2" title="Java  static ? -- 发表于2013-04-19 23:19"><span>Java  static ?</span></a><span id="blog-icon-1366384752" blogid="1366384752" rel="blog-detail-link" title="日志中包含图片" class="icon icon_img"></span></span></div><div class="list_op c_tx3" id="blog-op-1366384752"><span title="2013-04-19 23:19">2013-04-19</span>&nbsp;    <span title="评论:0/阅读:0"><span id="reply-cnt-1366384752" cnt="0">(0</span>/<span id="view-cnt-1366384752">0</span>)</span>&nbsp;    <span id="blog-operation-1366384752"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1366384752" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1366384752" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1366384752" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1366384752"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1366384752" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1366384752" title="删除该日志">删除</a></span></div></li><li rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1366268337" style="display: none;"><span class="article"><span id="blog-priicon-1366268337" style="display:none; cursor:pointer;" blogid="1366268337" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1366268337"></span><a href="http://user.qzone.qq.com/1098939153/blog/1366268337" target="_blank" blogid="1366268337" rel="blog-detail-link" class="c_tx2" title="微服私访：还说自己不是奴才？ -- 发表于2013-04-18 14:58"><span>微服私访：还说自己不是奴才？</span></a><span id="blog-icon-1366268337" blogid="1366268337" rel="blog-detail-link" title="日志中包含图片" class="icon icon_img"></span></span></div><div class="list_op c_tx3" id="blog-op-1366268337"><span title="2013-04-18 14:58">2013-04-18</span>&nbsp;    <span title="评论:0/阅读:0"><span id="reply-cnt-1366268337" cnt="0">(0</span>/<span id="view-cnt-1366268337">0</span>)</span>&nbsp;    <span id="blog-operation-1366268337"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1366268337" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1366268337" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1366268337" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1366268337"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1366268337" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1366268337" title="删除该日志">删除</a></span></div></li><li class="bg3" rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1366220214" style="display: none;"><span class="article"><span id="blog-priicon-1366220214" style="display:none; cursor:pointer;" blogid="1366220214" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1366220214"></span><a href="http://user.qzone.qq.com/1098939153/blog/1366220214" target="_blank" blogid="1366220214" rel="blog-detail-link" class="c_tx2" title="“清华女生铊中毒事件”基本数据列表 -- 发表于2013-04-18 01:36"><span>“清华女生铊中毒事件”基本数据列表</span></a><span id="blog-icon-1366220214" blogid="1366220214" rel="blog-detail-link" title="" style="display:none;"></span></span></div><div class="list_op c_tx3" id="blog-op-1366220214"><span title="2013-04-18 01:36">2013-04-18</span>&nbsp;    <span title="评论:0/阅读:0"><span id="reply-cnt-1366220214" cnt="0">(0</span>/<span id="view-cnt-1366220214">0</span>)</span>&nbsp;    <span style="display: none;" id="blog-operation-1366220214"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1366220214" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1366220214" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1366220214" title="更多操作">更多操作</span></a></span><span id="blog-audit-op-1366220214"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1366220214" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1366220214" title="删除该日志">删除</a></span></div></li><li rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1366220010" style="display: none;"><span class="article"><span id="blog-priicon-1366220010" style="display:none; cursor:pointer;" blogid="1366220010" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1366220010"></span><a href="http://user.qzone.qq.com/1098939153/blog/1366220010" target="_blank" blogid="1366220010" rel="blog-detail-link" class="c_tx2" title="关于朱令事件的考古新发现 -- 发表于2013-04-18 01:33"><span>关于朱令事件的考古新发现</span></a><span id="blog-icon-1366220010" blogid="1366220010" rel="blog-detail-link" title="" style="display:none;"></span></span></div><div class="list_op c_tx3" id="blog-op-1366220010"><span title="2013-04-18 01:33">2013-04-18</span>&nbsp;    <span title="评论:0/阅读:0"><span id="reply-cnt-1366220010" cnt="0">(0</span>/<span id="view-cnt-1366220010">0</span>)</span>&nbsp;    <span id="blog-operation-1366220010"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1366220010" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1366220010" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1366220010" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1366220010"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1366220010" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1366220010" title="删除该日志">删除</a></span></div></li><li class="bg3" rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1366214153" style="display: none;"><span class="article"><span id="blog-priicon-1366214153" style="display:none; cursor:pointer;" blogid="1366214153" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1366214153"></span><a href="http://user.qzone.qq.com/1098939153/blog/1366214153" target="_blank" blogid="1366214153" rel="blog-detail-link" class="c_tx2" title="《清华女生铊中毒事件》 -- 发表于2013-04-17 23:55"><span>《清华女生铊中毒事件》</span></a><span id="blog-icon-1366214153" blogid="1366214153" rel="blog-detail-link" title="日志中包含图片" class="icon icon_img"></span></span></div><div class="list_op c_tx3" id="blog-op-1366214153"><span title="2013-04-17 23:55">2013-04-17</span>&nbsp;    <span title="评论:0/阅读:0"><span id="reply-cnt-1366214153" cnt="0">(0</span>/<span id="view-cnt-1366214153">0</span>)</span>&nbsp;    <span id="blog-operation-1366214153"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1366214153" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1366214153" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1366214153" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1366214153"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1366214153" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1366214153" title="删除该日志">删除</a></span></div></li><li rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1366078480" style="display: none;"><span class="article"><span id="blog-priicon-1366078480" style="display:none; cursor:pointer;" blogid="1366078480" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1366078480"></span><a href="http://user.qzone.qq.com/1098939153/blog/1366078480" target="_blank" blogid="1366078480" rel="blog-detail-link" class="c_tx2" title="Java Iterator -- 发表于2013-04-16 10:14"><span>Java Iterator</span></a><span id="blog-icon-1366078480" blogid="1366078480" rel="blog-detail-link" title="" style="display:none;"></span></span></div><div class="list_op c_tx3" id="blog-op-1366078480"><span title="2013-04-16 10:14">2013-04-16</span>&nbsp;    <span title="评论:0/阅读:0"><span id="reply-cnt-1366078480" cnt="0">(0</span>/<span id="view-cnt-1366078480">0</span>)</span>&nbsp;    <span id="blog-operation-1366078480"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1366078480" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1366078480" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1366078480" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1366078480"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1366078480" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1366078480" title="删除该日志">删除</a></span></div></li><li class="bg3" rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1365783961" style="display: none;"><span class="article"><span id="blog-priicon-1365783961" style="display:none; cursor:pointer;" blogid="1365783961" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1365783961"></span><a href="http://user.qzone.qq.com/1098939153/blog/1365783961" target="_blank" blogid="1365783961" rel="blog-detail-link" class="c_tx2" title="Java  Stack&amp;Queue -- 发表于2013-04-13 00:26"><span>Java  Stack&amp;Queue</span></a><span id="blog-icon-1365783961" blogid="1365783961" rel="blog-detail-link" title="日志中包含图片" class="icon icon_img"></span></span></div><div class="list_op c_tx3" id="blog-op-1365783961"><span title="2013-04-13 00:26">2013-04-13</span>&nbsp;    <span title="评论:0/阅读:0"><span id="reply-cnt-1365783961" cnt="0">(0</span>/<span id="view-cnt-1365783961">0</span>)</span>&nbsp;    <span id="blog-operation-1365783961"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1365783961" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1365783961" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1365783961" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1365783961"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1365783961" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1365783961" title="删除该日志">删除</a></span></div></li><li rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1365782927" style="display: none;"><span class="article"><span id="blog-priicon-1365782927" style="display:none; cursor:pointer;" blogid="1365782927" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1365782927"></span><a href="http://user.qzone.qq.com/1098939153/blog/1365782927" target="_blank" blogid="1365782927" rel="blog-detail-link" class="c_tx2" title="Java Vector -- 发表于2013-04-13 00:08"><span>Java Vector</span></a><span id="blog-icon-1365782927" blogid="1365782927" rel="blog-detail-link" title="" style="display:none;"></span></span></div><div class="list_op c_tx3" id="blog-op-1365782927"><span title="2013-04-13 00:08">2013-04-13</span>&nbsp;    <span title="评论:0/阅读:0"><span id="reply-cnt-1365782927" cnt="0">(0</span>/<span id="view-cnt-1365782927">0</span>)</span>&nbsp;    <span id="blog-operation-1365782927"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1365782927" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1365782927" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1365782927" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1365782927"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1365782927" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1365782927" title="删除该日志">删除</a></span></div></li><li class="bg3" rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1365777300" style="display: none;"><span class="article"><span id="blog-priicon-1365777300" style="display:none; cursor:pointer;" blogid="1365777300" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1365777300"></span><a href="http://user.qzone.qq.com/1098939153/blog/1365777300" target="_blank" blogid="1365777300" rel="blog-detail-link" class="c_tx2" title="《中国留学生朝鲜见闻：坐地铁只要人民币两分钱》 -- 发表于2013-04-12 22:35"><span>《中国留学生朝鲜见闻：坐地铁只要人民币两分钱》</span></a><span id="blog-icon-1365777300" blogid="1365777300" rel="blog-detail-link" title="日志中包含图片" class="icon icon_img"></span></span></div><div class="list_op c_tx3" id="blog-op-1365777300"><span title="2013-04-12 22:35">2013-04-12</span>&nbsp;    <span title="评论:0/阅读:0"><span id="reply-cnt-1365777300" cnt="0">(0</span>/<span id="view-cnt-1365777300">0</span>)</span>&nbsp;    <span id="blog-operation-1365777300"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1365777300" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1365777300" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1365777300" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1365777300"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1365777300" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1365777300" title="删除该日志">删除</a></span></div></li><li rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1365776334" style="display: none;"><span class="article"><span id="blog-priicon-1365776334" style="display:none; cursor:pointer;" blogid="1365776334" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1365776334"></span><a href="http://user.qzone.qq.com/1098939153/blog/1365776334" target="_blank" blogid="1365776334" rel="blog-detail-link" class="c_tx2" title="《“脱北者”：在边防被朝方人员用铁丝穿透鼻子拉着走》 -- 发表于2013-04-12 22:18"><span>《“脱北者”：在边防被朝方人员用铁丝穿透鼻子拉着走》</span></a><span id="blog-icon-1365776334" blogid="1365776334" rel="blog-detail-link" title="" style="display:none;"></span></span></div><div class="list_op c_tx3" id="blog-op-1365776334"><span title="2013-04-12 22:18">2013-04-12</span>&nbsp;    <span title="评论:1/阅读:1"><span id="reply-cnt-1365776334" cnt="1">(1</span>/<span id="view-cnt-1365776334">1</span>)</span>&nbsp;    <span id="blog-operation-1365776334"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1365776334" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1365776334" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1365776334" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1365776334"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1365776334" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1365776334" title="删除该日志">删除</a></span></div></li><li class="bg3" rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1365775975" style="display: none;"><span class="article"><span id="blog-priicon-1365775975" style="display:none; cursor:pointer;" blogid="1365775975" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1365775975"></span><a href="http://user.qzone.qq.com/1098939153/blog/1365775975" target="_blank" blogid="1365775975" rel="blog-detail-link" class="c_tx2" title="“脱北者”：逃离朝鲜的朝鲜人 -- 发表于2013-04-12 22:12"><span>“脱北者”：逃离朝鲜的朝鲜人</span></a><span id="blog-icon-1365775975" blogid="1365775975" rel="blog-detail-link" title="" style="display:none;"></span></span></div><div class="list_op c_tx3" id="blog-op-1365775975"><span title="2013-04-12 22:12">2013-04-12</span>&nbsp;    <span title="评论:1/阅读:1"><span id="reply-cnt-1365775975" cnt="1">(1</span>/<span id="view-cnt-1365775975">1</span>)</span>&nbsp;    <span id="blog-operation-1365775975"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1365775975" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1365775975" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1365775975" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1365775975"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1365775975" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1365775975" title="删除该日志">删除</a></span></div></li><li rel="list-row"><div class="list_tit" rel="list-row" style="width:68%"><input type="checkbox" rel="batch-blog-select" value="1365774954" style="display: none;"><span class="article"><span id="blog-priicon-1365774954" style="display:none; cursor:pointer;" blogid="1365774954" rel="blog-right-setting-link" title="修改权限设置"></span><span style="display:none" class="article_status" id="blog-label-1365774954"></span><a href="http://user.qzone.qq.com/1098939153/blog/1365774954" target="_blank" blogid="1365774954" rel="blog-detail-link" class="c_tx2" title="《昨天CCAV说黄继光是看了苏联电影学的堵抢眼》 -- 发表于2013-04-12 21:55"><span>《昨天CCAV说黄继光是看了苏联电影学的堵抢眼》</span></a><span id="blog-icon-1365774954" blogid="1365774954" rel="blog-detail-link" title="" style="display:none;"></span></span></div><div class="list_op c_tx3" id="blog-op-1365774954"><span title="2013-04-12 21:55">2013-04-12</span>&nbsp;    <span title="评论:1/阅读:1"><span id="reply-cnt-1365774954" cnt="1">(1</span>/<span id="view-cnt-1365774954">1</span>)</span>&nbsp;    <span id="blog-operation-1365774954"><a href="javascript:;" title="编辑" class="c_tx" rel="blog-edit-link" blogid="1365774954" blogtype="3">编辑</a><a href="javascript:;" rel="list-more-menu-link" blogid="1365774954" class="arr_wrap"><span class="mod_arr" rel="list-more-menu-link" blogid="1365774954" title="更多操作">更多操作</span></a></span><span style="display: none;" id="blog-audit-op-1365774954"><a href="javascript:;" class="c_tx" rel="blog-report-link" blogid="1365774954" title="申诉">申诉</a><span class="symbol">|</span><a href="javascript:;" class="c_tx" rel="blog-delete-link" blogid="1365774954" title="删除该日志">删除</a></span></div></li></ul></div><div class="mod_drop_op bg" id="more-tpl-list"><ul class="bor2"><li><a href="javascript:;" rel="blog-delete-link" title="删除该日志" class="bg3_hover">删除日志</a></li><li style=""><a href="javascript:;" rel="blog-right-setting-link" title="日志权限设置" class="bg3_hover">设置权限</a></li><li><a href="javascript:;" rel="blog-category-modify-link" title="修改日志分类" class="bg3_hover">修改分类</a></li><li style=""><a href="javascript:;" rel="blog-set-top-link" title="设置该日志置顶" class="bg3_hover">设为置顶</a></li><li><a href="javascript:;" rel="blog-convert-private-link" title="转为私密日志" class="bg3_hover">转为私密日志</a></li></ul></div></div>
+									</div>
+								</div>
+								<div class="mod_page tbor2" id="pagination"><div class="mod_pagenav"><p class="mod_pagenav_main"><span class="mod_pagenav_disable none"><span>上一页</span></span><a onclick="QZBlog.Util.PageIndexManager.goPage(-1);return false;" class="c_tx " href="javascript:;">上一页</a> <span class="mod_pagenav_count"><a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(1);return false;">1</a><a> <span class="mod_pagenav_more"><span>…</span></span> </a><a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(4);return false;">4</a> <a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(5);return false;">5</a>  <span class="current"><span>6</span></span> <a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(7);return false;">7</a> <a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(8);return false;">8</a> <span class="mod_pagenav_more"><span>…</span></span> <a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(10);return false;">10</a> </span> <span class="mod_pagenav_disable none"><span>下一页</span></span><a class="c_tx " onclick="QZBlog.Util.PageIndexManager.goPage(1);return false;" href="javascript:;">下一页</a> </p><p class="mod_pagenav_option"><span class="mod_pagenav_turn">转到<input class="textinput" type="text" id="pageIndex_input11" value="6"> 页 <button onclick="QZBlog.Util.PageIndexManager.goDirectPage($(&#39;pageIndex_input11&#39;).value.trim());" type="button" class="bt_tx2">确 定</button></span></p></div></div>
+							<div id="vipBottomAdContainer"><div id="blogPrivilegeAd" class="mod_privilege bor2"><div class="hd bg"><a href="http://pay.qq.com/qzone/index.shtml?cm=tenpay&aid=zone.rzhztq" target="_blank"><span class="ico_vip_open"><i>续费黄钻</i></span></a><span class="guide_info bg">尊享日志特权功能</span></div><div class="bd"><ul><li class="rbor2"><a href="http://rc.qzone.qq.com/blog/add" target="_blank" static="button1" title="附件上传"><img src="pic_1_4.jpg" alt="附件上传"><span class="privilege_wrap"><span class="privilege_tit c_tx2">附件上传</span><span class="privilege_info c_tx3" title="网盘分享更便捷">网盘分享更便捷</span></span></a></li><li class="rbor2"><a href="http://vip.qzone.com/all_priv_pages/4-7.html" target="_blank" static="button2" title="动态信纸"><img src="pic_2_4.jpg" alt="动态信纸"><span class="privilege_wrap"><span class="privilege_tit c_tx2">动态信纸</span><span class="privilege_info c_tx3" title="灵动变现秀心情">灵动变现秀心情</span></span></a></li><li class="rbor2"><a href="http://rc.qzone.qq.com/blog/addgrid" target="_blank" static="button3" title="魔方背景"><img src="pic_3_4.jpg" alt="魔方背景"><span class="privilege_wrap"><span class="privilege_tit c_tx2">魔方背景</span><span class="privilege_info c_tx3" title="黄钻背景任您选">黄钻背景任您选</span></span></a></li><li><a href="http://rc.qzone.qq.com/blog/addtemplateblog" target="_blank" static="button4" title="模板背景"><img src="pic_4_4.jpg" alt="模板背景"><span class="privilege_wrap"><span class="privilege_tit c_tx2">模板背景</span><span class="privilege_info c_tx3" title="更多模板秀个性">更多模板秀个性</span></span></a></li></ul></div></div></div></div>
+							<div class="aside">
+								<div id="side_ad" style="display:none" class="mod_box bbor3"></div>
+								<!-- 分类 -->
+								<div class="mod_box blog_sorts bbor3" id="rightCateArea"><div class="hd"><h4>日志分类</h4><div class="hd_other show_in_owner"><a class="c_tx" href="javascript:;" title="管理分类" rel="category-manage-link">管理</a></div></div><div class="bd" id="cateListContainer"><div class="mod_list"><ul id="cateList"><li class="bg3_hover"><a class="c_tx" cate="" href="javascript:;" rel="category-select-link" catehex="" title="共146篇日志"><span class="left" cate="" catehex="" rel="category-select-link">全部日志</span><span class="right" cate="" catehex="" rel="category-select-link">(146)</span></a></li><li class="bg3_hover"><a class="c_tx" href="javascript:;" rel="category-select-link" cate="个人日记" catehex="b8f6c8cbc8d5bcc7" title="141篇日志"><span class="left" rel="category-select-link" cate="个人日记" catehex="b8f6c8cbc8d5bcc7">个人日记</span><span class="right" rel="category-select-link" cate="个人日记" catehex="b8f6c8cbc8d5bcc7">(141)</span></a></li><li class="bg3_hover"><a class="c_tx" href="javascript:;" rel="category-select-link" cate="天下杂侃" catehex="cceccfc2d4d3d9a9" title="3篇日志"><span class="left" rel="category-select-link" cate="天下杂侃" catehex="cceccfc2d4d3d9a9">天下杂侃</span><span class="right" rel="category-select-link" cate="天下杂侃" catehex="cceccfc2d4d3d9a9">(3)</span></a></li><li class="bg3_hover"><a class="c_tx" href="javascript:;" rel="category-select-link" cate="Club分享" catehex="436c7562b7d6cfed" title="1篇日志"><span class="left" rel="category-select-link" cate="Club分享" catehex="436c7562b7d6cfed">Club分享</span><span class="right" rel="category-select-link" cate="Club分享" catehex="436c7562b7d6cfed">(1)</span></a></li><li class="bg3_hover"><a class="c_tx" href="javascript:;" rel="category-select-link" cate="感悟空间" catehex="b8d0cef2bfd5bce4" title="1篇日志"><span class="left" rel="category-select-link" cate="感悟空间" catehex="b8d0cef2bfd5bce4">感悟空间</span><span class="right" rel="category-select-link" cate="感悟空间" catehex="b8d0cef2bfd5bce4">(1)</span></a></li></ul></div><div class="sort_more"><a href="javascript:;" class="sort_op c_tx" rel="category-toggle-more-panel">其他8项分类<span class="mod_arr arr_r" rel="category-toggle-more-panel"></span></a><div class="mod_list bg bor3" id="cateListMore" style="display: none;"><ul><li class="bg3_hover"><a class="c_tx" href="javascript:;" inmorenav="1" rel="category-select-link" cate="___特、莂↗" catehex="5f5f5fccd8a1a2c761a84a" title="0篇日志"><span class="left" rel="category-select-link" cate="___特、莂↗" catehex="5f5f5fccd8a1a2c761a84a">___特、莂↗</span><span class="right" rel="category-select-link" cate="___特、莂↗" catehex="5f5f5fccd8a1a2c761a84a">(0)</span></a></li><li class="bg3_hover"><a class="c_tx" href="javascript:;" inmorenav="1" rel="category-select-link" cate="奇趣频道" catehex="c6e6c8a4c6b5b5c0" title="0篇日志"><span class="left" rel="category-select-link" cate="奇趣频道" catehex="c6e6c8a4c6b5b5c0">奇趣频道</span><span class="right" rel="category-select-link" cate="奇趣频道" catehex="c6e6c8a4c6b5b5c0">(0)</span></a></li><li class="bg3_hover"><a class="c_tx" href="javascript:;" inmorenav="1" rel="category-select-link" cate="往事如风" catehex="cdf9cac2c8e7b7e7" title="0篇日志"><span class="left" rel="category-select-link" cate="往事如风" catehex="cdf9cac2c8e7b7e7">往事如风</span><span class="right" rel="category-select-link" cate="往事如风" catehex="cdf9cac2c8e7b7e7">(0)</span></a></li><li class="bg3_hover"><a class="c_tx" href="javascript:;" inmorenav="1" rel="category-select-link" cate="心情点滴" catehex="d0c4c7e9b5e3b5ce" title="0篇日志"><span class="left" rel="category-select-link" cate="心情点滴" catehex="d0c4c7e9b5e3b5ce">心情点滴</span><span class="right" rel="category-select-link" cate="心情点滴" catehex="d0c4c7e9b5e3b5ce">(0)</span></a></li><li class="bg3_hover"><a class="c_tx" href="javascript:;" inmorenav="1" rel="category-select-link" cate="休闲搞笑" catehex="d0ddcfd0b8e3d0a6" title="0篇日志"><span class="left" rel="category-select-link" cate="休闲搞笑" catehex="d0ddcfd0b8e3d0a6">休闲搞笑</span><span class="right" rel="category-select-link" cate="休闲搞笑" catehex="d0ddcfd0b8e3d0a6">(0)</span></a></li><li class="bg3_hover"><a class="c_tx" href="javascript:;" inmorenav="1" rel="category-select-link" cate="学习资料" catehex="d1a7cfb0d7cac1cf" title="0篇日志"><span class="left" rel="category-select-link" cate="学习资料" catehex="d1a7cfb0d7cac1cf">学习资料</span><span class="right" rel="category-select-link" cate="学习资料" catehex="d1a7cfb0d7cac1cf">(0)</span></a></li><li class="bg3_hover"><a class="c_tx" href="javascript:;" inmorenav="1" rel="category-select-link" cate="转载" catehex="d7aad4d8" title="0篇日志"><span class="left" rel="category-select-link" cate="转载" catehex="d7aad4d8">转载</span><span class="right" rel="category-select-link" cate="转载" catehex="d7aad4d8">(0)</span></a></li><li class="bg3_hover"><a class="c_tx" href="javascript:;" inmorenav="1" rel="category-select-link" cate="个人日志" catehex="b8f6c8cbc8d5d6be" title="0篇日志"><span class="left" rel="category-select-link" cate="个人日志" catehex="b8f6c8cbc8d5d6be">个人日志</span><span class="right" rel="category-select-link" cate="个人日志" catehex="b8f6c8cbc8d5d6be">(0)</span></a></li></ul></div></div></div></div>
+
+								<!-- 搜索 -->
+								<div class="mod_box bbor3" id="searchArea">           <div class="hd">            <h4>搜索日志</h4>            <div class="hd_other none ">             <a href="javascript:;" id="blog_search_mag_btn" class="c_tx">设置</a>            </div>           </div>           <div class="bd">            <div class="mod_search bor2 bg">             <label for="search">搜索</label>             <input type="text" name="search" class="c_tx3" id="blog_search_text" value="">             <a href="javascript:;" id="blog_search_btn" class="icon_search">搜索</a>            </div>           </div>          </div>
+
+								<!-- 日历 -->
+								<div class="mod_box" id="calendarArea">           <div class="mod_calendar">            <div class="bor2 bg2 calendar_year">             <a class="c_tx mod_arr arr_back" href="javascript:;" onclick="BlogList.Calendar.showDateInfo(2014);return false;" title="上一年">上一年</a>             <strong class="year" title="11篇日志">2015年</strong>             <a class="c_tx mod_arr arr_pre" href="javascript:;" onclick="BlogList.Calendar.showDateInfo(2016);return false;" title="下一年">下一年</a>            </div>            <ul class="calendar_month lbor2">                                          <li class="bor2">                              <a class="c_tx" href="javascript:;" onclick="BlogList.Calendar.selectDate(2015, 1);return false;" title="1篇日志">1月</a>               </li>                                                        <li class="bor2">                              <a class="c_tx" href="javascript:;" onclick="BlogList.Calendar.selectDate(2015, 2);return false;" title="2篇日志">2月</a>               </li>                                                        <li class="bor2">                              <a class="c_tx" href="javascript:;" onclick="BlogList.Calendar.selectDate(2015, 3);return false;" title="1篇日志">3月</a>               </li>                                                        <li class="bor2">                              <a class="c_tx" href="javascript:;" onclick="BlogList.Calendar.selectDate(2015, 4);return false;" title="4篇日志">4月</a>               </li>                                                        <li class="bor2">                              <a class="c_tx" href="javascript:;" onclick="BlogList.Calendar.selectDate(2015, 5);return false;" title="3篇日志">5月</a>               </li>                                                        <li class="bor2"><span class="c_tx2" title="0篇日志">6月</span></li>                                                        <li class="bor2"><span class="c_tx2" title="0篇日志">7月</span></li>                                                        <li class="bor2"><span class="c_tx2" title="0篇日志">8月</span></li>                                                        <li class="bor2"><span class="c_tx2" title="0篇日志">9月</span></li>                                                        <li class="bor2"><span class="c_tx2" title="0篇日志">10月</span></li>                                                        <li class="bor2"><span class="c_tx2" title="0篇日志">11月</span></li>                                                        <li class="bor2"><span class="c_tx2" title="0篇日志">12月</span></li>                                       </ul>           </div>          </div>
+
+								<div class="mod_box blog_import show_in_owner">
+									<div class="check" style="">
+										<p><a href="http://cn.qzs.qq.com/qzone/newblog/v5/auditcanvas.html#type=blog" class="c_tx">评论审核</a><i class="icon icon_help"></i></p>
+										<div class="bubble_wrap none">
+											<div class="bgr3 mod_bubble arr_t">
+												<div class="bubble_cont">开启评论审核功能后，来自非好友的评论将通过您的审核才能展示。</div>
+												<span class="bor3 mod_arr"><span class="bor_bg3"></span></span>
+											</div>
+										</div>
+									</div>
+									<div class="support" style="">
+										<p><a href="http://n.qzone.qq.com/new/index.html" class="c_tx" id="importArea">日志导入</a><i class="icon icon_help"></i></p>
+										<div class="bubble_wrap none">
+											<div class="bgr3 mod_bubble arr_t">
+												<div class="bubble_cont">使用导入日志功能，可以将您其他地方的文章导入进日志。</div>
+												<span class="bor3 mod_arr"><span class="bor_bg3"></span></span>
+											</div>
+										</div>
+									</div>
+									<p></p>
+								</div>
+							</div><!-- end of aside -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		QZBlog.Util.Statistic.addSpeedPoint(4);
+		BlogListReporter.markPoint(5);
+		_dw(_bJs('http://'+(window.siDomain)+'/qzone/app/blog/v6/script/bloglist.basic.js')+_bJs(QZBlog.Logic.SpaceHostInfo.isOwnerMode() ? ('http://'+(window.siDomain)+'/qzone/app/blog/v6/script/bloglist.owner.js'): ''));
+		_dw(_bJs('http://'+(window.siDomain)+'/ac/qzfl/stat.js')+_bJs('http://'+(window.siDomain)+'/qzone/app/mood/chattips/script/monitor.js'));
+	</script><script type="text/javascript" charset="utf-8" src="bloglist.basic.js"></script><script type="text/javascript" charset="utf-8" src="bloglist.owner.js"></script><script type="text/javascript" charset="utf-8" src="stat.js"></script><script type="text/javascript" charset="utf-8" src="monitor.js"></script>
+	<script type="text/javascript">
+		QZAPP.Monitor.setReportID(100010);
+		QZAPP.Monitor.setReportRate(100);
+	</script>
+
+
+<!--[if !IE]>|xGv00|90ab7518edfc8478270318a359efbc10<![endif]--><div class="op_more op_more_mouse" style="display: none;"><ul class="bor2 bg"><li><a href="javascript:;" rel="blog-edit-link" title="编辑日志" class="bg3_hover">编辑</a></li><li><a href="javascript:;" rel="blog-delete-link" title="删除该日志" class="bg3_hover">删除日志</a></li><li style=""><a href="javascript:;" rel="blog-right-setting-link" title="日志权限设置" class="bg3_hover">设置权限</a></li><li><a href="javascript:;" rel="blog-category-modify-link" title="修改日志分类" class="bg3_hover">修改分类</a></li><li style=""><a href="javascript:;" rel="blog-set-top-link" title="设置该日志置顶" class="bg3_hover">设为置顶</a></li><li><a href="javascript:;" rel="blog-convert-private-link" title="转为私密日志" class="bg3_hover">转为私密日志</a></li></ul></div></body></html>

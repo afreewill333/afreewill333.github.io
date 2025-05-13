@@ -1,0 +1,50 @@
+
+<!-- saved from url=(0159)file:///C:/Documents%20and%20Settings/Administrator/%E6%A1%8C%E9%9D%A2/%E4%B9%90%E6%96%B0%E4%B9%9F%20[http___1098939153.qzone.qq.com]_files/storage_helper.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>storage helper</title>
+	</head>
+	<body onload="init();">
+		<script type="text/javascript">
+			
+			if(location.host.indexOf("qzone.qq.com")>=0){
+				document.domain = "qzone.qq.com";
+			}else{
+				document.domain = "qq.com";
+			}
+			//创建数据库
+			function create(dbname, type){
+				if(type == "localStorage"){
+					return window.localStorage;
+				}
+				try {
+					/*
+					var el = document.createElement("div");
+					el.id = dbname+"_userData";
+					el.style.display = "none";
+					el.addBehavior("#default#userdata");
+					document.body.appendChild(el);
+					*/
+					var el = document.body; 
+					el.addBehavior("#default#userdata");
+					el.load(dbname);
+					return el;
+				} 
+				catch (ign) {
+					return false;
+				}
+			}
+
+			
+			function init(){
+			    var tmp;
+				if((tmp = parent.QZFL.Storage)) {
+					tmp.ifrCallback();
+				}else if((tmp = parent.jQuery) && tmp.Storage){
+				    tmp.Storage.ifrCallback();
+				}
+			}
+		</script>
+	
+
+<!--[if !IE]>|xGv00|0f231795713fed1e99798eda968086aa<![endif]--></body></html>

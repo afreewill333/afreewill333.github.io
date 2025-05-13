@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<!-- saved from url=(0158)http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#mood&uin=1098939153&pfid=2&qz_ver=8&appcanvas=0&qz_style=35&params=&entertime=1432293050120&canvastype= -->
+<html class="os_winxp"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>说说</title>
+<style>
+.lazyload {
+	width: 118px;
+	height: 118px;
+	display: block;
+	border: 1px solid #ccc;
+	background:url(/qzone/app/mood_v6/images/lazyload-spin.gif) center center no-repeat #eee;
+}
+.feed_wrap .error_cont {
+position: relative;
+width: 420px;
+padding: 20px 30px;
+margin: 30px auto;
+border-radius: 3px;}
+.error_cont .error_info {
+margin-left: 30px;
+font-weight: bold;
+font-size: 14px;
+text-align: left;
+margin-bottom: 15px;
+}
+.error_cont p {
+text-align: center;
+}
+.icon_big_hint {
+	background: url(/qzone/app/mood_v6/images/error-22.32.png)  center center no-repeat #eee;
+	_background: url(/qzone/app/mood_v6/images/error-22.ie6.png)  center center no-repeat #eee;
+	width: 22px;
+	height: 22px;
+	display: block;
+	float: left;
+}
+</style>
+<link charset="utf-8" rel="stylesheet" href="http://qzonestyle.gtimg.cn/qzone_v6/app_favorite_add_icon.css"><script charset="utf-8" src="emotion_cgi_getcmtreply_v6"></script><style type="text/css">.mod_commnets_poster .qzappwrap{display:none}.mod_retweet .qzappwrap{display:none}</style><script charset="utf-8" src="emotion_cgi_getcmtreply_v6(1)"></script><script charset="utf-8" src="emotion_cgi_getcmtreply_v6(2)"></script><script charset="utf-8" src="emotion_cgi_getcmtreply_v6(3)"></script><script charset="utf-8" src="emotion_cgi_getcmtreply_v6(4)"></script><script charset="utf-8" src="emotion_cgi_getcmtreply_v6(5)"></script><script charset="utf-8" src="emotion_cgi_getcmtreply_v6(6)"></script><script charset="utf-8" src="emotion_cgi_getcmtreply_v6(7)"></script><script charset="utf-8" src="emotion_cgi_getcmtreply_v6(8)"></script><script charset="utf-8" src="emotion_cgi_getcmtreply_v6(9)"></script></head>
+<body ugclikebtn_autodispose_added="1" data-comment-insert-img-state="inited">
+<script type="text/javascript">
+function getParameter(href,name){var r=new RegExp("(\\?|#|&)"+name+"=([^&#]*)(&|#|$)");var m=href.match(r);return(!m?"":m[2]);}
+(function(){
+	var s = location.host.split('.');
+	document.domain = s.slice(s.length-2).join('.');
+	if(document.domain == 'pengyou.com'){
+		window.location.href = window.location.href.replace('mood_v6','mood_py');
+	}
+	s = null;
+	//灰度一部分用户，用于切换js文件构建方式
+	try{
+		if(parent.g_iLoginUin == parent.g_iUin && parent.g_iUin %100 == 43 && parent.QZONE.FP.isAlphaUser()!=1){
+			window.location.href = window.location.href.replace('index.html', 'list.html');
+		};
+	}catch(err){
+
+	}
+
+})();
+(function(global){
+
+	
+
+	//调试模式，会干掉后边
+	window.g_isDebugMode = false;
+	try{
+		window.g_isDebugMode = getParameter(top.location.href,'debug') == 'on';
+	}catch(e){}
+
+	//获得当前用户的分布信息
+	window._locationCache = {};
+	window._locationCallback = function(o){
+		window._locationCache = o;
+		//gTimeStampsPool[5]=(new Date());
+	};
+	var uin;
+	var token;
+	
+	//var locationHTML = document.domain == 'qq.com' ? :'';
+})(this);
+</script>
+<script type="text/javascript">
+(function(scope){
+	//辅助方法
+	var cache = {};
+	var tmpl = function tmpl(str, data) {
+		// Figure out if we're getting a template, or if we need to
+		// load the template - and be sure to cache the result.
+		var fn = !/\W/.test(str) ? cache[str] = cache[str] || tmpl(document.getElementById(str).innerHTML) :
+		// Generate a reusable function that will serve as a template
+		// generator (and which will be cached).
+		new Function("obj", "var p=[],print=function(){p.push.apply(p,arguments);};" +
+		// Introduce the data as local variables using with(){}
+		"with(obj){p.push('" +
+		// Convert the template into pure JavaScript
+		str.replace(/[\r\t\n]/g, " ").replace(/'(?=[^%]*%>)/g, "\t").split("'").join("\\'").split("\t").join("'").replace(/<%=(.+?)%>/g, "',$1,'").split("<%").join("');").split("%>").join("p.push('") + "');}return p.join('');");
+		// Provide some basic currying to the user
+		return data ? fn(data) : fn;
+	};
+	scope.tmpl = tmpl;
+})(window);
+
+
+
+window.console || (window.console = {log : function(){}});
+
+var gTimeStampsPool = [];
+gTimeStampsPool[0]=(new Date());/*zero point*/
+
+/*这是新的测速统计，以前的测速都是合并在一起的，不方便了解每个页面的性能*/
+var timeStampsPool = [];
+timeStampsPool[0] = (new Date()); /*零点*/
+
+var QZONE = QZONE || {};
+QZONE.FP = QZONE.FP || parent.QZONE.FrontPage;
+QZONE.PY = QZONE.PY || parent.QZONE.PengYou;
+var qzlog;
+try{
+	qzlog = QZONE.FP._t.QZONE.consoleFM ;
+}catch(err){
+	qzlog = {
+		debug : function(){},
+		error : function(){},
+		info : function(){},
+		log : function(){},
+		warn : function(){}
+	};
+}
+var qzoneVersion = parent.g_version || 6;
+qzlog.info({cm:"MOOD_APP",cf:"PAGE_START"});
+var g_V = top.g_V || {
+		qz:'_2.1.1.5',
+		ci:'_0823',
+		jq: '1.9.1', //这里默认用1.9.1,避免在拿不到jq版本的时候误用2.0
+		sea: '2.0.0'
+	},
+	g_iLoginUin = 0,
+	siDomain = top.siDomain || 'qzonestyle.gtimg.cn',
+	imgcacheDomain = top.imgcacheDomain || 'qzs.qq.com',
+	g_UserBitmap = '0',
+	g_LoginBitmap = '0',
+	g_StyleID = top.g_StyleID.replace('v6/','') || '16',
+	g_hasCustomStyle = 0,
+	g_diyTitle = '',
+	g_diySkin = 0,
+	g_SceneID = 9,
+	g_fullMode = 6,
+	g_Mode = 'ofp',
+	g_frameStyle = 1,
+	g_version = 6,
+	g_isFriend = 0,
+	g_NowTime = 1325145132,
+	g_timestamp = 0,
+	g_Dressup = {items:[],windows:[]},
+	iv = {},
+	g_StaticFlag = '0',
+	g_TransparentLevel = 0,
+	g_isDirectApp = 0,
+	g_isBGScroll = 0,
+	ownermode = true,
+	ownerProfileSummary = [],
+	g_fl = 0,
+	g_ReadOnly = 0,
+	g_Errno = 0,
+	g_isOFP = '1',
+	g_isHideTitle = '0',
+	g_icLayout = '0',
+	g_Data = {},
+	g_isFromPengYou ='',
+	g_isBrandQzone = '',
+	g_isFamousQzone = '',
+	g_xwMode = '',
+	g_needDec = 1,
+	g_isFastPav = '1',
+	_s_ = new Date();
+
+	g_V.qz = g_V.qz || '_2.1.1.5';
+	g_V.ci = g_V.ci || '_0823';
+	g_V.jq  = g_V.jq || '1.9.1';
+	g_V.sea = g_V.sea || '2.0.0';
+var MOOD = MOOD || {};
+
+(function(MOOD){
+	MOOD.version = '1421131254408';
+	MOOD.cssVersion = '20140820';
+	MOOD.env = MOOD.env || {};
+	MOOD.cookie = MOOD.cookie || {};
+
+	MOOD.cookie.get = function(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0;i < ca.length;i++) {
+			var c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1,c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+		}
+		return '';
+	}
+
+	MOOD.env.getCSRFToken = function(){
+		var str = MOOD.cookie.get('skey');
+		var hash = 5381;
+		for(var i = 0, len = str.length; i < len; ++i){
+			hash += (hash << 5) + str.charAt(i).charCodeAt();
+		}
+		return hash & 0x7fffffff;
+	};
+
+	MOOD.env.getLoginUin = function(){
+		var uin = parseInt(MOOD.cookie.get('uin').replace(/[^\d]/g, ''), 10);
+		if(uin){
+			return uin + '';
+		}
+		return top.g_iLoginUin + '';
+	};
+
+	MOOD.util = MOOD.uitl || {};
+
+	MOOD.util.unixTimeToString = function(config){
+		config = config || {};
+		config.type = config.type || 0;
+		timestamp = (config.timestamp || 0) * 1000;
+		var now;
+		if (timestamp>0){
+			now = new Date(timestamp);
+		}else{
+			now = new Date();
+		}
+
+		var month = now.getMonth() + 1;
+		var date = now.getDate();
+		var hours = now.getHours();
+		var minutes = now.getMinutes();
+		var seconds = now.getSeconds();
+
+		var datetime = {
+			'YYYY': now.getFullYear(),
+			'mm': month>9?month:('0'+month),
+			'dd': date>9?date:('0'+date),
+			'H': hours>9?hours:('0'+hours),
+			'i': minutes>9?minutes:('0'+minutes),
+			's': seconds>9?seconds:('0'+seconds)
+		};
+
+		var date_str = datetime['YYYY'] + '-' + datetime['mm'] + '-' + datetime['dd'] + ' ';
+		var time_str = datetime['H'] + ':' + datetime['i'] + ':' + datetime['s'];
+
+		var result = '';
+		switch(config.type){
+			case 1:
+				result = date_str;
+				break;
+			case 2:
+				result = time_str;
+				break;
+			default:
+				result = (date_str + ' ' + time_str)
+		}
+		return result;
+	};
+
+	MOOD.util.getHttpParams = function(key){
+		var r = new RegExp('(\\?|#|&)'+key+'=([^&#]*)(&|#|$)');
+		var m = location.href.match(r);
+		var v = decodeURIComponent(!m?'':m[2]).replace(/\+/g,' ');
+		return OOP.tpl.filter(v);
+	}
+
+	MOOD.lang = MOOD.lang || {};
+
+	/**
+	 * @static
+	 * @method randomArray
+	 * @param {Array} target The array to random.
+	 * @return {Array}
+	 */
+	MOOD.lang.randomArray = function RandomArray(target) {
+		if (Object.prototype.toString.apply(target) != '[object Array]') {
+			return target;
+		}
+		var r, tmp, len = target.length;
+		for (var i = 0; i < len; i++) {
+			r = Math.floor(Math.random() * len);
+			tmp = target[r];
+			target[r] = target[i];
+			target[i] = tmp;
+		}
+		return target;
+	};
+})(MOOD);
+
+/* simple string format */
+var OOP = OOP || {};
+(function(OOP){
+	OOP.tpl = OOP.tpl || {};
+	var getByPath = function (obj,path,parma){
+		obj = obj || {};
+		var paths = path.split('.'), len, i;
+		len = paths.length;
+		for(i=0;i<len;i++){
+			obj =  obj[paths[i]];
+			if(typeof obj == 'function'){
+				obj = obj();
+			}
+			if (obj === undefined || obj === null) {
+				break;
+			}
+		}
+		return obj;
+	}
+
+	OOP.tpl.format = function(tpl,obj){
+		var formatRegex = /\{{([\d\w\.]+)\}}/g,v;
+		return tpl.replace(formatRegex,function(m,n){
+			v = getByPath(obj,n);
+			return v === undefined ?'':v;
+		});
+	}
+
+	OOP.tpl.html = function (string) {
+		var HTML_CHARS = {
+	        '&': '&amp;',
+	        '<': '&lt;',
+	        '>': '&gt;',
+	        '"': '&quot;',
+	        "'": '&#x27;',
+	        '/': '&#x2F;',
+	        '`': '&#x60;'
+		};
+	    var r = (string + '').replace(/[&<>"'\/`]/g, function(match){
+	    	return HTML_CHARS[match];
+	    });
+	    return r;
+	};
+	OOP.tpl.filter = function (string) {
+	    var r = (string + '').replace(/[&<>"'\/`]/g, function(match){
+	    	return '';
+	    });
+	    return r;
+	};
+})(OOP);
+/* simple string format end */
+
+
+
+
+(function(){
+
+	var realUin = top.QZONE && top.QZONE.FP && top.QZONE.FP.getQzoneConfig && (top.QZONE.FP.getQzoneConfig('loginUin')>0 || (top.QZONE.FP.getQzoneConfig('loginUin')+'').length >4)  && top.QZONE.FP.getQzoneConfig('loginUin');
+	var loginUin = realUin || MOOD.env.getLoginUin();
+	var queryUin = MOOD.util.getHttpParams('uin') || loginUin;
+
+	var isOwner = loginUin == queryUin;
+	//统一都直接进我的说说
+	var tab = MOOD.util.getHttpParams('tab') || 'mine';//(isOwner? 'mine':'mine');
+	var params = OOP.tpl.filter(MOOD.util.getHttpParams('params')).split(',');
+	var action = MOOD.util.getHttpParams('action');
+	//var actionParams = MOOD.util.getHttpParams('poster');
+	var tid = MOOD.util.getHttpParams('tid') , t1_source = MOOD.util.getHttpParams('source');
+	var url = '';
+	//启动逻辑，区分参数，进入不同的页面
+	if(tab=='timer'){
+		tab = 'schedule';
+	}
+	switch(params[0]){
+		case 'mymood' : //我的说说 QZONE.FP.toApp('/mood/mymood/timer'); 去定时说说接口
+			tab = 'mine';
+			if(params[1] == 'timer'||params[1] == 'schedule'){
+				tab = 'schedule';
+			}
+			break;
+		case 'list':
+			tab = 'mine';
+			queryUin = params[1] || loginUin;
+			isOwner = loginUin == queryUin;
+			break;
+		case 'mine':
+			tab = 'mine';
+			break;
+		case 'setting' : //设置页面
+			url = '/qzone/app/mood_v6/html/setting.html';
+			window.location.pathname = url;
+			break;
+		case 'jumpToAudit' : //评论审核
+			url = OOP.tpl.format('//taotao.qq.com/cgi-bin/emotion_cgi_censor_get?uin={{uin}}&pos=0&num=10&g_tk={{token}}',{uin:queryUin,token:MOOD.env.getCSRFToken()});
+			window.location.href = url;
+			break;
+		case 'audit' : //审核
+			url = OOP.tpl.format('//taotao.qq.com/cgi-bin/emotion_cgi_censor_get?uin={{uin}}&pos=0&num=10&g_tk={{token}}',{uin:queryUin,token:MOOD.env.getCSRFToken()});
+			window.location.href = url;
+			break;
+		case 'timer':
+		case 'schedule' : //定时说说
+			tab = 'schedule';
+			break;
+		case 'wall': //说说墙
+			//说说没有做透传参数这个（现在加有风险），所以只能这么恶心的加了，
+			var detail_tid = MOOD.util.getHttpParams('detail_tid');
+			var detail_src = MOOD.util.getHttpParams('detail_src');
+			var detail_uin = MOOD.util.getHttpParams('detail_uin');
+			var saylove = MOOD.util.getHttpParams('saylove');
+			
+			var defaultTopic =QZONE.FP.getParameter(parent.location.href, 'topic');
+			if(defaultTopic){
+				window.location.href = ('./wall/'+QZONE.FP.getParameter(parent.location.href, 'topic')+'.html?topic='+QZONE.FP.getParameter(parent.location.href, 'topic')+'&detail_tid='+detail_tid+'&detail_uin='+detail_uin+'&detail_src='+detail_src+(saylove?'&saylove=1':''));
+			}else{
+				window.location.href = './wall/wall_imglist.html' + (window.location.search || window.location.hash);
+			}
+			
+			break;
+		default :
+			if(/[0-9a-z]+/i.test(params[0])){//详情
+				var p = params[0].split('.');
+				tid = p[0];
+				t1_source = p[1] || '1';
+				tab = 'detail';
+			}
+			if(tid && t1_source){
+				tab = 'detail';
+			}
+	}
+	MOOD.env = MOOD.env || {};
+	MOOD.env.t1_source = t1_source;
+	MOOD.env.tid = tid;
+	MOOD.env.uin = queryUin;
+	MOOD.env.loginUin = loginUin;
+	MOOD.env.tab = tab;
+	MOOD.env.action = action;
+
+
+
+	window._preloadCache = {
+		code: 9999,
+		message: '很抱歉，当前网络繁忙，请稍候再试！',
+		result: {code:9999,msg:'很抱歉，当前网络繁忙，请稍候再试！'}
+	};
+
+	window._preloadCallback = function(o){
+		qzlog.info({cm:"MOOD_APP",cf:"LOAD_DATA_FINISHED"});
+		window._preloadCache = o;
+
+		if(tab=='detail'){
+			//TODO:详情页这里的格式又不一样，继续兼容吧
+			window._preloadCache.result={code : o.code ,msg:o.message};
+
+		}else{
+
+			window._preloadCache.result = o.result || {code:9999,msg:"很抱歉，当前网络繁忙，请稍候再试！"};
+		}
+		window._LocalCacheData = window._preloadCache; //给热门说说用的
+		gTimeStampsPool[5]=(new Date()); //数据加载完成
+		timeStampsPool[2] =(new Date()); //数据加载完成
+	}
+
+	if(tab=='hot'){
+		/**hack for 热门说说**/
+		window._Callback = function(d){
+			window._Callback = null;
+			window._LocalCacheCallbackData = d;
+			var msglist = [];
+			var data  = window._LocalCacheCallbackData || {};
+			data.data = data.data || [];
+			for(var i =0;i<data.data.length&&i<20;i++){
+				msglist.push(window._fakeData(data.data[i]));
+			}
+			MOOD.lang.randomArray(msglist);
+			window._preloadCache.auth_flag = 1;
+			window._preloadCache.msglist = msglist;
+			window._preloadCache.total = data.totalCnt;//data.data.length;
+			gTimeStampsPool[5]=(new Date());
+		};
+	}
+
+	window._LocalCache = function(d){
+		window._LocalCache = null;
+		window._preloadCache = d;
+	};
+
+	window._fakePic = function(image){
+		var data = {
+			height : image.length,
+			pictype : 0,
+			richsubtype : 2,
+			url1 : image.MPicUrl,
+			url2 : image.BPicUrl,
+			url3 : image.BPicUrl,
+			width : image.width
+		};
+		return data;
+	}
+
+	window._fakeData = function(item){
+		var data = {
+			auth_flag: 1,
+			certified : 1,
+			conlist : [],
+			content : item.text,
+			created_time: 0,
+			createTime : MOOD.util.unixTimeToString({timestamp:item.created}),
+			dest_name : '',
+			//em_alt : "一般",
+			//em_head : -1,
+			// lbs :{
+			// 	id : '',
+			// 	idname : '',
+			// 	name : '',
+			// 	pos_x : '',
+			// 	pos_y : ''
+			// },
+			name : item.nickname,
+			//ppos : 0,
+			//puin : 721289260,
+			replies : 0,
+			right : 1,
+			rt_sum : 0,
+			source_name : '',
+			source_url : '',
+			t1_source : 1,
+			t1_subtype : 1,
+			t1_termtype : 0,
+			tid : item.source.tid,
+			uin : item.source.uin
+			//urltype : 1
+		};
+		var pics = [];
+		item.images= item.images || []
+		for(var i = 0;i<item.images.length;i++){
+			pics.push(window._fakePic(item.images[i]));
+		}
+
+		if(pics.length>0){
+			data.pic = pics;
+			data.pictotal =  pics.length;
+		}
+
+		var videos = [];
+		item.videos = item.videos || [];
+		for(var i = 0;i<item.videos.length;i++){
+			videos.push({
+			url1: item.videos[i].vimagUrl,
+			url2: item.videos[i].SrcUrl,
+			url3: item.videos[i].PlayerUrl
+			});
+			/*@deprecated
+			data.url1 = item.videos[i].vimagUrl;
+			data.url2 = item.videos[i].SrcUrl;
+			data.url3 = item.videos[i].PlayerUrl;
+			data.urltype = 3;*/
+		}
+
+		if(videos.length>0){
+			data.video = videos;
+			data.videototal  = videos.length;
+		}
+		return data;
+	}
+	/**hack for 热门说说结束**/
+	var moodAppCss = (qzoneVersion==6 ? [
+		'<link rel="stylesheet" rev="stylesheet" href="//{{siDomain}}/qzone_v6/gb/skin/{{g_StyleID}}.css" type="text/css" media="screen" \/>',
+		'<link rel="stylesheet" rev="stylesheet" href="//{{siDomain}}/qzone_v6/say.css?max_age=999999&v='+MOOD.cssVersion+'" type="text/css" media="screen" \/>',
+		'<link rel="stylesheet" rev="stylesheet" href="//{{siDomain}}/qzone_v6/qz_shuoshuo_audio.css?max_age=999999&v='+MOOD.cssVersion+'" type="text/css" media="screen" \/>'
+		] :
+	 [
+		'<link rel="stylesheet" rev="stylesheet" href="//{{siDomain}}/aoi/skin/{{g_StyleID}}.css" type="text/css" media="screen" \/>',
+		'<link rel="stylesheet" rev="stylesheet" href="//{{siDomain}}/aoi/say.css?max_age=999999&v='+MOOD.cssVersion+'"" type="text/css" media="screen" \/>',
+		'<link rel="stylesheet" rev="stylesheet" href="//{{siDomain}}/qzone_v6/qz_shuoshuo_audio.css?max_age=999999&v='+MOOD.cssVersion+'"" type="text/css" media="screen" \/>'
+	]);
+	var _load = moodAppCss.concat([
+
+		'<script type="text/javascript" src="//{{siDomain}}/ac/qzone/qzfl/qzfl{{qz}}.js"><\/script>',
+		'<script type="text/javascript" src="//{{siDomain}}/qzone/app/mood_v6/api/api.js?max_age=999999&v='+MOOD.version+'"><\/script>',
+		'<script type="text/javascript" src="//{{siDomain}}/qzone/app/mood_v6/script/render.js?max_age=999999&v='+MOOD.version+'"><\/script>',
+		top == window ? '<script type="text/javascript" src="//{{siDomain}}/qzone/v6/interface/interface_v6{{g_V.ci}}.js?max_age=2592000"><\/script>':'',
+		'{{preloadcgi}}'
+		]).join('');
+	var location = '';
+	//idcNo为2表示用上海的cgi
+	if(window._locationCache && window._locationCache.idcNo==2){
+		location = 'sh.';
+	}
+	qzlog.info({cm:"MOOD_APP",cf:"LOAD_DATA_START"});
+	timeStampsPool[1]=(new Date());
+	var _data = {
+		imgcacheDomain : imgcacheDomain,
+		siDomain:siDomain,
+
+		g_StyleID:g_StyleID,
+		g_V:g_V,
+		qz : g_V.qz,
+		sea : g_V.sea || '2.0.0',
+		host: document.domain,
+		uin: queryUin,
+		random: Math.floor(Math.random()*25),
+		token: MOOD.env.getCSRFToken(),
+		location : location,
+		preloadcgi:(function(){
+			var feedlist_tpl = '//sh.taotao.{{host}}/cgi-bin/emotion_cgi_feedlist_v6?hostUin={{uin}}&ftype=0&sort=0&pos=0&num=20&replynum=100&g_tk={{token}}&callbackFun=_preloadCallback&code_version=1&format=jsonp&need_private_comment=1';
+			//var mine_tpl = '//{{location}}taotao.{{host}}/cgi-bin/emotion_cgi_msglist_v6?uin={{uin}}&ftype=0&sort=0&pos=0&num=20&replynum=100&g_tk={{token}}&callback=_preloadCallback&code_version=1&format=jsonp';
+			var mine_tpl = '//{{location}}taotao.{{host}}/cgi-bin/emotion_cgi_msglist_v6?uin={{uin}}&ftype=0&sort=0&pos=0&num=20&replynum=100&g_tk={{token}}&callback=_preloadCallback&code_version=1&format=jsonp&need_private_comment=1';
+			var mix_tpl = '//taotao.{{host}}/cgi-bin/emotion_cgi_get_mix_v6?uin={{uin}}&ftype=0&sort=0&pos=0&num=20&replynum=100&g_tk={{token}}&callback=_preloadCallback&code_version=1&format=jsonp&need_private_comment=1';
+			var timer_tpl = '//taotao.{{host}}/cgi-bin/emotion_cgi_timershuoshuolist_v6?uin={{uin}}&pos=0&num=20&hostuin={{uin}}&g_tk={{token}}&callback=_preloadCallback&code_version=1&format=jsonp';
+			var weibo_tpl = '//taotao.{{host}}/cgi-bin/emotion_cgi_get_tweet_msgs_v6?uin={{uin}}&ftype=0&sort=0&pos=0&num=20&replynum=100&g_tk={{token}}&callback=_preloadCallback&code_version=1&format=jsonp';
+			var detail_tpl = '//{{location}}taotao.{{host}}/cgi-bin/emotion_cgi_msgdetail_v6?uin={{uin}}&tid={{tid}}&t1_source={{t1_source}}&ftype=0&sort=0&pos=0&num=20&g_tk={{token}}&callback=_preloadCallback&code_version=1&format=jsonp&need_private_comment=1';
+			var hot_tpl = '//{{siDomain}}/qzone_v6/act/hotTopic/top20_{{random}}.js';
+			var tpl = '<script type="text/javascript" src="{{src}}" ><\/script>';
+			var cgi_tpl = '';
+			switch(tab){
+				case 'index':
+					cgi_tpl = mix_tpl;
+					break;
+				case 'feedlist':
+					cgi_tpl = feedlist_tpl;
+					break;
+				case 'mine':
+					cgi_tpl = mine_tpl;
+					break;
+				case 'schedule':
+					cgi_tpl = timer_tpl;
+					break;
+				case 'weibo':
+					cgi_tpl = weibo_tpl;
+					break;
+				case 'detail':
+					cgi_tpl = detail_tpl;
+					break;
+				case 'hot':
+					cgi_tpl = hot_tpl;
+					document.write('<script type="text/javascript" src="//taotao.qq.com/cgi-bin/emotion_cgi_msglist_v6?uin='+queryUin+'&g_tk='+MOOD.env.getCSRFToken()+'&callback=_LocalCache" ><\/script>');
+					break;
+			}
+			var url = OOP.tpl.format(cgi_tpl,{
+				siDomain: top.siDomain,
+				host: document.domain,
+				uin: OOP.tpl.html(queryUin),
+				loginUin: MOOD.env.loginUin,
+				tid: OOP.tpl.html(tid),
+				t1_source: OOP.tpl.html(t1_source),
+				random: Math.floor(Math.random()*25),
+				token: OOP.tpl.html(MOOD.env.getCSRFToken()),
+				location : location
+			});
+			var cgi = OOP.tpl.format(tpl,{src:url});
+			return cgi;
+		})()
+	};
+	if (location.search != ''){
+		document.write(OOP.tpl.format(_load,_data));
+	}
+	gTimeStampsPool[4]=(new Date());
+})();
+</script><link rel="stylesheet" rev="stylesheet" href="35.css" type="text/css" media="screen"><link rel="stylesheet" rev="stylesheet" href="say.css" "="" type="text/css" media="screen"><link rel="stylesheet" rev="stylesheet" href="qz_shuoshuo_audio(1).css" "="" type="text/css" media="screen"><script type="text/javascript" src="qzfl_v8_2.1.43.js"></script><script type="text/javascript" src="api.js"></script><script type="text/javascript" src="render.js"></script><script type="text/javascript" src="emotion_cgi_msglist_v6"></script>
+<div class="mod_wrap bg mod-wrap">
+	<div style="font-size:14px; line-height:20px; margin:1px 0 7px 25px;display:none;" data-note="pengyou.com" id="pengyou_headbar">
+		<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#" target="_top" class="c_tx"></a>
+		<span style="margin:0 5px;">-</span><span>说说</span>
+	</div>
+	<div class="mod_wrap_inner">
+		<div class="bor mod-tab author_display">
+			<div class="mod-tab-list shuoshuo_menu author_display">
+				<ul>
+					<li class="nav_home">
+						<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html" class="c-tx2" data-tab="index" id="menu_index">
+							<span class="item-wrap bor-tx">
+								说说首页
+								<!-- <span class="item-num">367</span>
+							-->
+						</span>
+					</a>
+				</li>
+				<li class="nav_my">
+					<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html?tab=mine" class="c-tx2 selected" data-tab="mine" id="menu_feedlist">
+						<span class="item-wrap bor-tx">
+							我的说说
+							<!-- <span class="item-num">63</span>
+						-->
+					</span>
+				</a>
+			</li>
+			<li class="nav_weibo">
+				<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html?tab=weibo" data-tab="weibo" id="menu_weibo" title="内容同步自腾讯微博" class="c-tx2">
+					<span class="item-wrap bor-tx">
+						我的微博
+						<!-- <span class="item-num">6</span>
+					-->
+				</span>
+			</a>
+		</li>
+		<li class="nav_wall">
+			<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/wall.html?from=app" id="menu_wall" class="c-tx2">
+				<span class="item-wrap bor-tx">
+					说说墙
+					<!-- <span class="item-num">2</span>
+				-->
+			</span>
+		</a>
+		</li>
+		</ul>
+		</div>
+		</div>
+		<div class="bg2 bor3 mod_tab" style="display:none;">
+			<h1 class="friend_feed_head visitor_display"></h1>
+			<div class="mod_tab_nav shuoshuo_menu author_display">
+				<ul>
+					<li class="nav_home author_display">
+						<!-- 激活状态 需要添加 bg current bor3 ，并下面的 c_tx 改成 c_tx2 -->
+						<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html" class="c_tx2" data-tab="index" id="menu_index">说说首页</a>
+					</li>
+					<li class="nav_my">
+						<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html?tab=mine" class="c_tx2 selected" data-tab="mine" id="menu_feedlist">我的说说</a>
+					</li>
+					<li class="nav_weibo author_display">
+						<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html?tab=weibo" class="c_tx2" data-tab="weibo" id="menu_weibo" title="内容同步自腾讯微博">我的微博</a>
+					</li>
+					<li class="nav_wall author_display">
+						<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/wall.html?from=app" id="menu_wall" class="c_tx2">说说墙</a>
+						<!--2012感恩有你-->
+						<span class="hot"></span>
+					</li>
+				</ul>
+			</div>
+			<!-- op -->
+		</div>
+
+		<!-- 内容区 开始 -->
+		<div class="app_mood" id="app_mod">
+			<div class="container" id="ICFeedsContainer">
+				<div class="main_wrap bg3">
+                    <div class="main bg bor3">
+						<div class="none" id="mood-banner-top">
+						</div>
+						<!--说说发表框原型-->
+						<div class="poster_wrap author_display" id="mood_poster_container_wrapper">
+							<script type="text/javascript">
+						(function(){
+							var moodPosterPlaceHolder=[
+								'<div id="QM_Mood_Poster_Container" class="qz-poster">',
+								'	<div class="qz-inputer bor2">',
+								'		<div id="qz_poster_editor_v4_container" class="textarea c_tx3" contenteditable="true"></div>',
+								'	</div>',
+
+								'	<div class="qz-poster-attach-side">',
+								'		<div class="attach">',
+								'			<div class="item bor3 bg4 item-pic">',
+								'				<a href="#" class="pic">',
+								'					<i class="icon icon-pic"></i>',
+								'					<span class="txt">照片</span>',
+								'				</a>',
+								'			</div>',
+								'			<div class="item bor3 bg4 item-other">',
+								'				<a href="#" class="other">',
+								'					<i class="icon icon-other"></i>',
+								'					<span class="txt">其他</span>',
+								'				</a>',
+								'			</div>',
+								'<div class="item bor3 bg4 item-funny">   <a href="javascript:void(0)" onclick="return false;" class="funny evt_click" data-hottag="ATTACHBAR.UPUP">    <i class="icon icon-funny"></i>    <span class="txt">趣味表情</span>   </a></div>',
+
+								'		</div>',
+								'		<!-- attach -->',
+								'		<div class="other-attach-drop none">',
+								'			<div class="pop-drop bg bor2">',
+								'				<div class="arr"> <b class="in bor2"></b> <b class="out bor_bg"></b>',
+								'				</div>',
+								'				<!-- 箭头 -->',
+								'				<ul class="list">',
+								'					<li class="evt_click" data-hottag="ATTACHBAR.MUSIC">',
+								'						<a href="#">',
+								'							<i class="icon icon-music">♫</i>',
+								'							<span class="txt">添加音乐</span>',
+								'						</a>',
+								'					</li>',
+								'					<li class="evt_click" data-hottag="ATTACHBAR.VIDEO">',
+								'						<!-- hover 加bg2 -->',
+								'						<a href="#">',
+								'							<i class="icon icon-video"></i>',
+								'							<span class="txt">添加视频</span>',
+								'						</a>',
+								'					</li>',
+								'					<li class="evt_click" data-hottag="ATTACHBAR.ATTACHMENT">',
+								'						<a href="#">',
+								'							<i class="icon icon-attach"></i>',
+								'							<span class="txt">添加附件</span>',
+								'						</a>',
+								'					</li>',
+								'					<li class="bor2 evt_click" data-hottag="ATTACHBAR.TEMPLATE">',
+								'						<a href="#">',
+								'							<i class="icon icon-template"></i>',
+								'							<span class="txt">模板说说</span>',
+								'						</a>',
+								'					</li>',
+								'				</ul>',
+								'			</div>',
+								'			<!-- drop -->',
+								'		</div>',
+								'		<!-- other-drop -->',
+								'	</div>',
+								'	<!-- attach-side -->',
+								'	<div class="attachbar-holder" id="qz_poster_attachbar_v4_container" ></div>',
+								'	<div class="qz-poster-pops-holder">',
+								'		<!-- 浮层占位 -->',
+								'	</div>',
+								'	<!-- pop-holder -->',
+								'	<div class="qz-poster-status-holder" id="qz_poster_v4_resource_container">',
+								'		<!-- 附件占位 -->',
+								'	</div>',
+								'	<!-- status_holder -->',
+								'	<div class="qz-poster-ft">',
+								'	<div class="qz-poster-attach" id="qz_poster_fun_attachbar_v4_container">',
+								'		<a href="#" class="emot"> <i class="icon icon-emot"></i>',
+								'			<span class="txt">表情</span>',
+								'		</a>',
+								'		<a href="#" class="at"> <i class="icon icon-at"></i>',
+								'			<span class="txt">好友</span>',
+								'		</a>',
+								'		<a href="#" class=""> <i class="icon icon-topic"></i>',
+								'			<span class="txt">话题</span>',
+								'		</a>',
+								'	</div>',
+								'	<!-- attach -->',
+								'		<div class="qz-poster-sync none">',
+								'			<div class="sync-nuts">',
+								'				<a class="sync-qq" href="#" title="同步QQ">',
+								'					<i class="icon icon-qq"></i>',
+								'					<span class="txt">同步QQ</span>',
+								'				</a>',
+								'				<a class="sync-weibo" href="#" title="同步微博">',
+								'					<i class="icon icon-weibo"></i>',
+								'					<span class="txt">同步微博</span>',
+								'				</a>',
+								'				<a class="sync-ex" href="#" title="分享到">',
+								'					<i class="icon icon-ex"></i>',
+								'					<span class="txt">分享到</span>',
+								'				</a>',
+								'			</div>',
+								'			<div class="sync-ex-drop">',
+								'				<!-- drop -->',
+								'			</div>',
+								'			<!-- other-drop -->',
+								'		</div>',
+								'		<div class="op evt_click" data-hottag="MOODPOSTER.POST">',
+								'			<a href="#" class="btn-post gb_bt">发表</a>',
+								'		</div>',
+								'	</div>',
+								'</div>'
+
+								].join('');
+						document.write(moodPosterPlaceHolder);
+						})();
+
+
+						</script><div class="qz-poster bg " id="QM_Mood_Poster_Container"><div class="qz-poster-inner "><div class="qz-poster-top none"></div><div class="qz-poster-bd"><div class="qz-poster-editor-cont" id="qz_poster_v4_editor_container_1">            <div class="qz-inputer bor2" data-version="20130625">                <div idprefix="$1"><div x:id="content_content" spellcheck="false" x:idprefix="content" class="textinput textarea c_tx2" contenteditable="true" accesskey="q" style="display:none;" id="$1_content_content" idprefix="$1_content"></div><div x:id="substitutor_content" x:idprefix="substitutor" class="textinput textarea c_tx3" contenteditable="true" tabindex="0" accesskey="q" id="$1_substitutor_content" idprefix="$1_substitutor"></div><div x:id="tips" class="mod_at_wrap" style="display:none;" id="$1_tips"><div class="mod_at bg bor2"><div class="mod_at_list"><div x:id="tips_content" class="mod_at_tips c_tx3 bg3" id="$1_tips_content">正在加载中...</div></div></div></div><div x:id="options" id="$1_options"></div></div>            </div>            <!-- attach -->            <div aria-hidden="true" class="qz-poster-attach-side">                <div class="attach">                    <div class="item bor3 bg4 item-pic  evt_hover " data-hottag="attachbar.pic" style="">   <a href="javascript:void(0);" onclick="return false;" class="pic"><i class="icon icon-pic"></i><span class="txt">照片</span></a>                    </div>                    <div class="item bor3 bg4 item-other" style="">                        <a href="javascript:void(0);" onclick="return false;" class="other"><i class="icon icon-other"></i><span class="txt">其他</span></a>                    </div>  <div class="item bor3 bg4 item-funny" style="">   <a href="javascript:void(0)" onclick="return false;" class="funny evt_hover">    <i class="icon icon-funny"></i>    <span class="txt">趣味表情</span>   </a>   <i class="icon-new-fun"></i>  </div>                </div>                <!-- attach -->  <div class="img-upload-drop cell-4 the_worlds_end" style="">                    <div class="pop-drop bg4 bor2">                        <div class="arr"><b class="in bor2"></b><b class="out bor_bg"></b></div><!-- 箭头 -->                        <ul class="list">   <li class="bor3 evt_click evt_hover qz_poster_btn_local_pic " data-hottag="ATTACHBAR.PIC_FROM_LOCAL">    <a href="javascript:void(0);" class="c_tx3" onclick="return false;"> <i class="icon icon-from-cmp"></i><span class="txt">本地</span></a>   </li>   <li class="bor3 evt_click evt_hover  qz_poster_btn_album_select " data-hottag="ATTACHBAR.PIC_FROM_ALBUM"><!-- hover 加bg2 -->    <a href="javascript:void(0);" class="111 c_tx3" onclick="return false;"> <i class="icon icon-video"></i><span class="txt">相册</span> </a>   </li>   <li class="bor3 evt_click evt_hover qz_poster_btn_screen_capture " data-hottag="ATTACHBAR.SCREENCAPTURE"><!-- hover 加bg2 -->     <a href="javascript:void(0);" class="c_tx3" onclick="return false;"> <i class="icon icon-shot"></i><span class="txt">截屏</span> </a>   </li>   <li class="bor3 evt_click evt_hover qz_poster_btn_meitu " data-hottag="ATTACHBAR.MEITU">                       <a href="javascript:void(0);" class="c_tx3" onclick="return false;"> <i class="icon icon-meitu"></i><span class="txt">拼图</span> </a>   </li>                        </ul>                    </div><!-- drop -->                </div> <div class="funny-img-drop cell-4 none" style="">                    <div class="pop-drop bg4 bor2">                        <div class="arr bg4"><b class="in bor2"></b><b class="out bor_bg"></b></div><!-- 箭头 -->                        <ul class="list">   <li class="evt_click evt_hover bor3" data-hottag="ATTACHBAR.UPUP">    <a href="javascript:void(0)" class="c_tx3" onclick="return false"><i class="icon icon-qutu"></i><span class="txt">趣图</span> </a>   </li>   <li class="evt_click evt_hover bor3" data-hottag="ATTACHBAR.TEMPLATE">    <a href="javascript:void(0)" class="c_tx3" onclick="return false"><i class="icon icon-template"></i><span class="txt">气泡</span></a>   </li>   <li class="evt_click evt_hover bor3" data-hottag="ATTACHBAR.QUTU">    <a href="javascript:void(0)" class="c_tx3" onclick="return false"><i class="icon icon-qutu-emo"></i><span class="txt">表情</span></a>   </li>   <li class="evt_click evt_hover bor3" data-hottag="ATTACHBAR.FLARE_FONT" style="position:relative;">    <a href="javascript:void(0)" class="c_tx3" onclick="return false"><i class="icon icon-flash-img"></i><span class="txt">闪图</span></a><i class="icon-new-fun" style="top:4px;"></i>   </li>                        </ul>                    </div><!-- drop --> </div> <div class="other-attach-drop cell-2 none" style="">                    <div class="pop-drop bg4 bor2">                        <div class="arr bg4"><b class="in bor2"></b><b class="out bor_bg"></b></div><!-- 箭头 -->                        <ul class="list">   <li class="evt_click evt_hover bor3" data-hottag="ATTACHBAR.MUSIC">    <a href="javascript:void(0)" class="c_tx3" onclick="return false"><i class="icon icon-music"></i><span class="txt">音乐</span> </a>   </li>   <li class="evt_click evt_hover bor3" data-hottag="ATTACHBAR.VIDEO">    <a href="javascript:void(0)" class="c_tx3" onclick="return false"><i class="icon icon-video"></i><span class="txt">视频</span></a>   </li>   <li class="evt_click evt_hover bor3 none" data-hottag="ATTACHBAR.FILE">    <a href="javascript:void(0)" class="c_tx3" onclick="return false"><i class="icon icon-attach"></i><span class="txt">附件</span></a>   </li>                        </ul>                    </div><!-- drop -->                </div>                <!-- other-drop -->            </div>            <!-- attach-side -->   </div><div class="qz-poster-msg none"></div></div><div class="qz-poster-mid none"></div><div class="qz-poster-ft"><div class="qz-poster-attach "><a href="javascript:void(0);" class="emot " title="插入表情"><i class="icon icon-emot"></i><i class="icon-red-dot"></i><span class="txt">表情</span></a><a href="javascript:void(0)" class="at "><i class="icon icon-at"></i><span class="txt">好友</span></a><a href="javascript:void(0)" class="topic "><i class="icon icon-topic"></i><span class="txt">话题</span></a></div><div class="qz-poster-sync"><div class="sync-nuts"><a class="sync-qq evt_click" role="checkbox" aria-checked="false" aria-disabled="false" data-hottag="moodposter.syncqq" href="javascript:void(0);" onclick="return false;" title="同步至QQ签名" style=""><i class="icon icon-qq"></i></a><a class="retweet-it evt_click" role="checkbox" aria-checked="false" aria-disabled="false" data-hottag="moodposter.retweetit" onclick="return false;" href="javascript:void(0);" title="同时转发" style="display:none"><i class="icon icon-retweet"></i></a><a class="sync-weibo evt_click" role="checkbox" aria-checked="false" aria-disabled="false" data-hottag="moodposter.syncweibo" href="javascript:void(0)" onclick="return false;" title="同步至腾讯微博" style=""><i class="icon icon-weibo"></i></a><span class="dividor" style="display:none">|</span><span class="ui-checkbox ui-checkbox-tint js-private-comment" title="" style="display:none"><input type="checkbox" data-hottag="moodposter.private" class="evt_click" id="private_checkbox_1"><label for="private_checkbox_1">私密评论<i class="ui-icon icon-diamond"></i></label></span><a class="sync-timing evt_click" role="checkbox" aria-checked="false" aria-disabled="false" data-hottag="moodposter.timer" href="javascript:void(0);" onclick="return false;" title="发表为定时说说" style=""><i class="icon icon-timing"></i><span class="txt">定时说说</span></a><div class="set-audience" data-hottag="moodposter.secret" style=""><span class="dividor c_tx3">|</span><span class="private-label c_tx3">可见范围：</span><a href="javascript:void(0);" class="audience c_tx3" role="button" aria-haspop="true"><span class="text-place">所有人可见</span><b class="ui_trigbox ui_trigbox_b"><b class="ui_trig c_tx3"></b><b class="ui_trig ui_trig_up bor_bg"></b></b></a></div></div><div class="set-audience-drop none"></div><div class="sync-timing-drop none" style="right:106px;"><div class="pop-drop bg bor2"><div class="arr"><b class="in bor2"></b><b class="out bor_bg"></b></div><ul class="list"><li class="bg5_hover"><a href="javascript:void(0)" onclick="return false;" class="evt_click c_tx2" data-hottag="moodposter.selectPublishTime">设置发布时间</a></li><li class="bg5_hover"><a href="javascript:void(0)" onclick="return false;" class="evt_click c_tx2" data-hottag="moodposter.mytimershuoshuo">我的定时列表</a></li><li class="bg5_hover cancel-timer none"><a href="javascript:void(0)" onclick="return false;" class="evt_click c_tx2" data-hottag="moodposter.canceltimer">取消本条定时说说</a></li></ul></div></div><div class="sync-ex-drop"></div></div><div class="mod-say-authority none"></div><div class="op"><a href="javascript:void(0)" onclick="return false;" class="btn-dismiss-post bgr2 c_tx2 evt_click none" data-hottag="MOODPOSTER.CANCEL"><span class="txt">取消</span></a><a href="javascript:void(0)" onclick="return false;" class="btn-post gb_bt  evt_click" data-hottag="MOODPOSTER.POST"><i class="icon icon-loading"></i><span class="txt">发表</span></a></div><div class="qz-poster-wall-con"></div><div class="tmp-sync-list"></div></div><div class="qz-poster-bottom"><div class="qz-poster-bottom-ext-top none"></div><div class="attachbar-holder the_worlds_end"></div><div class="qz-poster-status-holder the_worlds_end"></div><div class="qz-poster-bottom-ext none"></div></div></div></div>
+						</div>
+
+						<!--说说发表框原型 结束-->
+						<div class="feed_wrap">
+							<div class="network_busy none">
+								<p>非常抱歉您看到此信息，因当前说说的用户过多<br>
+									导致服务器繁忙，请等待3秒后重试。。</p>
+								<button type="button" class="bt_tx2">重试</button>
+							</div>
+
+                            					<div class="feed_head bbor3">
+                            						<div class="feed_tab">
+									<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html?tab=feedlist" class="tab_itm c_tx all_tab author_display qzone_display">全部 <span class="none">(0)</span></a>
+									<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html?tab=feedlist" class="tab_itm c_tx all_tab_visitor visitor_display qzone_display beta_display">全部 <span class="none">(0)</span></a><span class="split c_tx3 qzone_display">|</span>
+									<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html?tab=mine" class="tab_itm mood_tab c_tx author_display current">我的说说 <span class="none">(0)</span></a>
+									<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html?tab=mine" class="tab_itm c_tx mood_tab_visitor visitor_display">TA的说说 <span class="none">(0)</span></a>
+									<span class="split c_tx3 author_display">|</span>
+									<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html?tab=schedule" class="tab_itm timer_tab c_tx author_display">定时说说 <span class="none">(0)</span></a>
+								</div>
+								<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html" class="go_home visitor_display">返回说说主页</a>
+                            </div>
+
+							<!--热门说说 -->
+
+							<div id="feed_commend_body">
+								<div id="error_tip_cont" class="error_cont bgr3" style="display: none;"><span class="icon_big_hint"></span><p class="error_info">服务器正在升级维护中，建议您稍后再尝试打开。谢谢！</p><p>请尝试<a href="javascript:void(0);" onclick="location.reload();return false;" class="c_tx">刷新</a>，恢复服务</p></div>
+								<div class="feed_commend_note none">
+									<span class="fc_msg">
+										<i class="icon_hot_commend"></i>
+										想找到更多有趣的说说？和网友一起关注热门说说吧
+									</span>
+									<span class="open_fc c_tx">
+										<a href="javascript:void(0);">展开热门说说</a>
+									</span>
+								</div>
+								<div class="feed_commend" style="display:none;">
+									<h2 class="tit">热门说说</h2>
+									<div class="hd bg2 bor2">
+										<ul class="tab" id="commend-tab">
+										</ul>
+										<strong class="close ui_x bg6_hover c_tx3">×</strong>
+									</div><!-- hd -->
+									<div class="bd bor2">
+										<div class="commend_op"><a href="javascript:void(0);" class="js-next-group">换一组</a></div>
+										<div class="commend_list clearfix">
+										</div><!-- list -->
+									</div><!-- bd -->
+								</div>
+							</div>
+
+							<!-- feed_commend -->
+							<ol id="msgList" class="mod_feed_lst js_error_display"><li class="feed" data-tid="117b80410edf525151190400" data-uin="1098939153" data-seed="item-807" data-img-load="load" data-comment-load="load" data-like-handled="1"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="100" class="" alt="星野(1098939153)" height="100"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">好像遇到07届的同学，貌似被人认出来了，西安交大的也在大连混 . . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月27日" href="http://user.qzone.qq.com/1098939153/mood/117b80410edf525151190400.1">2013年3月27日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b80410edf525151190400" __ugclikebtnid="827" data-handled="1"><span style="overflow: hidden; zoom: 1; margin: 0px;"><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;"></a><a href="javascript:;" class="qz_like_btn c_tx mr8" _origtemp="赞{cnt}" style="display: inline-block;">赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a></span></span><a href="http://user.qzone.qq.com/1098939153/mood/117b80410edf525151190400.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b80410edf525151190400_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b80410edf525151190400.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b80410edf525151190400_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b80410edf525151190400" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b80410edf525151190400" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b80410edf525151190400" style="display: none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment"><div class="mod_comments" style="display: none;"><div class="comments_list"><div class="comments_list_more" style="display: none;"><a class="c_tx" href="http://user.qzone.qq.com/1098939153/mood/1098939153_117b80410edf525151190400.">查看全部<span>0</span>条评论<span>&gt;&gt;</span></a></div><div class="comments_list_more" style="display: none;"><i class="ui_ico ico_expanding"></i>正在展示更多评论...</div><ul></ul></div></div><div class="mod_comment_poster_wrapper " commentboxid="5c4d44f6-f758-a708-f717-b71880788e6f"><div class="mod_commnets_poster mod_comments_poster_noavatar mod_commnets_poster_trigger"><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" placeholder="我也说一句"><a class="c_tx3" href="javascript:void(0);">我也说一句</a></div><div class="mod-insert-img bor2 "><a href="javascript:void(0)" class="btn-insert-img bg"><i class="icon-camera-16"></i></a></div><div class="mod-quick-comment bor2"><a href="javascript:;" class="btn-quick-comment bg"><i class="icon-flash"></i><span class="flash-text c_tx3">快评</span></a><span></span></div></div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b8041338250519f840d00" data-uin="1098939153" data-seed="item-808" data-img-load="load" data-comment-load="load" data-like-handled="1"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="100" class="" alt="星野(1098939153)" height="100"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">. . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月26日" href="http://user.qzone.qq.com/1098939153/mood/117b8041338250519f840d00.1">2013年3月26日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b8041338250519f840d00" __ugclikebtnid="828" data-handled="1"><span style="overflow: hidden; zoom: 1; margin: 0px;"><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;"></a><a href="javascript:;" class="qz_like_btn c_tx mr8" _origtemp="赞{cnt}" style="display: inline-block;">赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a></span></span><a href="http://user.qzone.qq.com/1098939153/mood/117b8041338250519f840d00.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b8041338250519f840d00_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b8041338250519f840d00.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b8041338250519f840d00_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b8041338250519f840d00" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b8041338250519f840d00" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b8041338250519f840d00" style="display: none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment"><div class="mod_comments" style="display: none;"><div class="comments_list"><div class="comments_list_more" style="display: none;"><a class="c_tx" href="http://user.qzone.qq.com/1098939153/mood/1098939153_117b8041338250519f840d00.">查看全部<span>0</span>条评论<span>&gt;&gt;</span></a></div><div class="comments_list_more" style="display: none;"><i class="ui_ico ico_expanding"></i>正在展示更多评论...</div><ul></ul></div></div><div class="mod_comment_poster_wrapper " commentboxid="5c323136-31f2-da86-d905-0a44663dff4e"><div class="mod_commnets_poster mod_comments_poster_noavatar mod_commnets_poster_trigger"><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" placeholder="我也说一句"><a class="c_tx3" href="javascript:void(0);">我也说一句</a></div><div class="mod-insert-img bor2 "><a href="javascript:void(0)" class="btn-insert-img bg"><i class="icon-camera-16"></i></a></div><div class="mod-quick-comment bor2"><a href="javascript:;" class="btn-quick-comment bg"><i class="icon-flash"></i><span class="flash-text c_tx3">快评</span></a><span></span></div></div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b8041b87c5051912a0500" data-uin="1098939153" data-seed="item-809" data-img-load="load" data-comment-load="load" data-like-handled="1"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="100" class="" alt="星野(1098939153)" height="100"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">腾讯连‘中国meng’也屏蔽 . . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月26日" href="http://user.qzone.qq.com/1098939153/mood/117b8041b87c5051912a0500.1">2013年3月26日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b8041b87c5051912a0500" __ugclikebtnid="829" data-handled="1"><span style="overflow: hidden; zoom: 1; margin: 0px;"><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;"></a><a href="javascript:;" class="qz_like_btn c_tx mr8" _origtemp="赞{cnt}" style="display: inline-block;">赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a></span></span><a href="http://user.qzone.qq.com/1098939153/mood/117b8041b87c5051912a0500.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b8041b87c5051912a0500_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b8041b87c5051912a0500.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b8041b87c5051912a0500_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b8041b87c5051912a0500" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b8041b87c5051912a0500" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b8041b87c5051912a0500" style="display: none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment"><div class="mod_comments" style="display: none;"><div class="comments_list"><div class="comments_list_more" style="display: none;"><a class="c_tx" href="http://user.qzone.qq.com/1098939153/mood/1098939153_117b8041b87c5051912a0500.">查看全部<span>0</span>条评论<span>&gt;&gt;</span></a></div><div class="comments_list_more" style="display: none;"><i class="ui_ico ico_expanding"></i>正在展示更多评论...</div><ul></ul></div></div><div class="mod_comment_poster_wrapper " commentboxid="ade29c67-3f8c-79ce-7672-351cbbe4317d"><div class="mod_commnets_poster mod_comments_poster_noavatar mod_commnets_poster_trigger"><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" placeholder="我也说一句"><a class="c_tx3" href="javascript:void(0);">我也说一句</a></div><div class="mod-insert-img bor2 "><a href="javascript:void(0)" class="btn-insert-img bg"><i class="icon-camera-16"></i></a></div><div class="mod-quick-comment bor2"><a href="javascript:;" class="btn-quick-comment bg"><i class="icon-flash"></i><span class="flash-text c_tx3">快评</span></a><span></span></div></div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b80415ffe4e51d46b0d00" data-uin="1098939153" data-seed="item-810" data-img-load="load" data-comment-load="load" data-like-handled="1"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="100" class="" alt="星野(1098939153)" height="100"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">这个真没有 . . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月24日" href="http://user.qzone.qq.com/1098939153/mood/117b80415ffe4e51d46b0d00.1">2013年3月24日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b80415ffe4e51d46b0d00" __ugclikebtnid="830" data-handled="1"><span style="overflow: hidden; zoom: 1; margin: 0px;"><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;"></a><a href="javascript:;" class="qz_like_btn c_tx mr8" _origtemp="赞{cnt}" style="display: inline-block;">赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a></span></span><a href="http://user.qzone.qq.com/1098939153/mood/117b80415ffe4e51d46b0d00.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b80415ffe4e51d46b0d00_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b80415ffe4e51d46b0d00.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b80415ffe4e51d46b0d00_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b80415ffe4e51d46b0d00" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b80415ffe4e51d46b0d00" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b80415ffe4e51d46b0d00" style="display: none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment"><div class="mod_comments" style="display: none;"><div class="comments_list"><div class="comments_list_more" style="display: none;"><a class="c_tx" href="http://user.qzone.qq.com/1098939153/mood/1098939153_117b80415ffe4e51d46b0d00.">查看全部<span>0</span>条评论<span>&gt;&gt;</span></a></div><div class="comments_list_more" style="display: none;"><i class="ui_ico ico_expanding"></i>正在展示更多评论...</div><ul></ul></div></div><div class="mod_comment_poster_wrapper " commentboxid="8373913e-6340-530e-874e-8c6fbf487877"><div class="mod_commnets_poster mod_comments_poster_noavatar mod_commnets_poster_trigger"><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" placeholder="我也说一句"><a class="c_tx3" href="javascript:void(0);">我也说一句</a></div><div class="mod-insert-img bor2 "><a href="javascript:void(0)" class="btn-insert-img bg"><i class="icon-camera-16"></i></a></div><div class="mod-quick-comment bor2"><a href="javascript:;" class="btn-quick-comment bg"><i class="icon-flash"></i><span class="flash-text c_tx3">快评</span></a><span></span></div></div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b8041f3f24e51f4bc0800" data-uin="1098939153" data-seed="item-811" data-like-handled="1"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">中国梦 这个真没有 . . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月24日" href="http://user.qzone.qq.com/1098939153/mood/117b8041f3f24e51f4bc0800.1">2013年3月24日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b8041f3f24e51f4bc0800" __ugclikebtnid="831" data-handled="1"><span style="overflow: hidden; zoom: 1; margin: 0px;"><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;"></a><a href="javascript:;" class="qz_like_btn c_tx mr8" _origtemp="赞{cnt}" style="display: inline-block;">赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a></span></span><a href="http://user.qzone.qq.com/1098939153/mood/117b8041f3f24e51f4bc0800.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b8041f3f24e51f4bc0800_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b8041f3f24e51f4bc0800.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b8041f3f24e51f4bc0800_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b8041f3f24e51f4bc0800" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b8041f3f24e51f4bc0800" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b8041f3f24e51f4bc0800" style="display: none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b8041f3f24e51f4bc0800"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b804143ae4e51fe9d0c00" data-uin="1098939153" data-seed="item-812" data-like-handled="1"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">It is a test, and you failed again . . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月24日" href="http://user.qzone.qq.com/1098939153/mood/117b804143ae4e51fe9d0c00.1">2013年3月24日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b804143ae4e51fe9d0c00" __ugclikebtnid="832" data-handled="1"><span style="overflow: hidden; zoom: 1; margin: 0px;"><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;"></a><a href="javascript:;" class="qz_like_btn c_tx mr8" _origtemp="赞{cnt}" style="display: inline-block;">赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a></span></span><a href="http://user.qzone.qq.com/1098939153/mood/117b804143ae4e51fe9d0c00.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b804143ae4e51fe9d0c00_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b804143ae4e51fe9d0c00.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b804143ae4e51fe9d0c00_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b804143ae4e51fe9d0c00" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b804143ae4e51fe9d0c00" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b804143ae4e51fe9d0c00" style="display: none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b804143ae4e51fe9d0c00"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b8041f3ab4d51c40d0200" data-uin="1098939153" data-seed="item-813" data-like-handled="1"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">没有工作的月子真难过 ╮(╯_╰)╭ (～ o ～)~zZ . . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月23日" href="http://user.qzone.qq.com/1098939153/mood/117b8041f3ab4d51c40d0200.1">2013年3月23日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b8041f3ab4d51c40d0200" __ugclikebtnid="833" data-handled="1"><span style="overflow: hidden; zoom: 1; margin: 0px;"><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;"></a><a href="javascript:;" class="qz_like_btn c_tx mr8" _origtemp="赞{cnt}" style="display: inline-block;">赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a></span></span><a href="http://user.qzone.qq.com/1098939153/mood/117b8041f3ab4d51c40d0200.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b8041f3ab4d51c40d0200_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b8041f3ab4d51c40d0200.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b8041f3ab4d51c40d0200_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b8041f3ab4d51c40d0200" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b8041f3ab4d51c40d0200" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b8041f3ab4d51c40d0200" style="display: none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b8041f3ab4d51c40d0200"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b8041d3ab4d51296a0700" data-uin="1098939153" data-seed="item-814" data-like-handled="1"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">没有工作的月子真难过 ╮(╯_╰)╭ (～ o ～)~zZ . . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月23日" href="http://user.qzone.qq.com/1098939153/mood/117b8041d3ab4d51296a0700.1">2013年3月23日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b8041d3ab4d51296a0700" __ugclikebtnid="834" data-handled="1"><span style="overflow: hidden; zoom: 1; margin: 0px;"><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;"></a><a href="javascript:;" class="qz_like_btn c_tx mr8" _origtemp="赞{cnt}" style="display: inline-block;">赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a></span></span><a href="http://user.qzone.qq.com/1098939153/mood/117b8041d3ab4d51296a0700.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b8041d3ab4d51296a0700_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b8041d3ab4d51296a0700.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b8041d3ab4d51296a0700_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b8041d3ab4d51296a0700" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b8041d3ab4d51296a0700" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b8041d3ab4d51296a0700" style="display: none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b8041d3ab4d51296a0700"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b80416aab4d51edf60000" data-uin="1098939153" data-seed="item-815" data-like-handled="1"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">Alizee EN CONCERT 巩固、强化了月思想上的启蒙 很久很久以前. . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月23日" href="http://user.qzone.qq.com/1098939153/mood/117b80416aab4d51edf60000.1">2013年3月23日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b80416aab4d51edf60000" __ugclikebtnid="835" data-handled="1"><span style="overflow: hidden; zoom: 1; margin: 0px;"><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;"></a><a href="javascript:;" class="qz_like_btn c_tx mr8" _origtemp="赞{cnt}" style="display: inline-block;">赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a></span></span><a href="http://user.qzone.qq.com/1098939153/mood/117b80416aab4d51edf60000.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b80416aab4d51edf60000_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b80416aab4d51edf60000.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b80416aab4d51edf60000_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b80416aab4d51edf60000" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b80416aab4d51edf60000" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b80416aab4d51edf60000" style="display: none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b80416aab4d51edf60000"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b80415b6d4c5166860a00" data-uin="1098939153" data-seed="item-816" data-like-handled="1"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">皮肤有点烫. . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月22日" href="http://user.qzone.qq.com/1098939153/mood/117b80415b6d4c5166860a00.1">2013年3月22日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b80415b6d4c5166860a00" __ugclikebtnid="836" data-handled="1"><span style="overflow: hidden; zoom: 1; margin: 0px;"><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;"></a><a href="javascript:;" class="qz_like_btn c_tx mr8" _origtemp="赞{cnt}" style="display: inline-block;">赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a><a href="javascript:;" class="qz_like_btn c_tx mr8" style="display: none;">取消赞</a></span></span><a href="http://user.qzone.qq.com/1098939153/mood/117b80415b6d4c5166860a00.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b80415b6d4c5166860a00_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b80415b6d4c5166860a00.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b80415b6d4c5166860a00_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b80415b6d4c5166860a00" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b80415b6d4c5166860a00" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b80415b6d4c5166860a00" style="display: none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b80415b6d4c5166860a00"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b80410d6d4c515da40e00" data-uin="1098939153" data-seed="item-817"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">洗个澡 感冒了. . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月22日" href="http://user.qzone.qq.com/1098939153/mood/117b80410d6d4c515da40e00.1">2013年3月22日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b80410d6d4c515da40e00"></span><a href="http://user.qzone.qq.com/1098939153/mood/117b80410d6d4c515da40e00.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b80410d6d4c515da40e00_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b80410d6d4c515da40e00.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b80410d6d4c515da40e00_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b80410d6d4c515da40e00" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b80410d6d4c515da40e00" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b80410d6d4c515da40e00" style="display:none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b80410d6d4c515da40e00"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b80411b504c5154e90000" data-uin="1098939153" data-seed="item-818"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">又梦到璐璐，还有一个男的 想不起是谁. . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月22日" href="http://user.qzone.qq.com/1098939153/mood/117b80411b504c5154e90000.1">2013年3月22日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b80411b504c5154e90000"></span><a href="http://user.qzone.qq.com/1098939153/mood/117b80411b504c5154e90000.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b80411b504c5154e90000_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b80411b504c5154e90000.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b80411b504c5154e90000_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b80411b504c5154e90000" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b80411b504c5154e90000" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b80411b504c5154e90000" style="display:none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b80411b504c5154e90000"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b80417d2f495163af0d00" data-uin="1098939153" data-seed="item-819"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">回. . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月20日" href="http://user.qzone.qq.com/1098939153/mood/117b80417d2f495163af0d00.1">2013年3月20日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b80417d2f495163af0d00"></span><a href="http://user.qzone.qq.com/1098939153/mood/117b80417d2f495163af0d00.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b80417d2f495163af0d00_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b80417d2f495163af0d00.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b80417d2f495163af0d00_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b80417d2f495163af0d00" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b80417d2f495163af0d00" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b80417d2f495163af0d00" style="display:none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b80417d2f495163af0d00"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b8041ea904851b1030500" data-uin="1098939153" data-seed="item-820"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">后备计划就是网管 这要是当年的那个人 早就撂蹄子. . . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月20日" href="http://user.qzone.qq.com/1098939153/mood/117b8041ea904851b1030500.1">2013年3月20日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b8041ea904851b1030500"></span><a href="http://user.qzone.qq.com/1098939153/mood/117b8041ea904851b1030500.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b8041ea904851b1030500_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b8041ea904851b1030500.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b8041ea904851b1030500_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b8041ea904851b1030500" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b8041ea904851b1030500" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b8041ea904851b1030500" style="display:none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b8041ea904851b1030500"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b8041ac3d4851bdae0200" data-uin="1098939153" data-seed="item-821"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">忍者。 。 。</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月19日" href="http://user.qzone.qq.com/1098939153/mood/117b8041ac3d4851bdae0200.1">2013年3月19日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b8041ac3d4851bdae0200"></span><a href="http://user.qzone.qq.com/1098939153/mood/117b8041ac3d4851bdae0200.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b8041ac3d4851bdae0200_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b8041ac3d4851bdae0200.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b8041ac3d4851bdae0200_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b8041ac3d4851bdae0200" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b8041ac3d4851bdae0200" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b8041ac3d4851bdae0200" style="display:none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b8041ac3d4851bdae0200"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b8041e43b4851a2f70500" data-uin="1098939153" data-seed="item-822"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">。 。 。</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月19日" href="http://user.qzone.qq.com/1098939153/mood/117b8041e43b4851a2f70500.1">2013年3月19日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b8041e43b4851a2f70500"></span><a href="http://user.qzone.qq.com/1098939153/mood/117b8041e43b4851a2f70500.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b8041e43b4851a2f70500_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b8041e43b4851a2f70500.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b8041e43b4851a2f70500_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b8041e43b4851a2f70500" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b8041e43b4851a2f70500" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b8041e43b4851a2f70500" style="display:none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b8041e43b4851a2f70500"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b804120d64751956d0900" data-uin="1098939153" data-seed="item-823"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">come again, 又梦到璐璐</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月19日" href="http://user.qzone.qq.com/1098939153/mood/117b804120d64751956d0900.1">2013年3月19日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b804120d64751956d0900"></span><a href="http://user.qzone.qq.com/1098939153/mood/117b804120d64751956d0900.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b804120d64751956d0900_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b804120d64751956d0900.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b804120d64751956d0900_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b804120d64751956d0900" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b804120d64751956d0900" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b804120d64751956d0900" style="display:none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b804120d64751956d0900"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b80414d5e4751c2e90000" data-uin="1098939153" data-seed="item-824"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">弗洛伊德《梦的解析》 爱因斯坦、马克思、弗洛伊德 孔子、孟子、还有老子</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月19日" href="http://user.qzone.qq.com/1098939153/mood/117b80414d5e4751c2e90000.1">2013年3月19日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b80414d5e4751c2e90000"></span><a href="http://user.qzone.qq.com/1098939153/mood/117b80414d5e4751c2e90000.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b80414d5e4751c2e90000_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b80414d5e4751c2e90000.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b80414d5e4751c2e90000_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b80414d5e4751c2e90000" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b80414d5e4751c2e90000" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b80414d5e4751c2e90000" style="display:none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b80414d5e4751c2e90000"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b8041c64b4751013c0800" data-uin="1098939153" data-seed="item-825"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">指个人在精神受干扰时用以避开干扰，保持心理平衡的心理机制。最早由弗洛伊德提出。</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月19日" href="http://user.qzone.qq.com/1098939153/mood/117b8041c64b4751013c0800.1">2013年3月19日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b8041c64b4751013c0800"></span><a href="http://user.qzone.qq.com/1098939153/mood/117b8041c64b4751013c0800.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b8041c64b4751013c0800_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b8041c64b4751013c0800.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b8041c64b4751013c0800_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b8041c64b4751013c0800" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b8041c64b4751013c0800" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b8041c64b4751013c0800" style="display:none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b8041c64b4751013c0800"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li><li class="feed " data-tid="117b8041c1aa46515e980400" data-uin="1098939153" data-seed="item-826"><div class="private_hd private_show none"><div class="private_bg"></div></div><div class="avatar"><a href="http://user.qzone.qq.com/1098939153" onclick="return false;" class="goProfile" profileuin="1098939153" title="星野(1098939153)"><span class="skin_portrait_round"></span><img data-src="http://qlogo2.store.qq.com/qzone/1098939153/1098939153/100?1392996920" src="blank.gif" class="lazyload" alt="星野(1098939153)"></a></div><div class="box bgr3"><div class="arr bor3"><div class="bor_bg3"></div></div><div class="bd"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="qz_311_author c_tx nickname goProfile" profileuin="1098939153" profilepft="1" data-uin="1098939153">星野</a>  <pre style="display:inline;" class="content">淡淡小雪. . . . . . .</pre><span></span><div class="f_toggle"><a href="javascript:void(0);" onclick="return false;" class="has_more_con "></a></div></div><div class="md"><div class="md_op none" data-extend=""><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#fold" class="md_unfold  js_collapse" data-tips="" data-topmedia=""> 查看详情<i class="ico_arr"><b></b></i></a></div></div><div class="ft"><div class="info"><span class="c_tx3"><a class="c_tx c_tx3 goDetail" title="2013年3月18日" href="http://user.qzone.qq.com/1098939153/mood/117b8041c1aa46515e980400.1">2013年3月18日</a></span></div><div class="op"><a href="javascript:void(0);" class="c_tx none">赞</a><span id="like_btn_117b8041c1aa46515e980400"></span><a href="http://user.qzone.qq.com/1098939153/mood/117b8041c1aa46515e980400.1" class="c_tx comment_btn" target="_blank" onclick="return false;" id="comment_btn_1098939153_117b8041c1aa46515e980400_1">评论</a><a href="http://user.qzone.qq.com/1098939153/mood/117b8041c1aa46515e980400.1" class="c_tx forward_btn" target="_blank" onclick="return false;" id="forward_btn_1098939153_117b8041c1aa46515e980400_1">转发</a><div class="dropdown more-edit-items"> <a href="javascript:void(0);" class="dropdown-trigger c_tx" id="dLabel_117b8041c1aa46515e980400" data-toggle="dropdown" aria-haspopup="ture" aria-expanded="true">更多<i class="ui_trig ui_trig_b"></i></a>  <div class="dropdown-menu menu-item-list bor2 bg" role="menu" aria-labelledby="dLabel_117b8041c1aa46515e980400" aria-hidden="false">   <ul role="presentation"><li><a href="javascript:void(0);" class="edit_btn author_display" role="menuitem">编辑</a></li><li class="add_favorite_container need_bg2"><a href="javascript:;" data-template="0" class="c_tx app-favorite-button app-favorite-button-add add-favorite-button-noneicon"><span class="text-add">收藏</span><span class="text-cancel">已收藏</span></a></li><li><a href="javascript:void(0);" class="goDetail" role="menuitem">详情</a></li><li><a href="javascript:void(0);" class="del del_btn author_display" role="menuitem">删除</a></li>   </ul>  </div></div></div></div><div class="box_extra bor3 "><div class="box_extra_arr bor3"><div class="bor_bg3"></div></div><div class="feed_like" id="feed_like_117b8041c1aa46515e980400" style="display:none;"><i class="icon_zan"></i>4917人觉得很赞</div><!-- 评论区 --><div class="mod_comment" id="comment_list_117b8041c1aa46515e980400"><div class="mod_comments"><div class="comments_list"><ul></ul></div><!-- list end --><!-- poster --></div><!-- qz_comments end--><!--发表框 默认--><div class="mod_commnets_poster"><!--如果，发表框在评论列表上面，请加上 class mod_commnets_poster_top 谢谢--><div class="comments_poster_bd comments_poster_default"><div class="comments_box"><div class="textinput textinput_default bor2" contenteditable="true" placeholder="我也说一句">我也说一句</div></div></div></div></div></div></div><div class="box_shadow"><div class="shadow_left"></div><div class="shadow_right"></div></div></li></ol>
+
+							<div id="pager" class="mod_pagenav tbor js_error_display"><div class="mod_pagenav" id="_pager_content_40"><p class="mod_pagenav_main"><a href="javascript:void(0);" onclick="return false;" title="以下为分页" style="position:absolute;top:-999em" class="speak"></a><a href="javascript:void(0);" onclick="return false;" title="上一页" id="pager_previous_40" class="c_tx"><span>上一页</span></a><a href="javascript:void(0);" onclick="return false;" title="首页" id="pager_first_40" class="c_tx"><span>1</span></a><span class="mod_pagenav_more"><span>…</span></span><a href="javascript:void(0);" onclick="return false;" title="37" class="c_tx" id="pager_num_40_37"><span>37</span></a><a href="javascript:void(0);" onclick="return false;" title="38" class="c_tx" id="pager_num_40_38"><span>38</span></a><span class="current"><span>39</span></span><a href="javascript:void(0);" onclick="return false;" title="40" class="c_tx" id="pager_num_40_40"><span>40</span></a><a href="javascript:void(0);" onclick="return false;" title="41" class="c_tx" id="pager_num_40_41"><span>41</span></a><span class="mod_pagenav_more"><span>…</span></span><a href="javascript:void(0);" onclick="return false;" title="末页" id="pager_last_40" class="c_tx"><span>91</span></a><a href="javascript:void(0);" onclick="return false;" title="下一页" id="pager_next_40" class="c_tx"><span>下一页</span></a></p><p class="mod_pagenav_option"><span class="mod_pagenav_turn">到<input type="text" id="pager_go_40" class="textinput">页 <button id="pager_gobtn_40" type="button" class="bt_tx2"><span>确定</span></button></span></p></div></div>
+							<div id="bottom-sponsor" class="say-bottom-ad"></div>
+						</div>
+						<!--.feed_wrap-->
+					</div>
+					<!--.main-->
+				</div>
+				<!--.main_wrap-->
+
+				<div class="sidebar lite_hide">
+                    <div class="profile bg"><div class="avatar"><a href="javascript:void(0);" onclick="return false;"><span class="skin_portrait_round"></span><img src="100" alt=""></a></div><div class="bd"><div class="name"><span title="星野">星野</span></div><div class="feed_num"><a href="http://user.qzone.qq.com/1098939153/mood" onclick="return false;" class="c_tx goProfile" profileuin="1098939153">1807</a>条说说</div><a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/setting.html" class="c_tx link_set author_display none">设置</a><div class="op visitor_display qzone_display"><a href="http://user.qzone.qq.com/1098939153/" target="_blank" class="ico_qzone">空间</a><a href="http://user.qzone.qq.com/1098939153/weibo/guest/" target="_blank" class="ico_weibo login_display">微博</a></div></div><div class="box_shadow"></div></div>
+					<!-- .profile-->
+					<!-- .com_post-->
+<div class="com_post side_panel author_display none">
+	<div class="hd none">
+		<h3>说说写日志</h3>
+	</div>
+
+	<div class="bd">
+		<a href="http://rc.qzone.qq.com/blog?catalog=ugc&ref=rukou/shuoshuorizhi" class="btn bor2 bg" target="_blank"><i class="icon_post"></i>写说说日志</a><br>
+		<span class="c_tx3">将每周的说说记录转变为日志</span>
+	</div>
+</div>
+<!-- .split_line-->
+<div class="split_line bor2 bg author_display none"></div>
+
+<!-- pop_apps -->
+<div class="split_line bor2 bg" id="pop_apps_split"></div>
+<div class="pop_apps side_panel" id="pop_apps_sponsors">
+	<div class="hd none">
+		<h3 class="none">趣味应用</h3>
+	</div>
+	<div class="bd">
+		<div class="pop_apps_wrap">
+			<div class="pop_apps_group">
+				<div class="app_hd">
+					<div id="qzone_shuoshuo_img_1"><a href="http://mlt01.com/c.htm?pv=1&sp=0,1246178,1269525,2222835,0,1,1&target=http://mmd3s.qq.com/" bosstrace="2096_101981_1_1" target="_blank"><img src="1432210462733_342154.jpg" bosstrace="2096_101981_1_1" url="http://mlt01.com/c.htm?pv=1&amp;sp=0,1246178,1269525,2222835,0,1,1&amp;target=http://mmd3s.qq.com/" alt="qboss_ad_image"></a></div>
+					<div class="switcher"></div>
+				</div>
+				<ul class="app_list" id="qzone_shuoshuo_imgtxt_1">
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- .com_post-->
+<div class="side_commend side_panel visitor_display" style="display:none;">
+	<div class="hd">
+		<h3 class="">热门说说</h3>
+	</div>
+	<div class="bd bg">
+		<div class="commend_list clearfix">
+			<!-- 动画效果： 添加 commend_item_hover ，设置 item_img 渐变消失 margin-top:-127px; ，让 item_con 的高度渐变到 height:217px; -->
+			
+		</div><!-- list -->
+	</div>
+</div>
+<div class="split_line bor2 bg visitor_display" style="display:none;"></div>
+
+<script type="text/tpl" id="mood-sidebar-commend">
+	<div class="commend_item" data-uin="{uin}" data-tid="{tid}">
+		<div class="item_img bor3">
+			<a href="javascript:void(0);" data-uin="{uin}" data-tid="{tid}"><img src="{images_url}" alt="" width="200" /></a>
+			<div class="num"><a href="javascript:void(0);" data-uin="{uin}" data-tid="{tid}"><i class="c_bg6"></i><span class="c_tx6 bg6" id="count-s{tid}">{count}</span></a></div>
+		</div>
+		<div class="item_con" data-uin="{uin}" data-tid="{tid}">
+			<a href="{profile_url}" class="item_nickname" target="_blank" onclick="QZFL.event.cancelBubble();">{nickname}</a>
+			{content_html}
+		</div>
+		<div class="item_op">
+			<a href="{detail_url}" class="item_dtl none" target="_blank">查看详情</a>
+			<a href="javascript:void(0);" class="js-next-group item_change">换一组</a>
+			<a href="javascript:void(0);" class="item_rep gb_bt" data-uin="{uin}" data-tid="{tid}">我也来说</a>
+		</div>
+	</div>
+</script>
+					<div id="rec_vedio" class="mod_sec bor2 mod-rec-vedio none"></div>
+					<div id="rel_search" class="mod_sec bor2 none"></div>
+					<div id="hot_topic" class="mod_sec bor2 mod-hot-topic none">
+						<div class="mod-sec-hd">
+							<h3>大家都在看</h3>
+						</div>
+						<div class="mod-sec-bd">
+							<ul id="hot_topic_bd"></ul>
+						</div>
+						<div class="mod-sec-ft mod-hot-change">
+							<a href="http://cn.qzs.qq.com/qzone/app/mood_v6/html/index.html#">换一换</a>
+						</div>
+					</div>
+					<div class="new_comment side_panel visitor_display"></div>
+					<!-- .hot_news-->
+					<!-- 评论审核 -->
+<!-- .split_line-->
+<div class="split_line bor2 bg qzone_display review_notice author_display"></div>
+
+<!-- .com_audit-->
+<div class="com_audit side_panel qzone_display review_notice author_display">
+	<div class="hd">
+		<h3>评论审核</h3>
+	</div>
+	<div class="bd">
+		<p class="audit_tips c_tx3">
+			开启评论审核后，非好友对您说说的回复经过审核才能显示<br>
+			<a href="javascript:void(0);" onclick="MOOD.jumpToAudit();" class="c_tx" id="censor_count">当前待审核评论 (0)</a>
+		</p>
+	</div>
+</div>
+					<div class="split_line bor2"></div>
+					<div class="word_spread side_panel"><div class="hd"><h3>大家都在看</h3></div><div class="bd"><ul><li><a target="_blank" href="http://www.sogou.com/tx?hdq=sogou-wsse-092cb13c22d51c22-0001&query=%E4%BA%BA%E7%94%9F%E6%9C%80%E9%9A%BE%E5%BE%97%E7%9A%84%E6%98%AF%E6%9C%89%E4%B8%80%E5%B8%AE%E9%99%AA%E4%BD%A0%E7%9A%84%E6%9C%8B%E5%8F%8B" title="人生最难得的是有一帮陪你的朋友">人生最难得的是有一帮陪你的朋友</a></li><li><a target="_blank" href="http://www.sogou.com/tx?hdq=sogou-wsse-092cb13c22d51c22-0001&query=%E6%9C%80%E6%83%B3%E8%AF%B4%E7%9A%84%E8%AF%9D%E5%9C%A8%E7%9C%BC%E7%9D%9B%E9%87%8C+%E5%9C%A8%E8%8D%89%E7%A8%BF%E7%AE%B1%E9%87%8C" title="最想说的话在眼睛里 在草稿箱里">最想说的话在眼睛里 在草稿箱里</a></li><li><a target="_blank" href="http://www.sogou.com/tx?hdq=sogou-wsse-092cb13c22d51c22-0001&query=%E8%84%86%E5%BC%B1%E7%9A%84%E4%BA%BA%E6%89%8D%E4%BC%9A%E5%9B%9B%E5%A4%84%E6%B8%B8%E8%AF%B4%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%8D%E5%B9%B8" title="脆弱的人才会四处游说自己的不幸">脆弱的人才会四处游说自己的不幸</a></li></ul></div></div><div class="split_line bor2"></div><a target="_blank" data-rel="mood_help" href="http://kf.qq.com/faq/120227U7vmAf131028uquuaa.html">说说使用帮助</a>
+                </div>
+				<!--.sidebar-->
+			</div>
+			<!--.container-->
+		</div>
+		<!-- .app_travel -->
+	</div>
+	<!-- .mod_wrap_inner -->
+</div>
+<!-- .bg_mode -->
+
+<script type="text/tpl" id="mood-commend-photo">
+	<div class="commend_item bor2">
+		<div class="item_img bor3">
+			<a href="javascript:void(0);" onclick="UseHot.selected('{uin}','{tid}');return false;"><img src="{images_url}" alt="" width="177px" /></a>
+			<div class="num"><a href="javascript:void(0);" onclick="UseHot.selected('{uin}','{tid}');return false;"><i class="c_bg6"></i><span class="c_tx6 bg6" id="count-{tid}">{count}</span></a></div>
+		</div>
+		<div class="item_con" onclick="UseHot.selected('{uin}','{tid}');return false;">
+			<a href="{profile_url}" class="item_nickname" target="_blank" onclick="QZFL.event.cancelBubble();">{nickname}</a>
+			{content_html}
+		</div>
+		<div class="item_op">
+			<a href="{detail_url}" class="item_dtl none" target="_blank">查看详情</a>
+			<a href="javascript:void(0);" class="item_rep gb_bt" onclick="UseHot.selected('{uin}','{tid}');return false;">我也来说</a>
+		</div>
+	</div>
+</script>
+<script type="text/tpl" id="mood-commend-text">
+	<div class="commend_item bor2">
+		<div class="item_con" onclick="UseHot.selected('{uin}','{tid}');return false;">
+			<a href="{profile_url}" class="item_nickname" target="_blank" onclick="QZFL.event.cancelBubble();">{nickname}</a>
+			{content_html}
+		</div>
+		<div class="item_op">
+			<a href="{detail_url}" class="item_dtl none" target="_blank">查看详情</a>
+			<a href="javascript:void(0);" class="item_rep gb_bt" onclick="UseHot.selected('{uin}','{tid}');return false;">我也来说 <span id="count-{tid}">{count}</span></a>
+		</div>
+	</div>
+</script>
+<script type="text/javascript">
+window.QZONE = window.QZONE || {};
+
+// global
+var isQzone = document.domain == "qq.com";
+var isOwner = MOOD.env.uin == MOOD.env.loginUin;
+(function(QZONE){
+	/*将来可以移除*/
+	QZONE.FP = QZONE.FP || parent.QZONE.FrontPage;
+	QZONE.PY = QZONE.PY || parent.QZONE.PengYou;
+	var isLogin = 0!= QZONE.FP.getQzoneConfig("loginUin");
+	/*将来可以移除*/
+
+	var isLite = (function(){
+		if (QZONE.PY && QZONE.PY.hasLeftBar){
+			return QZONE.PY.hasLeftBar();
+		}else{
+			return false;
+		}
+	})();
+	document.write([
+	'<style>',
+		(isLite?'.lite .bg_mode .box_ml { border-style: none;} .lite .bg_mode .box_ml .app_mood .container .main{padding-top: 0;} .lite .bg_mode .box_ml .app_mood .container .main .feed_wrap{ margin-top: 0;}':''),
+		'.lite_hide {', (isLite ? 'display:none':''),'}',
+		(isLite ? '.lite .app_mood .container .main{ margin-right: 0; }':''),
+		'.qzone_display {',(isQzone ? '' : 'display:none !important;'),'}',
+		'.pengyou_display {',(isQzone ? 'display:none !important;' : ''),'}',
+		'.author_display {',(isOwner ? '' : 'display:none !important;'),'}',
+		'.visitor_display {',(isOwner ? 'display:none !important;' : ''),'}',
+		'.login_display {',(isLogin ? '' : 'display:none !important;'),'}', 
+	'</style>'
+	].join(''));
+})(QZONE);
+MOOD.tmp = MOOD.tmp || {};
+MOOD.tmp.profile = '<% var profile_baseurl = \'user.qzone.qq.com\';if(document.domain==\'pengyou.com\'){	profile_baseurl = \'baseapp.pengyou.com\';}%><div class="avatar"><a href="javascript:void(0);" onclick="return false;"><span class="skin_portrait_round"></span><img src="<%=QZONE.FP.getPURL(uin,100)%>" alt="" /></a></div><div class="bd"><div class="name"><span title="<%=escHTML(name)%>"><%=QZONE.FP.removeUBB(escHTML(name))%></span></div><div class="feed_num"><a href="http://<%=profile_baseurl%>/<%=uin%>/mood" onclick="return false;" class="c_tx goProfile" profileuin="<%=uin%>"><%=msgnum%></a>条说说</div><a href="setting.html"  class="c_tx link_set author_display none">设置</a><div class="op visitor_display qzone_display"><a href="http://<%=profile_baseurl%>/<%=uin%>/" target="_blank" class="ico_qzone">空间</a><a href="http://<%=profile_baseurl%>/<%=uin%>/weibo/guest/" target="_blank" class="ico_weibo login_display">微博</a></div></div><div class="box_shadow"></div>';
+MOOD.tmp.lastComment = '<div class="hd"><h3>最新评论</h3></div><div class="bd"><ul class="list"><%	var profile_baseurl = \'user.qzone.qq.com\';	if(document.domain ==\'pengyou.com\'){		profile_baseurl = \'baseapp.pengyou.com\';	}	var dateFormat = \'YY-mm-dd H:i:s\';	for(var i=0; i<msglist.length; ++i){		var item = msglist[i];		var commentlist = item.commentlist;		var hasComment = !!commentlist;		if(hasComment){			var comment = commentlist[0];		}%><li class="comment_feed" tid="<%=item.tid%>"><% if(hasComment){ %><div class="con bg bor2"><span class="arr bor2"><i class="bor_bg"></i></span><div class="info"><span class="c_tx3" title="<%=MOOD.util.getDateStr(comment.create_time,dateFormat)%>"><%=MOOD.util.friendlyTime(comment.create_time)%></span><a href="javascript:void(0);" onclick="return false;" class="nickname goProfile" profileUin="<%=comment.uin%>"><%=MOOD.util.getRemark(comment.uin,comment.name)%></a></div><div class="new_comment_content_<%=item.tid%>"><%=MOOD.util.showMention(comment.content,item.tid)%></div></div><% } %><div class="itm"><%=item.rt_con?MOOD.util.getContent(item.rt_con.conlist,item.content,item.rt_tid,item.rt_uin,0,1):MOOD.util.getContent(item.conlist,item.content,item.tid,item.uin,0,1)%><a href="http://<%=profile_baseurl%>/<%=item.uin%>/mood/<%=item.tid%>.<%=item.t1_source%>" onclick="return false;" title="<%=MOOD.util.getDateStr(item.created_time,dateFormat)%>" class="c_tx3 goDetail"><%=MOOD.util.friendlyTime(item.created_time)%></a><div class="attach"><% 					var imgSrc = item.pic&&item.pic.length&&item.pic[0].url1;					var musicSrc = item.audio&&item.audio.length&&MOOD.Music.getAlbumImage(item.audio[0].albumid);					var videoSrc = item.video&&item.video.length&&item.video[0].url1;					var rediculous = function(url){						return ((typeof url) == "string" ? url : "").replace("qp.qq.com","p.qpimg.cn");					};					if(imgSrc){ %><div class="img_thumb"><a href="http://<%=profile_baseurl%>/<%=item.uin%>/mood/<%=item.tid%>.<%=item.t1_source%>" onclick="return false;" class="goDetail"><img src="<%=rediculous(imgSrc)%>"></a></div><% }else if(musicSrc){ %><div class="music_thumb"><a href="http://<%=profile_baseurl%>/<%=item.uin%>/mood/<%=item.tid%>.<%=item.t1_source%>" onclick="return false;" class="goDetail"><span class="mask"></span><img src="<%=rediculous(musicSrc)%>"></a></div><% }else if(videoSrc){ %><div class="video_thumb"><a href="http://<%=profile_baseurl%>/<%=item.uin%>/mood/<%=item.tid%>.<%=item.t1_source%>" onclick="return false;" class="goDetail"><img src="<%=rediculous(videoSrc)%>"><span class="play"></span></a></div><% } %></div></div><div class="op"><a href="#" onclick="return false;" class="last_comment_button"> 评论(<span class="comment_num"><%=item.replies%></span>) </a><a href="#" onclick="return false;" class="last_retweet_button"> 转发(<span class="retweet_num"><%=item.rt_sum%></span>) </a></div></li><%}%></ul></div>';
+MOOD.tmp.hotTopic = '<%for(var i=0; i<items.length; ++i){var item = items[i];%><li class="bg2"><p class="itm bor3"><span class="c_tx3" id="<%=item.likekey%>"><%=item.count%></span><a href="http://rc.qzone.qq.com/qzonesoso/?search=<%=encodeURIComponent(escHTML(item.keyword))%>" class="c_tx up goSearch" keyword="<%=item.keyword%>" target="_blank" onclick="return false;" title="<%=escHTML(item.title)%>"><%=escHTML(item.title)%></a></p><%if(item.tip){%><p class="con bg bor3"><span class="arr"><i></i></span><%=escHTML(item.tip)%></p><%}%></li><%}%>';
+MOOD.tmp.content = '<%items = items || [];for(var i=0; i<items.length; ++i){var item = items[i];%><%if(item.type == 0){%><a href="javascript:void(0);" onclick="return false;" target="_blank" class="c_tx goProfile" profileUin="<%=item.uin%>" profilePft="<%=item.who%>">@<%=MOOD.util.getRemark(item.uin,item.nick)%></a><%}else if(item.type == 1){		var link = escHTML(item.ourl||item.url);		if(obj.certified){			var url = document.createElement(\'a\');			url.href = escHTML(item.ourl||item.url);			if(url.hash){				url.hash += \'&tc_qz_original=\' + obj.uin;			}else{				url.hash = \'#tc_qz_original=\' + obj.uin;			}			link = url.href;		}	%><a href="<%=link%>" data-title="<%=escHTML(item.ourl||item.url)%>" target="_blank" class="c_tx <%=nosafecheck?\'\':\'safecheck\'%>"><%=escHTML(item.url)%></a><%}else{%><%=MOOD.util.parseContent(item.con)%><%}%><%}%>';
+
+(function(){
+	timeStampsPool[3] =(new Date()); //开始渲染首屏页面
+	qzlog.info({cm:'MOOD_APP',cf:'RENDER_PAGE_START'});
+	//把详情页数据变成数组
+	if(MOOD.env.tab=='detail' && window._preloadCache.code===0){
+		window._preloadCache = MOOD.getDetailSuc(window._preloadCache);
+	}
+	MOOD.render(window._preloadCache);
+	var onlyfirstscreen = false;
+	var proxyoff = false;
+	try{
+		onlyfirstscreen =  top.location.href.indexOf('onlyfirstscreen=1')>-1;
+		var proxyoff = top.location.href.indexOf('proxyoff=1')>-1;
+		if(proxyoff){
+			QZONE.FP._t.QZFL.config.xhrProxyEnable = function(){return 0;}
+		}
+	}catch(err){}
+
+	timeStampsPool[4] =(new Date()); //渲染首屏完成
+	qzlog.info({cm:'MOOD_APP',cf:'RENDER_PAGE_FINISHED'});
+
+	qzlog.info({cm:"MOOD_APP",cf:"LOAD_JS_START"});
+	// debug mode switch
+	// var isDebugMode = top.location
+	var scriptsTmpl = [
+		'<%for(var i=0;i<scripts.length;i++){%>',
+		'	<script src="http://<%=siDomain%><%=scripts[i]%>?max_age=<%=maxAge%>&ver=<%=jsVer%>"><\/script>',
+		'<%}%>'
+	].join('');
+	//基础库，n久不变的，可做长cache
+	var libScripts = [];
+	libScripts.push('/ac/qzfl/appclientlib.js');
+	libScripts.push('/qzone/app/controls/pager/pager.js');
+	//业务库，经常变化，cache时间尽量短
+	var businessScripts = [];
+	businessScripts.push('/qzone/app/utils/requirejSolution_1.0_qzone.js');
+	businessScripts.push('/qzone/app/mood_v6/script/seajs_config.js');
+	businessScripts.push('/qzone/app/mood_v6/script/app_patch.js');
+	// businessScripts.push('/qzone/app/mood_v6/api/api.js');
+	businessScripts.push('/qzone/app/mood_v6/script/index.js');
+	
+	//businessScripts.push('/qzone/app/mood_v6/launcher/main.js');
+	document.write('<script type="text/javascript" src="//'+siDomain+'/ac/lib/seajs/sea-'+g_V.sea+'.js"><\/script>');
+	!onlyfirstscreen && document.write(tmpl(scriptsTmpl,{
+		siDomain : siDomain,
+		scripts : window.g_isDebugMode ? libScripts : (['/c/='+libScripts.join(',')]),
+		jsVer : 20130607,
+		maxAge : 999999
+
+	})+tmpl(scriptsTmpl,{
+		siDomain : siDomain,
+		scripts : window.g_isDebugMode ? businessScripts : (['/c/='+businessScripts.join(',')]),
+		jsVer : MOOD.version,
+		maxAge : 999999
+	}));
+	timeStampsPool[5] =(new Date()); //渲染首屏完成
+})();
+//$e('#mood_poster_container_wrapper').setHtml(MOOD.tmp.posterContainer);
+</script><style>.lite_hide {}.qzone_display {}.pengyou_display {display:none !important;}.author_display {}.visitor_display {display:none !important;}.login_display {}</style><script type="text/javascript" src="sea-2.1.1.js"></script> <script src="pager.js"></script> <script src="index.js"></script>
+
+<div style="display: none;"><div><div x:id="content_content" spellcheck="false" x:idprefix="content" class="textinput textarea c_tx2" contenteditable="true" accesskey="q" style="display:none;" id=""></div><div x:id="substitutor_content" x:idprefix="substitutor" class="textinput textarea c_tx3" contenteditable="true" tabindex="0" accesskey="q" id=""></div><div x:id="tips" class="mod_at_wrap" style="display:none;" id=""><div class="mod_at bg bor2"><div class="mod_at_list"><div x:id="tips_content" class="mod_at_tips c_tx3 bg3" id="">正在加载中...</div></div></div></div><div x:id="options" id=""></div></div><div x:id="content" contenteditable="true" class="richTextBox"></div><div x:id="content" contenteditable="true" tabindex="0"></div></div><div style="display: none;"></div><div class="comment-insert-img the_worlds_end" style="position: absolute; left: 511px; top: 379px; z-index: 9000;"><div class="img-upload-drop cell-2"> <div class="pop-drop bg4 bor2">  <div class="arr"> <b class="in bor2"></b> <b class="out bor_bg"></b>  </div>  <ul class="list">   <li class="bor3">    <a href="javascript:void(0);" class="c_tx3" data-role="local"> <i class="icon icon-from-cmp"></i>     <span class="txt">本地</span>    </a>   <object id="qz_app_imageReader_1" style="position:absolute;z-index:1;left:1px;top:1px;" width="54px" height="66px" data="http://cn.qzs.qq.com/qzone/client/photo/swf/SimpleLocalFileUploader/Main.swf?max_age=20140605" type="application/x-shockwave-flash"><param name="allowScriptAccess" value="always"><param name="wmode" value="transparent"><param name="flashvars" value="facadeId=QZAPPCTRL.photoUploader.instance1.&amp;max=3"></object></li>   <li class="bor3">    <a href="javascript:void(0);" class="c_tx3" data-hottag="add_photo_entry.album" data-role="button"> <i class="icon icon-album"></i>     <span class="txt">相册</span>    </a>   </li>  </ul> </div></div></div></body></html>
