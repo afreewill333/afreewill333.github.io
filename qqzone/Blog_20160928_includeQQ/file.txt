@@ -1,0 +1,41 @@
+1	2	《战地2142》	种子下载					1	torrent	2013-7-2 23:47:30							
+2	2		It is a TEST!!!	0	1	1	0			2015-8-10 12:40:23					TEST		
+3	67		???????	0	1	1	6			2015-8-10 12:55:17	2015-8-10 13:12:57						
+5	67		It is a uploadTest~~~	0	0	1	1			2015-8-10 14:02:12					UploadTest		
+6	2		TEST FILE BACKEND	0	0	1	0			2015-8-10 14:14:18					TEST FILE BACKEND		
+7	2			0	1	1	0			2015-8-10 14:18:03					LLLLLLLLLLLLLL		
+8	2			0	1	1	0			2015-8-10 14:34:40					GGGGGGGGGG		
+9	2		BBBBBBBBBB	0	1	1	0			2015-8-10 15:10:16					BBBBBBBBBBBB		
+10	2			0	0	1	0			2015-8-10 15:12:26					VVVVVVVVVVVVVVV		
+11	2		sefesfs	0	1	1	0			2015-8-10 15:17:11					efsf		
+12	2		CCCCCCCCCCCCC	0	1	1	0			2015-8-10 15:30:00					CCCCCCCCCCCCCC		
+13	2		cncncncn	0	1	1	0			2015-8-10 15:40:28					cncncncncn		
+14	2			0	1	1	0			2015-8-10 16:02:18					文件上传测试		
+15	2			0	1	1	0			2015-8-10 16:03:41					文件上传测试		
+16	2			0	1	1	0			2015-8-10 16:05:53					TEST_FOR_FILEUPLOAD		
+17	2		FFFFFF	0	1	1	0			2015-8-10 16:07:28							
+18	2		FFFFFF	0	1	1	0			2015-8-10 16:08:02							
+19	2		HJKL	0	1	1	0			2015-8-10 16:28:38							
+20	2		DFGH	0	1	1	0			2015-8-10 16:31:13							
+21	2		放大沙发上的	0	1	1	2			2015-8-10 20:54:51	2015-8-10 20:55:03						
+22	2		都是发生的发生	0	1	1	0			2015-8-10 21:06:45							
+23	2		发货	0	1	1	0			2015-8-10 21:07:19							
+24	2		发货	0	1	1	0			2015-8-10 21:07:47							
+25	2		发货	0	1	1	0			2015-8-10 21:10:13							
+26	2		发货	0	1	1	1			2015-8-10 21:10:35							
+27	2		VCXS	0	1	1	0			2015-8-11 09:49:51							
+28	2		VCXS	0	1	1	0			2015-8-11 09:50:27							
+30	2		要测试下载了！！	0	1	1	5	21504	xls	2015-8-11 10:26:34	2015-8-11 10:27:23	个税缴款凭证打印模板v1.0.xls		127.0.0.1	BLogModel需要改动	EA1F1693CD4E4866789C91C0C2CE6392	
+31	2	个税缴款凭证打印模板v1.0.xls	测试文件删除和下载	0	1	1	4	21504	xls	2015-8-11 11:03:16		个税缴款凭证打印模板v1.0.xls	C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps\blog\upload\file	127.0.0.1	BLogModel需要改动	EA1F1693CD4E4866789C91C0C2CE6392	
+34	2	新建 文本文档.txt	测试文件删除和下载	0	1	1	16	381	txt	2015-8-11 11:05:28		新建 文本文档.txt	C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps\blog\upload\file	127.0.0.1	BLogModel需要改动	88CE41618F1888999D575F3EC95173F5	
+35	2	fg752p.exe	SDFF	0	1	1	4	2488096	exe	2015-8-11 12:56:22		fg752p.exe	C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps\blog\upload\file	127.0.0.1	BLogModel需要改动	D71930765DC9F5E5C47F485BB6F37093	
+36	2	fg752p.exe	CCCC	0	1	1	11	2488096	exe	2015-8-11 13:13:48		fg752p.exe	C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps\blog\upload\file	127.0.0.1	BLogModel需要改动	D71930765DC9F5E5C47F485BB6F37093	
+38	2	个税缴款凭证打印模板v1.0.xls	XXXX	0	1	1	2	21504	xls	2015-8-11 14:11:12		个税缴款凭证打印模板v1.0.xls	C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps\blog\upload\file	127.0.0.1	BLogModel需要改动	EA1F1693CD4E4866789C91C0C2CE6392	
+39	2	fg752p.exe	ZZZZ	0	1	1	5	2488096	exe	2015-8-11 15:50:35		fg752p.exe	C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps\blog\WEB-INF\upload\file	127.0.0.1	BLogModel需要改动	D71930765DC9F5E5C47F485BB6F37093	
+40	2	传智播客-03-springm[00_27_14][20150802-230957-0].BMP		0	1	1	2	3145782	BMP	2015-8-14 18:38:32	2015-8-14 18:38:52	20150814183832921_传智播客-03-springm[00_27_14][20150802-230957-0].BMP	F:\apache-tomcat-7.0.63\webapps\blog\WEB-INF\upload\file/d/7/7/9/6/4/6/6	127.0.0.1		54E8B42CA8010E6183828CC7554FA2DA	1
+41	2	传智播客-03-springm[00_27_14][20150802-230957-0].BMP		0	1	1	1	3145782	BMP	2015-8-14 19:00:09	2015-8-14 19:00:13	20150814190009156_传智播客-03-springm[00_27_14][20150802-230957-0].BMP	F:\apache-tomcat-7.0.63\webapps\blog\WEB-INF\upload\file/5/1/3/c/e/e/5/2	127.0.0.1		54E8B42CA8010E6183828CC7554FA2DA	1
+42	2	传智播客-03-springm[00_27_14][20150802-230957-0].BMP		0	1	1	4	3145782	BMP	2015-8-14 22:28:04	2015-8-14 22:35:45	20150814222804437_传智播客-03-springm[00_27_14][20150802-230957-0].BMP	F:\apache-tomcat-7.0.63\webapps\blog\WEB-INF\upload\file/5/6/2/4/d/8/6/5	127.0.0.1		54E8B42CA8010E6183828CC7554FA2DA	3
+43	2	传智播客-03-springm[00_27_14][20150802-230957-0].BMP		0	1	1	2	3145782	BMP	2015-8-14 22:41:03	2015-8-14 22:41:08	20150814224103359_传智播客-03-springm[00_27_14][20150802-230957-0].BMP	F:\apache-tomcat-7.0.63\webapps\blog\WEB-INF\upload\file/e/6/9/9/6/5/3/c	127.0.0.1		54E8B42CA8010E6183828CC7554FA2DA	1
+44	2	fg752p.exe		0	1	1	0	2488096	exe	2015-8-15 00:19:08		20150815001908093_fg752p.exe	F:\apache-tomcat-7.0.63\webapps\blog\WEB-INF\upload\file/b/9/d/7/9/6/1/4	127.0.0.1		2D44C200BD7B0E521D084F5AC50418B4	0
+45	2	fg752p.exe		3	1	1	9	2488096	exe	2015-8-15 00:20:19		20150815002019265_fg752p.exe	F:\apache-tomcat-7.0.63\webapps\blog\WEB-INF\upload\file/e/b/7/3/b/c/c/3	127.0.0.1		D71930765DC9F5E5C47F485BB6F37093	0
+46	2	TEST.java	TEET	0	1	1	2	23397	java	2015-8-20 18:58:22	2015-8-20 18:59:50	20150820185822187_TEST.java	C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps\blog\WEB-INF\upload\file/a/a/e/1/2/d/b/d	127.0.0.1		15D96BB7F7EAC4439C5767CD39CF339C	1
