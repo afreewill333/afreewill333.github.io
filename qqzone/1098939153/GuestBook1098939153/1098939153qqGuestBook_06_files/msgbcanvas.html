@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://qzs.qq.com/qzone/msgboard/msgbcanvas.html#page=6 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>留言板</title>
+		<script type="text/javascript">
+			document.domain = "qq.com";
+			//判断是否在iframe里面
+			if(window.frameElement){
+				window.new_protocol = top.g_cdn_proto;
+			}
+			window.new_protocol = window.new_protocol || location.protocol;
+
+			var _bJs = function(src, c){return '<script type="text/javascript" charset="'+(c || 'utf-8')+'" src="'+src+'"><\/script>';};
+			var _bCss = function(href){return '<link rel="stylesheet" rev="stylesheet" href="http://qzonestyle.gtimg.cn'+href+'" media="screen"/>';};
+			var _dw = function(str){return document.write(str)};
+			_dw(_bJs(new_protocol + "//qzonestyle.gtimg.cn" + '/qzone/v8/applib/embeded.js'));
+		</script><script type="text/javascript" charset="utf-8" src="./embeded.js"></script>
+		<script>
+		window.isAjaxMode = true;
+			frameElement.id = 'tgb';
+			var getParameter = function(name){
+				var r = new RegExp("(\\?|#|&)" + name + "=([^&#]*)(&|#|$)");
+				var m = location.href.match(r);
+				return (!m?"":m[2]);
+			};
+
+			(function procParameter() {
+				if(getParameter("auditing")) {
+					location.href = "/qzone/msgboard/auditing.html";
+				} else if(getParameter("setting")) {
+					location.href = "/qzone/msgboard/setting.html#from=" + getParameter("from");
+				}
+			})();
+
+            //测速
+            parent.mgbBasePoint = new Date().getTime();
+			parent.mgbSpeedPoint = {'1':(new Date().getTime())};
+
+			document.write(
+				_bCss('/qzone_v6/blog_msgboard.css')+
+				_bCss('/qzone_v6/gb/skin/'+parent.QZONE.FrontPage.getQzoneConfig().styleId+'.css'));
+
+			var MSG_LIST_TPL = '<%if(!total){%><li><p class="no_message"><span class="c_tx3">还没有人发表留言</span><a id="btnPostFirst" onclick="MSG.comment.showEditor();return false;" href="javascript:;" title="来坐第一个沙发" class="c_tx">来坐第一个沙发</a></p></li><%}else{ %><%for(var i=0;i<items.length;i++){var aItem=items[i];%><li id="pLi_<%=aItem.id%>" class="bor3"><div class="wrap"><div class="info_guest"><p class="avatar"><%if(aItem.uin){%><a name="link_<%=aItem.id%>" href="http://user.qzone.qq.com/<%=aItem.uin%>" target="_blank" title="<%=aItem.nickname%>" class="user_head_50 q_namecard" link="nameCard_<%=aItem.uin%>"><span class="skin_portrait_round">&nbsp;</span><img src="<%=aItem.avatarUrl%>" id="user_head_img_<%=aItem.id%>" style="width:<%=aItem.avatarSize%>px; height:<%=aItem.avatarSize%>px" alt="head_<%=aItem.uin%>" /></a><%} else {%><a name="link_<%=aItem.id%>" href="javascript:;" title="<%=aItem.nickname%>" class="user_head_50"><span class="skin_portrait_round">&nbsp;</span><img src="http://qlogo3.store.qq.com/qzone/1724670238/1724670238/50" id="user_head_img_<%=aItem.id%>" style="width:<%=aItem.avatarSize%>px; height:<%=aItem.avatarSize%>px"/></a><%}%></p><span rel="user_vip_info_<%=aItem.uin%>" class="icon-wrap none"></span><p class="checkbox_batch_processing"><input type="checkbox" name="batchItem" value="<%=aItem.id%>" class="item_check_box" commentId="<%=aItem.id%>" /></p></div><div class="main"><div class="main_bd"><div class="inner"><p class="tit"><span class="userinfo"><span class="username" rel="user_name_info_<%=aItem.uin%>"><%if((!IS_CERTIFIED || (IS_OWNER && IS_CERTIFIED)) && aItem.uin){%><a name="link_<%=aItem.id%>" href="http://user.qzone.qq.com/<%=aItem.uin%>" target="_blank" title="<%=aItem.nickname%>" class="c_tx q_namecard" uin="<%=aItem.uin%>" link="nameCard_<%=aItem.uin%>"><%=QZONE.FP.removeUBB(aItem.nickname || \'\')%></a><%} else {%><%=QZONE.FP.removeUBB(aItem.nickname || \'\')%><%} %></span><span class="userlevel none" rel="user_grade_<%=aItem.uin%>"></span><span rel="user_vip_info_<%=aItem.uin%>" class="icon-wrap none"></span></span><span class="c_tx3 floor">第<%=aItem.floor %>楼</span><span class="c_tx3 mode_post"><%=aItem.fromStr%><%if(aItem.fakeFlag){%> （留言内容待审核）<%}%></span></p><div class="op"<%if(aItem.fakeFlag){ %> style="display:none"<%} %>><div class="toolbar"><ul><% var hasChildren = aItem.canQuote || aItem.canSetTop || aItem.canEdit || aItem.canDelete || aItem.canSendMsg || aItem.canRemoveTop || aItem.canReport || aItem.canMoveBlack;%><li class="drop_list" <%=(hasChildren?\'\':\'data-disabled="1"\')%>><span class="line"><span class="bor"></span></span><a href="javascript:;" title="更多选项" class="<%=(hasChildren?\'c_tx\':\'c_tx3\')%> drop_list_link"><span class="symbol arrow">▼</span></a><ul class="bg bor" style="width:75px; text-align:center; display:none;"><li class="<%=aItem.canQuote ? \'\' : \'none\'%>"><a rel="quote" uin="<%=aItem.uin%>" commentId="<%=aItem.id%>" href="javascript:;" title="引用">引用</a></li><li class="<%=aItem.canSetTop ? \'\' : \'none\'%>"><a rel="addEssence" uin="<%=aItem.uin%>" commentId="<%=aItem.id%>" href="javascript:;" title="置顶">置顶</a></li><li class="<%=aItem.canEdit ? \'\' : \'none\'%>"><a rel="edit" uin="<%=aItem.uin%>" commentId="<%=aItem.id%>" href="javascript:;" title="编辑">编辑</a></li><li class="<%=aItem.canDelete ? \'\' : \'none\'%>"><a rel="delete" uin="<%=aItem.uin%>" commentId="<%=aItem.id%>" href="javascript:;" title="删除">删除</a></li><li class="<%=aItem.canSendMsg ? \'\' : \'none\'%>"><a rel="sendMsg" uin="<%=aItem.uin%>" commentId="<%=aItem.id%>" href="javascript:;" title="短消息">短消息</a></li><li class="<%=aItem.canRemoveTop ? \'\' : \'none\'%>"><a rel="deleteEssence" uin="<%=aItem.uin%>" commentId="<%=aItem.id%>" href="javascript:;" title="取消置顶">取消置顶</a></li><li class="<%=aItem.canReport ? \'\' : \'none\'%>"><a rel="report" href="javascript:;" uin="<%=aItem.uin%>" commentId="<%=aItem.id%>" title="举报">举报</a></li><li class="<%=aItem.canMoveBlack ? \'\' : \'none\'%>"><a rel="moveBlack" href="javascript:;" uin="<%=aItem.uin%>" commentId="<%=aItem.id%>" title="加黑禁言">加黑禁言</a></li></ul></li><li class="quick_drop_list show_in_owner"><a rel="quote" href="javascript:;" uin="<%=aItem.uin%>" commentId="<%=aItem.id%>" title="引用" class="c_tx <%=aItem.canQuickQuote ? \'\' : \'none\'%>">引用</a></li></ul></div><p class="op_batch_processing"><a id="btnDeleteOne2_<%=aItem.id%>" href="javascript:;" title="删除" class="c_tx">删除</a></p></div><div id="commentContentDiv_<%=aItem.id%>" class="cont"<%=(aItem.tiezhiSrc?\' style="background-image:url(\'+aItem.tiezhiSrc+\'); background-position:right bottom; background-repeat:no-repeat"\' : \'\')%>><table style="width:100%;"><tr><td><%=aItem.htmlContent %></td></tr></table><p class="reply_wrap"><span class="c_tx3 mode_post" <%if(aItem.modifytime){%> title="最后编辑于：<%=aItem.modifytime%>"<%}%>><%=aItem.timeText%></span><%if(aItem.secret){%><span class="privacy-txt"><span class="icon-lock"></span> 仅彼此可见</span><%}%><a rel="reply" href="javascript:;" title="回复" uin="<%=aItem.uin%>" commentId="<%=aItem.id%>" class="c_tx <%=aItem.canQuickReply ? \'\' : \'none\'%>">回复</a><a rel="sendGift" href="javascript:;" uin="<%=aItem.uin%>" commentId="<%=aItem.id%>" title="送礼" class="btnSendGift c_tx <%=aItem.canSendGift ? \'\' : \'none\'%>">送礼</a></p></div><div id="singleCommentEditorDiv_<%=aItem.id%>" class="panel_editor" style="display:none;"><div id="singleCommentEditorAnchor_<%=aItem.id%>"></div><div><button rel="editCommentBtn" type="button" commentId="<%=aItem.id%>" class="bt_tx2">发表</button>&nbsp;								<button rel="cancelEditCommentBtn" type="button" commentId="<%=aItem.id%>" class="bt_tx2">取消</button></div></div><div class="comment_wrap"><div class="bor3 none" style="border-width:1px 0 0" id="divComment_<%=aItem.id%>_line"><b class="ui_trigbox ui_trigbox_t"><b class="ui_trig bor3"></b><b class="ui_trig ui_trig_up bor_bg"></b></b></div><div id="divComment_<%=aItem.id%>" style="display:none" class="mod_comment"></div></div><%if((aItem.effect & (1<<22))){%><div class="bor3 c_tx3 signature none" uin="<%=aItem.uin%>"></div><%}%></div></div></div></div></li><%} %><%} %>';
+
+			var AUTHOR_INFO_TPL = '<%if(authorInfo.htmlMsg){%><%=_propertyProtect(authorInfo.htmlMsg)%><%}else if(IS_OWNER){%><p><a href="javascript:void(0);" rel="showAuthorInfoEditor" title="说些寄语，欢迎您的空间访客吧" class="c_tx">说些寄语，欢迎您的空间访客吧</a></p><%}else {%><p>欢迎光临我的空间</p><%}%>';
+
+			var ERROR_NOTICE_TPL = '<div>尊敬的QQ空间用户</div><div style="text-indent:4em; divadding:1em 0">为了提供给大家更好的体验和服务。QQ空间留言版暂需要临时维护，维护的过程中可能会影响部分用户打不开留言版。建议稍候再试。</div><div style="text-align:right;">QQ空间项目组</div><div style="text-align:center; padding-top:50px;"><a href="http://kf.qq.com/special_auto/qzone.html" target="_blank">帮助中心</a>&nbsp;	<a href="javascript:;" onclick="location.reload(); return false;">刷新页面</a></div>';
+
+		</script><link rel="stylesheet" rev="stylesheet" href="./blog_msgboard.css" media="screen"><link rel="stylesheet" rev="stylesheet" href="./35(1).css" media="screen">
+		<style type="text/css">
+			#authorMsgEditorAnchor .veStatusbarContainer {padding-top:0; padding-bottom:0}
+			#authorMsgEditorAnchor .veIframeContainer {background-color:white;}
+			.veToolbarContainer {border:1px solid #ddd}
+			.veIframeContainer {background-color:white; margin-bottom:5px; border:1px solid #ddd; border-top:none}
+			div.veStatusbarContainer  {padding:0; height:0px}
+			div.veStatusbarContainer .veStatusbarContainer_wrap {display:none}
+
+			.gb_post textarea#maskEditor {height:109px; width:685px;}
+
+			#commentOper {margin-top:5px}
+			.msg_less_tools .veToolbar_group1,
+			.msg_less_tools .veToolbar_group2,
+			.msg_less_tools .veToolbar_group3,
+			.msg_less_tools .veToolbar_group4,
+			.msg_less_tools .veToolbar_group6 {display: none}
+			div.veToolbarContainer .veButton_veRedo,
+			div.veToolbarContainer .veButton_veRemoveFormat {display:block;}
+
+			.gb_post .give_gift {padding-top:1px}
+
+			/** 名博显示名称后的黄钻 **/
+			.gb_comment .userinfo .icon-wrap {display:none;}
+			.gb_comment .list_without_avatar .userinfo .icon-wrap {display:block;}
+
+			/** 顶部分页 隐藏 **/
+			#app_mod #pager_top .mod_pagenav_count,
+			#app_mod #pager_top .mod_pagenav_option {display:none}
+
+			/** 主客人态 菜单项差异 **/
+			.mod_guest_state .gb_comment .toolbar li .line {display:none}
+			.mod_guest_state .comments_set {display:none;}
+
+			.mod_guest_state .show_in_owner {display:none;}
+			.mod_owner_state .show_in_guest {display:none;}
+
+			/** 批量管理 高度不需要 **/
+			.list_batch_processing .gb_comment .cont {min-height:auto}
+
+			/** 批量管理回复线不需要 **/
+			.list_batch_processing .reply_wrap {display:none}
+
+			/** 批量管理评论不需要 **/
+			.list_batch_processing .comment_wrap {display:none}
+
+			/** 批量管理去除黄钻等级 **/
+			.gb_comment .list_batch_processing .icon-wrap {display:none;}
+
+			/** 去除评论背景 **/
+			#app_mod .mod_comment ol li.bg2 {background:none}
+			.mod_comment .mod_comment_post {background:none;}
+
+			/** soso表情去除我的表情 **/
+			ul#soso_exp_myNav {display:none;}
+
+			/** 回复bugfix **/
+			.hide_comment_tip .mod_comment .mod_comment_post {display:none;}
+		</style>
+	</head>
+<body class="mod_owner_state">
+
+<script type="text/javascript">
+	var LOGIN_UIN = QZONE.FP.getQzoneConfig('loginUin');
+	var SPACE_UIN = QZONE.FP.getQzoneConfig('ownerUin');
+	var IS_OWNER = LOGIN_UIN == SPACE_UIN;
+	var IS_STAR = QZONE.FP.getBitMapFlag(7);		//名博
+	var IS_BIZ = QZONE.FP.getBitMapFlag(5);			//商博
+	var IS_VIP = QZONE.FP.getBitMapFlag(27);		//黄钻
+	var IS_CERTIFIED = QZONE.FP.getBitMapFlag(52);	//认证空间
+	var IS_LITE = QZONE.FP.getQzoneConfig().isLite;
+	var PAGE_SIZE = 10;
+	var CUR_PAGE_INDEX = parseInt(getParameter('page'), 10) || 1;
+
+	var INIT_DATA = {code:-1, total:0,auditNum:0,authorInfo:{}, commentList:[]};
+
+	var _s_t = new Date().getTime(), _o_t;
+
+	var isLoadMsgTimeout = false;
+	
+	var loadMsgTimeoutTimerId = null;
+
+
+	var loadMsgFinishedCallbacks = [];
+	var onLoadMsgFinished = function(callback){
+		if(callback){
+			loadMsgFinishedCallbacks.push(callback);
+		}
+	};
+
+	var handleLoadMsgFinished = function(){
+		while(loadMsgFinishedCallbacks && loadMsgFinishedCallbacks.length>0){
+			var cb = loadMsgFinishedCallbacks.shift();
+			cb && cb();
+		}
+		onLoadMsgFinished = function(callback){
+			callback && callback();
+		}
+	}
+
+	var start = (CUR_PAGE_INDEX-1)*PAGE_SIZE;
+    var loadDataStartTime = new Date().getTime();
+	loadMsgTimeoutTimerId = setTimeout(function(){
+		parent.mgbSpeedPoint[2] = new Date().getTime();
+		// console.log('timeout');
+		window.isLoadMsgTimeout = true;
+		parsePageTemplate();
+		renderFirstPage();
+		handleLoadMsgFinished();
+        window.QZONE && QZONE.FP && QZONE.FP._t && QZONE.FP._t.TCISD && QZONE.FP._t.TCISD.haboStat({
+            commandid : 'http://m.qzone.qq.com/cgi-bin/new/get_msgb',
+            stime : parent.mgbSpeedPoint[2] - loadDataStartTime,
+            resultcode : 998,
+            touin : QZONE.FP._t.g_iLoginUin || 0,
+            frequency : 1
+        });
+	},4000);
+	parent.$j.jsonGet('http://m.qzone.qq.com/cgi-bin/new/get_msgb', {
+		uin : LOGIN_UIN,
+		hostUin : SPACE_UIN,
+		start : start,
+		s : Math.random(),
+		format : 'jsonp',
+		num : 10,
+		inCharset : 'utf-8',
+		outCharset : 'utf-8'
+	}, {
+		timeoutValue : 4000,
+		charset: 'utf-8',
+		callback:  function(responseData){
+			if(isLoadMsgTimeout){
+				return;
+			}
+			parent.mgbSpeedPoint[2] = new Date().getTime();
+			clearTimeout(loadMsgTimeoutTimerId);
+			INIT_DATA = parent.QZFL.object.extend(INIT_DATA, (responseData.data || {}));
+			INIT_DATA.code = responseData.code;
+			if(responseData.code != 0){
+				var msg = responseData.message || '当前系统正忙，请稍候刷新页面再访问留言板';
+				parent.QZONE.FP.showMsgbox(msg, 5, 3000);
+			}
+			// _Callback = null;
+			_o_t = new Date().getTime() - _s_t;
+			parsePageTemplate();
+			renderFirstPage();
+			handleLoadMsgFinished();
+            window.QZONE && QZONE.FP && QZONE.FP._t && QZONE.FP._t.TCISD && QZONE.FP._t.TCISD.haboStat({
+            commandid : 'http://m.qzone.qq.com/cgi-bin/new/get_msgb',
+            stime : parent.mgbSpeedPoint[2] - loadDataStartTime,
+            resultcode : 0,
+            touin : QZONE.FP._t.g_iLoginUin || 0,
+            frequency : 1
+        });
+
+		},
+		onerror: function(param) {
+			if(isLoadMsgTimeout){
+				return;
+			}
+			parent.mgbSpeedPoint[2] = new Date().getTime();
+			clearTimeout(loadMsgTimeoutTimerId);
+			parsePageTemplate();
+			renderFirstPage();
+			handleLoadMsgFinished();
+            window.QZONE && QZONE.FP && QZONE.FP._t && QZONE.FP._t.TCISD && QZONE.FP._t.TCISD.haboStat({
+            commandid : 'http://m.qzone.qq.com/cgi-bin/new/get_msgb',
+            stime : parent.mgbSpeedPoint[2] - loadDataStartTime,
+            resultcode : 999,
+            touin : QZONE.FP._t.g_iLoginUin || 0,
+            frequency : 1
+        });
+		}
+	});
+
+</script>
+
+<script type="text/javascript">
+	
+
+	var parseMentionFormat = (function(){
+		var decode = function(nick){
+			return nick && nick.replace(/(%2C|%25|%7D)/g,function($1){
+				return escHTML(unescape($1));
+			});
+		};
+
+		return function(str, bTextOnly,editState){
+			if(!str || str.indexOf('@')<0){
+				return str;
+			}
+			//[fix] 某些source有edncode错误
+			str = str.replace(/%3A/g, ':').replace(/%2C/g, ',');
+			str = str.replace(/@\{uin:([^\}]*),nick:([^\}]*?)(?:,who:([^\}]*))?\}/g,function($1,$2, $3) {
+				$2 = escape(escHTML($2));
+				var link = (/\D/g.test($2) ? 'http://xiaoyou.qq.com/index.php?mod=profile&u=' : 'http://user.qzone.qq.com/')+ $2 ;
+				if(bTextOnly){
+					return '@'+decode($3);
+				} else {
+					return '<a href=' + link + ' target="_blank">@' + decode($3) + '</a>';
+				}
+			});
+			return str;
+		}
+	})();
+
+	var escHTML = function(str) {
+	    return (str + '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\x27/g, '&#039;').replace(/\x22/g, '&quot;');
+	}
+
+	var tmpl = function(str, data){
+	    var fn = !/\W/.test(str) ? cache[str] = cache[str] ||
+	    tmpl(document.getElementById(str).innerHTML) :        // Generate a reusable function that will serve as a template
+	    new Function("obj", "var p=[],print=function(){p.push.apply(p,arguments);};" +
+	    "with(obj){p.push('" +
+	    str.replace(/[\r\t\n]/g, " ").split("<%").join("\t").replace(/((^|%>)[^\t]*)'/g, "$1\r").replace(/\t=(.*?)%>/g, "',$1,'").split("\t").join("');").split("%>").join("p.push('").split("\r").join("\\'") +
+	    "');}return p.join('');");
+	    return data ? fn(data) : fn;
+	};
+
+	/**
+	 * 获取来源字串
+	 * @param  {Number} effect
+	 * @return {String}
+	 */
+	var getFromStr = function(effect){
+		var s = "";
+		if(effect & (1<<10)){
+			s = '通过<a href="http://3gqq.qq.com/qzone/?fr=qzmsg" target="_blank" class="c_tx3 unline">手机Qzone</a>';
+		}else if(effect & (1<<15)){
+			s = '通过手机短信';
+		}else if(effect & (1<<19)){
+			s = '通过<a href="http://www.pengyou.com" target="_blank" class="c_tx3 unline">腾讯朋友</a>';
+		}else if(effect & (1<<28)){
+			s = '通过<a href="http://city.qq.com" target="_blank" class="c_tx3 unline">城市达人</a>';
+		}else if(effect & (1<<29)){
+			s = '通过<a href="http://8.qq.com" target="_blank" class="c_tx3 unline">网吧达人</a>';
+		}
+		return s;
+	};
+
+	var getTiezhiSrc = function(key, thumb){
+		key = parseInt(key, 10);
+		var path = 'http://qzonestyle.gtimg.cn/qzone_v6/img/msgboard/stickers/';
+		if(key){
+			if(thumb){
+				return path+'thumb/'+key+'.png';
+			}
+			return path + key + (parent.QZFL.userAgent.ie == 6?'.ie6':'') + '.png';
+		}
+		return '';
+	};
+
+	/**
+	 * 属性保护
+	 * 当前仅去除了rel属性
+	 * @param  {String} str
+	 * @return {String}
+	 */
+	var _propertyProtect = function(str){
+		return (str||'').replace(/<([^>]+)\Wrel\s*=\s*["|'].*?["|'](.*?)>/ig, function(){
+			return '<'+arguments[1]+arguments[2]+'>';
+		});
+	};
+
+	/**
+	 * 修正后台返回数据
+	 * @param  {Object} o
+	 * @return {Object}
+	 */
+	var _fixPageData = function(o){
+		var _tData = [];
+		for(var i=0;i<o.commentList.length;i++){
+			var item = o.commentList[i];
+			var isPrivateMsg = item.secret == 1;
+			var isPoster = LOGIN_UIN == item.uin;
+			item.nickname = (item.nickname || item.uin || '')+'';
+
+			item.htmlContent = _propertyProtect(item.htmlContent);
+			item.htmlContent = parseMentionFormat(item.htmlContent);
+			item.htmlContent = (isPrivateMsg && !IS_OWNER && !isPoster) ? '主人收到一条黄钻私密留言' : item.htmlContent;
+			item.isEsscence = (item.effect & (1<<30));
+			item.canQuickReply = IS_OWNER && !item.isEsscence;										//主人可快速回复
+			item.canSetTop = !item.isEsscence && IS_OWNER && IS_CERTIFIED && !isPoster;				//置顶
+			item.canEdit = !item.isEsscence && isPoster;											//自己可以编辑自己的留言
+			item.canDelete = !item.isEsscence && IS_OWNER;											//主人可删除留言
+			item.canSendGift = IS_OWNER && !isPoster;												//主人可送礼
+			item.canSendMsg = false;	//代码接口被废弃!item.isEsscence && IS_STAR;				//名博可发留言
+			item.canRemoveTop = item.isEsscence && IS_OWNER && IS_CERTIFIED && !isPrivateMsg;		//取消置顶
+			item.canQuote = !IS_OWNER && !isPrivateMsg;												//引用
+			item.canQuickQuote = IS_OWNER && !isPrivateMsg;											//快速引用
+			item.canMoveBlack = IS_OWNER && !isPoster;												//加黑
+			item.canReport = !isPoster && !isPrivateMsg;
+
+			item.tiezhiSrc = getTiezhiSrc(item.pasterid);
+			item.fromStr = getFromStr(item.effect);
+			item.signature = item.signature || '';
+			item.replyList = typeof(item.replyList) != 'object' ? [] : item.replyList;
+            item.floor = o.total - (CUR_PAGE_INDEX-1)*10 - i;
+            item.avatarSize = 50;
+            item.avatarUrl = item.uin ? parent.QZONE.FP.getPURL(item.uin, item.avatarSize) : '';
+            item.timeText = item.pubtime.substring(0, 16);
+			_tData.push(item);
+		}
+		o.items = parent.QZFL.lang.objectClone(_tData);
+		return o;
+	};
+
+	/**
+	 * template parse engine
+	 */
+	var parsePageTemplate =function(){
+		INIT_DATA = _fixPageData(INIT_DATA);
+
+		//模板解析初始化
+		window.PAGE_HTML = tmpl(MSG_LIST_TPL, INIT_DATA);
+		window.AUTHOR_HTML = tmpl(AUTHOR_INFO_TPL, INIT_DATA);
+
+		//页面渲染并加载完关键js
+		parent.mgbSpeedPoint[3] = new Date().getTime();
+	};
+
+	var renderFirstPage = function(){
+		if(INIT_DATA.code != 0){
+			document.getElementById("divNoticePre").style.display = '';
+			document.getElementById('error_notice_cont').innerHTML = (ERROR_NOTICE_TPL);
+		}
+
+		if(INIT_DATA.code == 0){
+			document.getElementById('normal_page_container').style.display = '';
+		}
+
+		document.getElementById('author_info_cont').innerHTML = AUTHOR_HTML;
+
+		document.getElementById('cnt').innerHTML = INIT_DATA.total;
+       	document.getElementById('auditNum').innerHTML = INIT_DATA.auditNum;
+		document.getElementById('ulCommentList').innerHTML = PAGE_HTML;
+		parent.mgbSpeedPoint[4] = new Date().getTime();
+	}
+</script>
+
+<div class="bg_mode" id="divNoticePre" style="display:none">
+	<div class="box_ml bor">
+		<div class="mode_gb">
+			<div class="bor mod-tab">
+				<div class="mod-tab-list">
+					<ul>
+						<li class="nav_home">
+							<a href="http://qzs.qq.com/qzone/msgboard/msgbcanvas.html#" class="c-tx2">
+								<span class="item-wrap bor-tx">留言板</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div style="padding:40px 20px;" id="error_notice_cont">
+			<script type="text/javascript">
+			// if(INIT_DATA.code != 0){
+			// 	document.getElementById("divNoticePre").style.display = '';
+			// 	document.write(ERROR_NOTICE_TPL);
+			// }
+			</script>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="bg_mode" id="normal_page_container">
+	<script type="text/javascript">
+		// if(INIT_DATA.code == 0){
+		// 	document.getElementById('normal_page_container').style.display = '';
+		// } /** 容错处理 **/
+		</script>
+	<div class="box_ml bor">
+		<div class="mode_gb">
+			<div class="bor mod-tab">
+				<div class="mod-tab-list">
+					<ul>
+						<li class="nav_home">
+							<a href="http://qzs.qq.com/qzone/msgboard/msgbcanvas.html#" class="c-tx2">
+								<span class="item-wrap bor-tx">留言板</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="divNotice" style="padding:10px; display:none">正在加载留言，请稍候……</div>
+			<div class="mode_gb_cont" id="main">
+				<div class="guestbook" id="app_mod">
+					<div class="hint" style="padding-right: 30px; margin-bottom: 10px;" id="cheatHintArea"><strong class="icon_hint"><span>提示</span></strong><span>留言板已默认为大家开启主人审核功能，查看、保护隐私都由自己来决定！提高网络安全防范意识，保护号码使用安全，<a href="http://kf.qq.com/faq/120227U7vmAf150429bAZ7fI.html" rel="prevent_cheat" target="_blank">近期安全工作请点此了解！</a></span><a href="javascript:;" onclick="$(&#39;cheatHintArea&#39;).style.display=&#39;none&#39;;return false;" title="关闭提示" class="hint_close">关闭</a></div>
+					<div class="gb_own">
+						<div class="mod_clear bor3 mod_tit2">
+							<h4>主人寄语</h4>
+							<span id="divAuthorMsgOper" style="margin-left: 10px; line-height: 18px;">
+								<a id="btnEditAuthorMsg" href="javascript:;" title="编辑您的寄语" class="c_tx">编辑您的寄语</a>
+							</span>
+						</div>
+						<div class="cont_author" id="authorInfo">
+							<table width="100%">
+								<tbody><tr>
+									<td>
+										<div id="author_info_cont"><span style="line-height:1.8em;font-family:verdana;font-size:24px;">Don't&nbsp;ever&nbsp;let&nbsp;sb&nbsp;tell&nbsp;you,&nbsp;</span><wbr><br><span style="line-height:1.8em;font-family:verdana;font-size:24px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;you&nbsp;can't&nbsp;do&nbsp;sth,</span><wbr><br><span style="line-height:1.8em;font-family:verdana;font-size:24px;">you&nbsp;got&nbsp;a&nbsp;dream,</span><wbr><br><span style="line-height:1.8em;font-family:verdana;font-size:24px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;you&nbsp;gotta&nbsp;protect&nbsp;it.</span><wbr><br><span style="line-height:1.8em;font-family:verdana;font-size:24px;">people&nbsp;can't&nbsp;do&nbsp;sth&nbsp;themselves,</span><wbr><br><span style="line-height:1.8em;font-family:verdana;font-size:24px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;they&nbsp;wanna&nbsp;tell&nbsp;you&nbsp;you&nbsp;can't&nbsp;do&nbsp;it.</span><wbr><br><span style="line-height:1.8em;font-family:verdana;font-size:24px;">if&nbsp;you&nbsp;want&nbsp;sth,&nbsp;&nbsp;go&nbsp;get&nbsp;it&nbsp;period</span><wbr></div>
+								<script type="text/javascript">
+									// document.write(AUTHOR_HTML);
+								</script>
+									</td>
+								</tr>
+							</tbody></table>
+						</div>
+						<div class="cont_author" id="editAuthorMsgDiv" style="display:none;">
+							<!-- 内容编辑-->
+							<div class="panel_editor" id="authorMsgEditorAnchor"></div>
+							<p class="panel_editor_btn"><button id="btnPostAuthorMsg" type="button" class="bt_tx2">发表</button> <button id="btnCancelAuthorMsg" type="button" class="bt_tx2">取消</button></p>
+						</div>
+					</div>
+					<!-- 好友印象 -->
+<style type="text/css">
+	.frd-impress .item a.txt {cursor:default}
+</style>
+<div class="frd-impress none" id="friendImpress">
+	<h3 class="impress-tit">好友印象</h3>
+	<div class="impress-list" id="impressList">
+		<span class="tips">正在加载数据...</span>
+	</div>
+	<div class="impress-action none" id="impressAction">
+		<!-- default:bg6 / hover:bg5 -->
+		<a href="javascript:;" class="btn-add bg6" id="impressActionTriggerBtn"><i class="i-add">✚</i>我要对他进行描述</a>
+
+		<div class="post-form bor3 none" id="impressActionForm" style="z-index:2">
+			<b class="uarr bor3"></b><b class="uarr-in"></b>
+			<div class="inputer">
+				<input type="text" value="" class="area" id="impressActionInput"><button type="button" id="impressActionBtn" class="btn-done">确定</button>
+			</div>
+			<div class="def-list none">
+				<h4>供你参考的印象词：</h4>
+				<p id="defaultImpressWords"></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+					<div class="gb_post no_avatar" id="divPostPanel" style="display: none;">
+						<h4 class="gb_post_tit" id="postCommentAnchor">发表您的留言<span id="popupGiftBtn" style="display: none;"><span class="symbol">&nbsp;|&nbsp;</span><a class="give_gift" id="sendGift" href="javascript:;" title="送个礼物"><span>送个礼物</span></a></span></h4>
+
+						<div class="editor-expand">
+							<div class="expand-tab">
+								<a href="javascript:;" class="first current" id="funEmoTab"><i class="icon i-face"></i>趣味表情</a><b class="split-line"></b>
+								<a href="javascript:;" id="tiezhiTab"><i class="icon i-sticker"></i><i class="icon i-vip"></i>贴纸</a>
+							</div>
+							<div class="expand-cont">
+								<div class="list funny-emot" id="defFunEmoList"><ul class="clearfix"><li><a title="撒花啦" href="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/063.gif" target="_blank"><img alt="撒花啦" _width="100" _height="100" _src="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/063.gif" src="./063_thumb.gif"></a></li><li><a title="福" href="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/002.png" target="_blank"><img alt="福" _width="158" _height="123" _src="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/002.png" src="./002_thumb.png"></a></li><li><a title="感动" href="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/145.gif" target="_blank"><img alt="感动" _width="100" _height="100" _src="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/145.gif" src="./145_thumb.gif"></a></li><li><a title="抱一下" href="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/032.gif" target="_blank"><img alt="抱一下" _width="100" _height="100" _src="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/032.gif" src="./032_thumb.gif"></a></li><li><a title="搞怪" href="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/024.png" target="_blank"><img alt="搞怪" _width="180" _height="180" _src="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/024.png" src="./024_thumb.png"></a></li><li><a title="为什么呀" href="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/147.gif" target="_blank"><img alt="为什么呀" _width="100" _height="100" _src="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/147.gif" src="./147_thumb.gif"></a></li><li><a title="得瑟" href="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/148.gif" target="_blank"><img alt="得瑟" _width="100" _height="100" _src="http://qzonestyle.gtimg.cn/qzone/em/recommendedImages/148.gif" src="./148_thumb.gif"></a></li><li class="tlink"><a href="javascript:;" id="moreFunnyEmo">更多</a></li></ul></div>
+								<div class="list stickers none" id="defTiezhiList"><ul class="clearfix"><li class="reset"><a href="javascript:;" rel="selectTiezhi" data="">无</a></li><li><a href="http://qzonestyle.gtimg.cn/qzone_v6/img/msgboard/stickers/1.png" rel="selectTiezhi" data="1"><img src="./1.png" rel="selectTiezhi" data="1"></a></li><li><a href="http://qzonestyle.gtimg.cn/qzone_v6/img/msgboard/stickers/2.png" rel="selectTiezhi" data="2"><img src="./2.png" rel="selectTiezhi" data="2"></a></li><li><a href="http://qzonestyle.gtimg.cn/qzone_v6/img/msgboard/stickers/3.png" rel="selectTiezhi" data="3"><img src="./3.png" rel="selectTiezhi" data="3"></a></li><li><a href="http://qzonestyle.gtimg.cn/qzone_v6/img/msgboard/stickers/4.png" rel="selectTiezhi" data="4"><img src="./4.png" rel="selectTiezhi" data="4"></a></li><li><a href="http://qzonestyle.gtimg.cn/qzone_v6/img/msgboard/stickers/5.png" rel="selectTiezhi" data="5"><img src="./5.png" rel="selectTiezhi" data="5"></a></li><li class="tlink none"><a href="javascript:;" rel="moreTieZhi">更多</a></li></ul></div>
+								<div class="viewer none" id="largeFunEmotion">
+									<img src="./b.gif">
+									<span class="name"></span>
+								</div>
+								<div class="more-pop none" id="funEmoCon"></div>
+							</div>
+						</div>
+
+                        <div class="author">
+							<a href="javascript:;" class="user_head_100_bg2">
+								<span class="skin_portrait_round"></span>
+								<script type="text/javascript">
+									document.write('<img id="commentAuthorImg" src="'+QZONE.FP.getPURL(SPACE_UIN, 100)+'" alt="" />')
+								</script><img id="commentAuthorImg" src="./100" alt="">
+							</a>
+                        </div>
+						<div class="panel_post">
+            				<div class="panel_editor" id="commentEditorAnchor"></div>
+            				<textarea name="" id="maskEditor" class="bg3 c_tx3 bor3 none"></textarea>
+
+							<p id="commentOper">
+								<button type="button" class="gb_bt" id="btnPostMsg">发表</button>
+								<span>
+									<a href="javascript:;" id="cancelEditorHref" class="c_tx" style="display:none">取消</a>
+									<label id="useSign" for="checkSignInput" class="c_tx3"><input id="checkSignInput" type="checkbox" name="Signature">使用签名档</label>
+									<label id="privCheckLbl" for="privCheck" class="c_tx3" style="display:none">
+										<input id="privCheck" type="checkbox" name="privCheck">
+										<span class="icon-vip"></span>
+										私密留言
+									</label>
+								</span>
+						   </p>
+						</div>
+					</div>
+
+					<div class="gb_comment">
+          				<div id="commentList">
+          					<div class="bor3 gb_comment_tit">
+								<div class="tit">
+									<h4 id="titleCnt">留言 (<span id="cnt">144</span>)</h4>
+									<a href="javascript:;" class="show_in_guest" id="signCheckLink">显示签名档</a>
+									<div class="comments_set show_in_owner">
+										<ul>
+					                        <li class="drop_list">
+					                           <a id="btnToSet" href="http://qzs.qq.com/qzone/msgboard/setting.html" title="留言板设置" class="c_tx">留言板设置 <span class="symbol arrow">▼</span></a>
+					                           <ul class="sub_list bg bor" style="display: none;">
+					                              <li class=""><a id="btnGotoAudit" href="http://qzs.qq.com/qzone/msgboard/auditing.html" title="留言审核" class="c_tx">留言审核(<span id="auditNum">2</span>)</a></li>
+					                              <li class=""><a id="btnBatch" href="javascript:;" rel="toggleBatchMode" title="批量管理" class="c_tx">批量管理</a></li>
+					                              <li>
+					                                 <label class="sign c_tx" for="signCheck" id="signCheckLabel" title="勾选后显示用户签名档">
+						                                 <span>显示签名档</span>
+						                                 <input type="checkbox" id="signCheck" style="display:inline-block;">
+					                                 </label>
+					                              </li>
+					                           </ul>
+					                        </li>
+					                     </ul>
+									</div>
+								</div>
+								<div class="op" id="pager_top"><div class="mod_pagenav"><p class="mod_pagenav_main"><span class="mod_pagenav_disable none"><span>上一页</span></span><a onclick="QZBlog.Util.PageIndexManager.goPage(-1);return false;" class="c_tx " href="javascript:;">上一页</a> <span class="mod_pagenav_count"><a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(1);return false;">1</a><a> <span class="mod_pagenav_more"><span>…</span></span> </a><a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(4);return false;">4</a> <a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(5);return false;">5</a>  <span class="current"><span>6</span></span> <a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(7);return false;">7</a> <a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(8);return false;">8</a> <span class="mod_pagenav_more"><span>…</span></span> <a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(15);return false;">15</a> </span> <span class="mod_pagenav_disable none"><span>下一页</span></span><a class="c_tx " onclick="QZBlog.Util.PageIndexManager.goPage(1);return false;" href="javascript:;">下一页</a> </p><p class="mod_pagenav_option"><span class="mod_pagenav_turn">转到<input class="textinput" type="text" id="pageIndex_input29" value="6"> 页 <button onclick="QZBlog.Util.PageIndexManager.goDirectPage($(&#39;pageIndex_input29&#39;).value.trim());" type="button" class="bt_tx2">确 定</button></span></p></div></div>
+							</div>
+							<p class="toolbar_batch_processing" id="divBatchOper" style="display:none;">
+								<label for="chkSelectAll" rel="selectAll"><input type="checkbox" id="chkSelectAll" rel="selectAll">全选</label>
+								<a id="btnDeleteBatchBottom" href="javascript:;" rel="batchDelete" class="c_tx">删除选中的</a>
+								<a id="btnAddEssenceBatch" style="display:none;" href="javascript:;" onclick="MSG.list.addEssenceBatch();return false;" class="c_tx">置顶选中的</a>
+							</p>
+
+							<ul id="ulCommentList"><li id="pLi_125" class="bor3"><div class="wrap"><div class="info_guest"><p class="avatar"><a name="link_125" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="user_head_50 q_namecard" link="nameCard_1098939153"><span class="skin_portrait_round">&nbsp;</span><img src="./50" id="user_head_img_125" style="width:50px; height:50px" alt="head_1098939153"></a></p><span rel="user_vip_info_1098939153" class="icon-wrap"></span><p class="checkbox_batch_processing"><input type="checkbox" name="batchItem" value="125" class="item_check_box" commentid="125"></p></div><div class="main"><div class="main_bd"><div class="inner"><p class="tit"><span class="userinfo"><span class="username" rel="user_name_info_1098939153"><a name="link_125" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="c_tx q_namecard" uin="1098939153" link="nameCard_1098939153">星野</a></span><span class="userlevel" rel="user_grade_1098939153" title="等级:24  积分:3202"><a href="javascript:;" onclick="QZONE.FP.toApp(&#39;/qzscore&#39;);window.TCISD &amp;&amp; window.TCISD.hotClick(&#39;point_ic_image&#39;, &#39;flower.qzone.qq.com&#39;);return false;" class="qz_qzone_lv_s qz_qzone_lv qz_qzone_lv_3"><span class="no"><b class="d2"></b><b class="d4"></b></span></a></span><span rel="user_vip_info_1098939153" class="icon-wrap"></span></span><span class="c_tx3 floor">第94楼</span><span class="c_tx3 mode_post"></span></p><div class="op"><div class="toolbar"><ul><li class="drop_list"><span class="line"><span class="bor"></span></span><a href="javascript:;" title="更多选项" class="c_tx drop_list_link"><span class="symbol arrow">▼</span></a><ul class="bg bor" style="width:75px; text-align:center; display:none;"><li class="none"><a rel="quote" uin="1098939153" commentid="125" href="javascript:;" title="引用">引用</a></li><li class="none"><a rel="addEssence" uin="1098939153" commentid="125" href="javascript:;" title="置顶">置顶</a></li><li class=""><a rel="edit" uin="1098939153" commentid="125" href="javascript:;" title="编辑">编辑</a></li><li class=""><a rel="delete" uin="1098939153" commentid="125" href="javascript:;" title="删除">删除</a></li><li class="none"><a rel="sendMsg" uin="1098939153" commentid="125" href="javascript:;" title="短消息">短消息</a></li><li class="none"><a rel="deleteEssence" uin="1098939153" commentid="125" href="javascript:;" title="取消置顶">取消置顶</a></li><li class="none"><a rel="report" href="javascript:;" uin="1098939153" commentid="125" title="举报">举报</a></li><li class="none"><a rel="moveBlack" href="javascript:;" uin="1098939153" commentid="125" title="加黑禁言">加黑禁言</a></li></ul></li><li class="quick_drop_list show_in_owner"><a rel="quote" href="javascript:;" uin="1098939153" commentid="125" title="引用" class="c_tx ">引用</a></li></ul></div><p class="op_batch_processing"><a id="btnDeleteOne2_125" href="javascript:;" title="删除" class="c_tx">删除</a></p></div><div id="commentContentDiv_125" class="cont"><table style="width:100%;"><tbody><tr><td><span style="line-height:1.8em;font-size:18px;"><span style="font-weight:bold;">凡是不可太偏执，就像考了两次交大的研究生，希望不大的事情偏要去做，而结果是还得回到原先的计划上再考一年浙大。正在看英国BBC的神秘博士，突发感想，到时候也不能偏执，美国有困难的话，去英国也是很好的选择，母语都是英语，将来也可以以英国为跳板，或者后代也可以再向美国移民，要着重考虑英美两国的就业率和移民情况。。。。PS&nbsp;&nbsp;要把考研词汇掌握透了，这样直接背GRE词汇时能容易些&nbsp;&nbsp;&nbsp;[到时候]在自己设计的网站上应该再加一个只能自己查看的计划、方法等像这个QQ留言板一样的模块，还有，应该马上就开始着手做这件事情，而不是[到时候]</span><wbr></span><wbr></td></tr></tbody></table><p class="reply_wrap"><span class="c_tx3 mode_post">2013-04-15 13:04</span><a rel="reply" href="javascript:;" title="回复" uin="1098939153" commentid="125" class="c_tx ">回复</a><a rel="sendGift" href="javascript:;" uin="1098939153" commentid="125" title="送礼" class="btnSendGift c_tx none">送礼</a></p></div><div id="singleCommentEditorDiv_125" class="panel_editor" style="display:none;"><div id="singleCommentEditorAnchor_125"></div><div><button rel="editCommentBtn" type="button" commentid="125" class="bt_tx2">发表</button>&nbsp;        <button rel="cancelEditCommentBtn" type="button" commentid="125" class="bt_tx2">取消</button></div></div><div class="comment_wrap"><div class="bor3 none" style="border-width:1px 0 0" id="divComment_125_line"><b class="ui_trigbox ui_trigbox_t"><b class="ui_trig bor3"></b><b class="ui_trig ui_trig_up bor_bg"></b></b></div><div id="divComment_125" style="display: none; width: 376px;" class="mod_comment"><span class="mod_comment_arrow"><span class="c_bg2">◆</span></span><p id="commentModule125_showAllBlock" class="bg2 mod_comment_info" style="display:none;"><a id="commentModule125_showAllLink" class="c_tx">查看全部<span id="commentModule125_totalNumLabel"></span>条评论<span>&gt;&gt;</span></a></p><ol id="commentModule125_commentList" style="display:none;"></ol><div id="commentModule125_paginatorContainer"></div><div id="commentModule125_commentTip" class="bg2 mod_clear mod_comment_post"><p class="mod_comment_default_input textinput" style="width:auto;">我也说一句...</p></div><div id="commentModule125_commentBox" class="bg2 mod_comment_post" style="display:none;"><p id="commentModule125_emoticonButtonWrapper"><a id="commentModule125_emoticonButton" title="表情" class="bg_img mod_comment_emoticons">表情</a></p><p class="mod_comment_textarea"><span><textarea id="commentModule125_content" cols="60" rows="5" class="textarea textinput"></textarea></span></p><p id="commentModule125_hintBox" class="hint" style="display:none;"><span class="icon_hint">提示：</span><span id="commentModule125_hint"></span></p><p class="mod_comment_option"><span class="mod_comment_sub"><button type="button" id="commentModule125_postButton" class="bt_tx2">确定</button><a id="commentModule125_cancelButton" href="javascript:;" class="c_tx3">取消</a><span id="commentModule125_extension_bottom" class="mod_comment_extension"></span></span><span class="c_tx3 mod_comment_other"><span id="commentModule125_currentLength">0</span>/<span id="commentModule125_maxLength">2000</span></span></p></div></div></div></div></div></div></div></li><li id="pLi_124" class="bor3"><div class="wrap"><div class="info_guest"><p class="avatar"><a name="link_124" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="user_head_50 q_namecard" link="nameCard_1098939153"><span class="skin_portrait_round">&nbsp;</span><img src="./50" id="user_head_img_124" style="width:50px; height:50px" alt="head_1098939153"></a></p><span rel="user_vip_info_1098939153" class="icon-wrap"></span><p class="checkbox_batch_processing"><input type="checkbox" name="batchItem" value="124" class="item_check_box" commentid="124"></p></div><div class="main"><div class="main_bd"><div class="inner"><p class="tit"><span class="userinfo"><span class="username" rel="user_name_info_1098939153"><a name="link_124" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="c_tx q_namecard" uin="1098939153" link="nameCard_1098939153">星野</a></span><span class="userlevel" rel="user_grade_1098939153" title="等级:24  积分:3202"><a href="javascript:;" onclick="QZONE.FP.toApp(&#39;/qzscore&#39;);window.TCISD &amp;&amp; window.TCISD.hotClick(&#39;point_ic_image&#39;, &#39;flower.qzone.qq.com&#39;);return false;" class="qz_qzone_lv_s qz_qzone_lv qz_qzone_lv_3"><span class="no"><b class="d2"></b><b class="d4"></b></span></a></span><span rel="user_vip_info_1098939153" class="icon-wrap"></span></span><span class="c_tx3 floor">第93楼</span><span class="c_tx3 mode_post"></span></p><div class="op"><div class="toolbar"><ul><li class="drop_list"><span class="line"><span class="bor"></span></span><a href="javascript:;" title="更多选项" class="c_tx drop_list_link"><span class="symbol arrow">▼</span></a><ul class="bg bor" style="width:75px; text-align:center; display:none;"><li class="none"><a rel="quote" uin="1098939153" commentid="124" href="javascript:;" title="引用">引用</a></li><li class="none"><a rel="addEssence" uin="1098939153" commentid="124" href="javascript:;" title="置顶">置顶</a></li><li class=""><a rel="edit" uin="1098939153" commentid="124" href="javascript:;" title="编辑">编辑</a></li><li class=""><a rel="delete" uin="1098939153" commentid="124" href="javascript:;" title="删除">删除</a></li><li class="none"><a rel="sendMsg" uin="1098939153" commentid="124" href="javascript:;" title="短消息">短消息</a></li><li class="none"><a rel="deleteEssence" uin="1098939153" commentid="124" href="javascript:;" title="取消置顶">取消置顶</a></li><li class="none"><a rel="report" href="javascript:;" uin="1098939153" commentid="124" title="举报">举报</a></li><li class="none"><a rel="moveBlack" href="javascript:;" uin="1098939153" commentid="124" title="加黑禁言">加黑禁言</a></li></ul></li><li class="quick_drop_list show_in_owner"><a rel="quote" href="javascript:;" uin="1098939153" commentid="124" title="引用" class="c_tx ">引用</a></li></ul></div><p class="op_batch_processing"><a id="btnDeleteOne2_124" href="javascript:;" title="删除" class="c_tx">删除</a></p></div><div id="commentContentDiv_124" class="cont"><table style="width:100%;"><tbody><tr><td><span style="line-height:1.8em;font-size:18px;">书名就是论坛的名字&nbsp;:自由之道&nbsp;/&nbsp;The&nbsp;Ways&nbsp;Out<br></span><wbr><br><span style="line-height:1.8em;font-size:18px;">建议考研之后&nbsp;把GRE词汇过一遍，不用先去准备托福，直接从最核心的地方入手，<br>迎刃而解。买新东方的GRE词汇+杨鹏的十七天&nbsp;</span><wbr></td></tr></tbody></table><p class="reply_wrap"><span class="c_tx3 mode_post">2013-04-14 21:38</span><a rel="reply" href="javascript:;" title="回复" uin="1098939153" commentid="124" class="c_tx ">回复</a><a rel="sendGift" href="javascript:;" uin="1098939153" commentid="124" title="送礼" class="btnSendGift c_tx none">送礼</a></p></div><div id="singleCommentEditorDiv_124" class="panel_editor" style="display:none;"><div id="singleCommentEditorAnchor_124"></div><div><button rel="editCommentBtn" type="button" commentid="124" class="bt_tx2">发表</button>&nbsp;        <button rel="cancelEditCommentBtn" type="button" commentid="124" class="bt_tx2">取消</button></div></div><div class="comment_wrap"><div class="bor3 none" style="border-width:1px 0 0" id="divComment_124_line"><b class="ui_trigbox ui_trigbox_t"><b class="ui_trig bor3"></b><b class="ui_trig ui_trig_up bor_bg"></b></b></div><div id="divComment_124" style="display: none; width: 376px;" class="mod_comment"><span class="mod_comment_arrow"><span class="c_bg2">◆</span></span><p id="commentModule124_showAllBlock" class="bg2 mod_comment_info" style="display:none;"><a id="commentModule124_showAllLink" class="c_tx">查看全部<span id="commentModule124_totalNumLabel"></span>条评论<span>&gt;&gt;</span></a></p><ol id="commentModule124_commentList" style="display:none;"></ol><div id="commentModule124_paginatorContainer"></div><div id="commentModule124_commentTip" class="bg2 mod_clear mod_comment_post"><p class="mod_comment_default_input textinput" style="width:auto;">我也说一句...</p></div><div id="commentModule124_commentBox" class="bg2 mod_comment_post" style="display:none;"><p id="commentModule124_emoticonButtonWrapper"><a id="commentModule124_emoticonButton" title="表情" class="bg_img mod_comment_emoticons">表情</a></p><p class="mod_comment_textarea"><span><textarea id="commentModule124_content" cols="60" rows="5" class="textarea textinput"></textarea></span></p><p id="commentModule124_hintBox" class="hint" style="display:none;"><span class="icon_hint">提示：</span><span id="commentModule124_hint"></span></p><p class="mod_comment_option"><span class="mod_comment_sub"><button type="button" id="commentModule124_postButton" class="bt_tx2">确定</button><a id="commentModule124_cancelButton" href="javascript:;" class="c_tx3">取消</a><span id="commentModule124_extension_bottom" class="mod_comment_extension"></span></span><span class="c_tx3 mod_comment_other"><span id="commentModule124_currentLength">0</span>/<span id="commentModule124_maxLength">2000</span></span></p></div></div></div></div></div></div></div></li><li id="pLi_122" class="bor3"><div class="wrap"><div class="info_guest"><p class="avatar"><a name="link_122" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="user_head_50 q_namecard" link="nameCard_1098939153"><span class="skin_portrait_round">&nbsp;</span><img src="./50" id="user_head_img_122" style="width:50px; height:50px" alt="head_1098939153"></a></p><span rel="user_vip_info_1098939153" class="icon-wrap"></span><p class="checkbox_batch_processing"><input type="checkbox" name="batchItem" value="122" class="item_check_box" commentid="122"></p></div><div class="main"><div class="main_bd"><div class="inner"><p class="tit"><span class="userinfo"><span class="username" rel="user_name_info_1098939153"><a name="link_122" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="c_tx q_namecard" uin="1098939153" link="nameCard_1098939153">星野</a></span><span class="userlevel" rel="user_grade_1098939153" title="等级:24  积分:3202"><a href="javascript:;" onclick="QZONE.FP.toApp(&#39;/qzscore&#39;);window.TCISD &amp;&amp; window.TCISD.hotClick(&#39;point_ic_image&#39;, &#39;flower.qzone.qq.com&#39;);return false;" class="qz_qzone_lv_s qz_qzone_lv qz_qzone_lv_3"><span class="no"><b class="d2"></b><b class="d4"></b></span></a></span><span rel="user_vip_info_1098939153" class="icon-wrap"></span></span><span class="c_tx3 floor">第92楼</span><span class="c_tx3 mode_post"></span></p><div class="op"><div class="toolbar"><ul><li class="drop_list"><span class="line"><span class="bor"></span></span><a href="javascript:;" title="更多选项" class="c_tx drop_list_link"><span class="symbol arrow">▼</span></a><ul class="bg bor" style="width:75px; text-align:center; display:none;"><li class="none"><a rel="quote" uin="1098939153" commentid="122" href="javascript:;" title="引用">引用</a></li><li class="none"><a rel="addEssence" uin="1098939153" commentid="122" href="javascript:;" title="置顶">置顶</a></li><li class=""><a rel="edit" uin="1098939153" commentid="122" href="javascript:;" title="编辑">编辑</a></li><li class=""><a rel="delete" uin="1098939153" commentid="122" href="javascript:;" title="删除">删除</a></li><li class="none"><a rel="sendMsg" uin="1098939153" commentid="122" href="javascript:;" title="短消息">短消息</a></li><li class="none"><a rel="deleteEssence" uin="1098939153" commentid="122" href="javascript:;" title="取消置顶">取消置顶</a></li><li class="none"><a rel="report" href="javascript:;" uin="1098939153" commentid="122" title="举报">举报</a></li><li class="none"><a rel="moveBlack" href="javascript:;" uin="1098939153" commentid="122" title="加黑禁言">加黑禁言</a></li></ul></li><li class="quick_drop_list show_in_owner"><a rel="quote" href="javascript:;" uin="1098939153" commentid="122" title="引用" class="c_tx ">引用</a></li></ul></div><p class="op_batch_processing"><a id="btnDeleteOne2_122" href="javascript:;" title="删除" class="c_tx">删除</a></p></div><div id="commentContentDiv_122" class="cont"><table style="width:100%;"><tbody><tr><td><span style="line-height:1.8em;font-size:16px;"><span style="font-weight:bold;">最重要的还是最后的模拟套题题海冲刺阶段，那个人能在短时间内考那些分，应该是得益于后期的天勤和王道的模拟套卷，</span><wbr><span style="line-height:1.8em;color:#2115ea;"><span style="font-weight:bold;">今年的后期冲刺阶段，要在全面复习政治前，搞定王道、天勤、新东方的模拟套题</span><wbr></span><wbr><span style="font-weight:bold;">，数学和专业课要拿高分！</span><wbr></span><wbr><span style="line-height:1.8em;font-size:16px;"><span style="font-weight:bold;">&nbsp;政治的大题把肖四背熟了.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.</span><wbr></span><wbr></td></tr></tbody></table><p class="reply_wrap"><span class="c_tx3 mode_post">2013-04-12 01:17</span><a rel="reply" href="javascript:;" title="回复" uin="1098939153" commentid="122" class="c_tx ">回复</a><a rel="sendGift" href="javascript:;" uin="1098939153" commentid="122" title="送礼" class="btnSendGift c_tx none">送礼</a></p></div><div id="singleCommentEditorDiv_122" class="panel_editor" style="display:none;"><div id="singleCommentEditorAnchor_122"></div><div><button rel="editCommentBtn" type="button" commentid="122" class="bt_tx2">发表</button>&nbsp;        <button rel="cancelEditCommentBtn" type="button" commentid="122" class="bt_tx2">取消</button></div></div><div class="comment_wrap"><div class="bor3 none" style="border-width:1px 0 0" id="divComment_122_line"><b class="ui_trigbox ui_trigbox_t"><b class="ui_trig bor3"></b><b class="ui_trig ui_trig_up bor_bg"></b></b></div><div id="divComment_122" style="display: none; width: 376px;" class="mod_comment"><span class="mod_comment_arrow"><span class="c_bg2">◆</span></span><p id="commentModule122_showAllBlock" class="bg2 mod_comment_info" style="display:none;"><a id="commentModule122_showAllLink" class="c_tx">查看全部<span id="commentModule122_totalNumLabel"></span>条评论<span>&gt;&gt;</span></a></p><ol id="commentModule122_commentList" style="display:none;"></ol><div id="commentModule122_paginatorContainer"></div><div id="commentModule122_commentTip" class="bg2 mod_clear mod_comment_post"><p class="mod_comment_default_input textinput" style="width:auto;">我也说一句...</p></div><div id="commentModule122_commentBox" class="bg2 mod_comment_post" style="display:none;"><p id="commentModule122_emoticonButtonWrapper"><a id="commentModule122_emoticonButton" title="表情" class="bg_img mod_comment_emoticons">表情</a></p><p class="mod_comment_textarea"><span><textarea id="commentModule122_content" cols="60" rows="5" class="textarea textinput"></textarea></span></p><p id="commentModule122_hintBox" class="hint" style="display:none;"><span class="icon_hint">提示：</span><span id="commentModule122_hint"></span></p><p class="mod_comment_option"><span class="mod_comment_sub"><button type="button" id="commentModule122_postButton" class="bt_tx2">确定</button><a id="commentModule122_cancelButton" href="javascript:;" class="c_tx3">取消</a><span id="commentModule122_extension_bottom" class="mod_comment_extension"></span></span><span class="c_tx3 mod_comment_other"><span id="commentModule122_currentLength">0</span>/<span id="commentModule122_maxLength">2000</span></span></p></div></div></div></div></div></div></div></li><li id="pLi_121" class="bor3"><div class="wrap"><div class="info_guest"><p class="avatar"><a name="link_121" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="user_head_50 q_namecard" link="nameCard_1098939153"><span class="skin_portrait_round">&nbsp;</span><img src="./50" id="user_head_img_121" style="width:50px; height:50px" alt="head_1098939153"></a></p><span rel="user_vip_info_1098939153" class="icon-wrap"></span><p class="checkbox_batch_processing"><input type="checkbox" name="batchItem" value="121" class="item_check_box" commentid="121"></p></div><div class="main"><div class="main_bd"><div class="inner"><p class="tit"><span class="userinfo"><span class="username" rel="user_name_info_1098939153"><a name="link_121" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="c_tx q_namecard" uin="1098939153" link="nameCard_1098939153">星野</a></span><span class="userlevel" rel="user_grade_1098939153" title="等级:24  积分:3202"><a href="javascript:;" onclick="QZONE.FP.toApp(&#39;/qzscore&#39;);window.TCISD &amp;&amp; window.TCISD.hotClick(&#39;point_ic_image&#39;, &#39;flower.qzone.qq.com&#39;);return false;" class="qz_qzone_lv_s qz_qzone_lv qz_qzone_lv_3"><span class="no"><b class="d2"></b><b class="d4"></b></span></a></span><span rel="user_vip_info_1098939153" class="icon-wrap"></span></span><span class="c_tx3 floor">第91楼</span><span class="c_tx3 mode_post"></span></p><div class="op"><div class="toolbar"><ul><li class="drop_list"><span class="line"><span class="bor"></span></span><a href="javascript:;" title="更多选项" class="c_tx drop_list_link"><span class="symbol arrow">▼</span></a><ul class="bg bor" style="width:75px; text-align:center; display:none;"><li class="none"><a rel="quote" uin="1098939153" commentid="121" href="javascript:;" title="引用">引用</a></li><li class="none"><a rel="addEssence" uin="1098939153" commentid="121" href="javascript:;" title="置顶">置顶</a></li><li class=""><a rel="edit" uin="1098939153" commentid="121" href="javascript:;" title="编辑">编辑</a></li><li class=""><a rel="delete" uin="1098939153" commentid="121" href="javascript:;" title="删除">删除</a></li><li class="none"><a rel="sendMsg" uin="1098939153" commentid="121" href="javascript:;" title="短消息">短消息</a></li><li class="none"><a rel="deleteEssence" uin="1098939153" commentid="121" href="javascript:;" title="取消置顶">取消置顶</a></li><li class="none"><a rel="report" href="javascript:;" uin="1098939153" commentid="121" title="举报">举报</a></li><li class="none"><a rel="moveBlack" href="javascript:;" uin="1098939153" commentid="121" title="加黑禁言">加黑禁言</a></li></ul></li><li class="quick_drop_list show_in_owner"><a rel="quote" href="javascript:;" uin="1098939153" commentid="121" title="引用" class="c_tx ">引用</a></li></ul></div><p class="op_batch_processing"><a id="btnDeleteOne2_121" href="javascript:;" title="删除" class="c_tx">删除</a></p></div><div id="commentContentDiv_121" class="cont"><table style="width:100%;"><tbody><tr><td>昨天下午四五点钟就睡了，梦回瓦高，好像也在准备高考，只是不知道自己在班级里的名词，还有王鑫，操场上的健操，也有杨学辉，醒来时发现是梦才松了口气</td></tr></tbody></table><p class="reply_wrap"><span class="c_tx3 mode_post">2013-04-11 06:51</span><a rel="reply" href="javascript:;" title="回复" uin="1098939153" commentid="121" class="c_tx ">回复</a><a rel="sendGift" href="javascript:;" uin="1098939153" commentid="121" title="送礼" class="btnSendGift c_tx none">送礼</a></p></div><div id="singleCommentEditorDiv_121" class="panel_editor" style="display:none;"><div id="singleCommentEditorAnchor_121"></div><div><button rel="editCommentBtn" type="button" commentid="121" class="bt_tx2">发表</button>&nbsp;        <button rel="cancelEditCommentBtn" type="button" commentid="121" class="bt_tx2">取消</button></div></div><div class="comment_wrap"><div class="bor3 none" style="border-width:1px 0 0" id="divComment_121_line"><b class="ui_trigbox ui_trigbox_t"><b class="ui_trig bor3"></b><b class="ui_trig ui_trig_up bor_bg"></b></b></div><div id="divComment_121" style="display: none; width: 376px;" class="mod_comment"><span class="mod_comment_arrow"><span class="c_bg2">◆</span></span><p id="commentModule121_showAllBlock" class="bg2 mod_comment_info" style="display:none;"><a id="commentModule121_showAllLink" class="c_tx">查看全部<span id="commentModule121_totalNumLabel"></span>条评论<span>&gt;&gt;</span></a></p><ol id="commentModule121_commentList" style="display:none;"></ol><div id="commentModule121_paginatorContainer"></div><div id="commentModule121_commentTip" class="bg2 mod_clear mod_comment_post"><p class="mod_comment_default_input textinput" style="width:auto;">我也说一句...</p></div><div id="commentModule121_commentBox" class="bg2 mod_comment_post" style="display:none;"><p id="commentModule121_emoticonButtonWrapper"><a id="commentModule121_emoticonButton" title="表情" class="bg_img mod_comment_emoticons">表情</a></p><p class="mod_comment_textarea"><span><textarea id="commentModule121_content" cols="60" rows="5" class="textarea textinput"></textarea></span></p><p id="commentModule121_hintBox" class="hint" style="display:none;"><span class="icon_hint">提示：</span><span id="commentModule121_hint"></span></p><p class="mod_comment_option"><span class="mod_comment_sub"><button type="button" id="commentModule121_postButton" class="bt_tx2">确定</button><a id="commentModule121_cancelButton" href="javascript:;" class="c_tx3">取消</a><span id="commentModule121_extension_bottom" class="mod_comment_extension"></span></span><span class="c_tx3 mod_comment_other"><span id="commentModule121_currentLength">0</span>/<span id="commentModule121_maxLength">2000</span></span></p></div></div></div></div></div></div></div></li><li id="pLi_120" class="bor3"><div class="wrap"><div class="info_guest"><p class="avatar"><a name="link_120" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="user_head_50 q_namecard" link="nameCard_1098939153"><span class="skin_portrait_round">&nbsp;</span><img src="./50" id="user_head_img_120" style="width:50px; height:50px" alt="head_1098939153"></a></p><span rel="user_vip_info_1098939153" class="icon-wrap"></span><p class="checkbox_batch_processing"><input type="checkbox" name="batchItem" value="120" class="item_check_box" commentid="120"></p></div><div class="main"><div class="main_bd"><div class="inner"><p class="tit"><span class="userinfo"><span class="username" rel="user_name_info_1098939153"><a name="link_120" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="c_tx q_namecard" uin="1098939153" link="nameCard_1098939153">星野</a></span><span class="userlevel" rel="user_grade_1098939153" title="等级:24  积分:3202"><a href="javascript:;" onclick="QZONE.FP.toApp(&#39;/qzscore&#39;);window.TCISD &amp;&amp; window.TCISD.hotClick(&#39;point_ic_image&#39;, &#39;flower.qzone.qq.com&#39;);return false;" class="qz_qzone_lv_s qz_qzone_lv qz_qzone_lv_3"><span class="no"><b class="d2"></b><b class="d4"></b></span></a></span><span rel="user_vip_info_1098939153" class="icon-wrap"></span></span><span class="c_tx3 floor">第90楼</span><span class="c_tx3 mode_post"></span></p><div class="op"><div class="toolbar"><ul><li class="drop_list"><span class="line"><span class="bor"></span></span><a href="javascript:;" title="更多选项" class="c_tx drop_list_link"><span class="symbol arrow">▼</span></a><ul class="bg bor" style="width:75px; text-align:center; display:none;"><li class="none"><a rel="quote" uin="1098939153" commentid="120" href="javascript:;" title="引用">引用</a></li><li class="none"><a rel="addEssence" uin="1098939153" commentid="120" href="javascript:;" title="置顶">置顶</a></li><li class=""><a rel="edit" uin="1098939153" commentid="120" href="javascript:;" title="编辑">编辑</a></li><li class=""><a rel="delete" uin="1098939153" commentid="120" href="javascript:;" title="删除">删除</a></li><li class="none"><a rel="sendMsg" uin="1098939153" commentid="120" href="javascript:;" title="短消息">短消息</a></li><li class="none"><a rel="deleteEssence" uin="1098939153" commentid="120" href="javascript:;" title="取消置顶">取消置顶</a></li><li class="none"><a rel="report" href="javascript:;" uin="1098939153" commentid="120" title="举报">举报</a></li><li class="none"><a rel="moveBlack" href="javascript:;" uin="1098939153" commentid="120" title="加黑禁言">加黑禁言</a></li></ul></li><li class="quick_drop_list show_in_owner"><a rel="quote" href="javascript:;" uin="1098939153" commentid="120" title="引用" class="c_tx ">引用</a></li></ul></div><p class="op_batch_processing"><a id="btnDeleteOne2_120" href="javascript:;" title="删除" class="c_tx">删除</a></p></div><div id="commentContentDiv_120" class="cont"><table style="width:100%;"><tbody><tr><td><span style="line-height:1.8em;font-size:18px;">如果2014浙大计算机不统考的话，就换一个统考的而且很有把握的学校，交大不用再考虑。我觉得浙大还是会统考的，“海纳百川，有容乃大”，应该会统考的！</span><wbr></td></tr></tbody></table><p class="reply_wrap"><span class="c_tx3 mode_post">2013-04-07 21:17</span><a rel="reply" href="javascript:;" title="回复" uin="1098939153" commentid="120" class="c_tx ">回复</a><a rel="sendGift" href="javascript:;" uin="1098939153" commentid="120" title="送礼" class="btnSendGift c_tx none">送礼</a></p></div><div id="singleCommentEditorDiv_120" class="panel_editor" style="display:none;"><div id="singleCommentEditorAnchor_120"></div><div><button rel="editCommentBtn" type="button" commentid="120" class="bt_tx2">发表</button>&nbsp;        <button rel="cancelEditCommentBtn" type="button" commentid="120" class="bt_tx2">取消</button></div></div><div class="comment_wrap"><div class="bor3 none" style="border-width:1px 0 0" id="divComment_120_line"><b class="ui_trigbox ui_trigbox_t"><b class="ui_trig bor3"></b><b class="ui_trig ui_trig_up bor_bg"></b></b></div><div id="divComment_120" style="display: none; width: 376px;" class="mod_comment"><span class="mod_comment_arrow"><span class="c_bg2">◆</span></span><p id="commentModule120_showAllBlock" class="bg2 mod_comment_info" style="display:none;"><a id="commentModule120_showAllLink" class="c_tx">查看全部<span id="commentModule120_totalNumLabel"></span>条评论<span>&gt;&gt;</span></a></p><ol id="commentModule120_commentList" style="display:none;"></ol><div id="commentModule120_paginatorContainer"></div><div id="commentModule120_commentTip" class="bg2 mod_clear mod_comment_post"><p class="mod_comment_default_input textinput" style="width:auto;">我也说一句...</p></div><div id="commentModule120_commentBox" class="bg2 mod_comment_post" style="display:none;"><p id="commentModule120_emoticonButtonWrapper"><a id="commentModule120_emoticonButton" title="表情" class="bg_img mod_comment_emoticons">表情</a></p><p class="mod_comment_textarea"><span><textarea id="commentModule120_content" cols="60" rows="5" class="textarea textinput"></textarea></span></p><p id="commentModule120_hintBox" class="hint" style="display:none;"><span class="icon_hint">提示：</span><span id="commentModule120_hint"></span></p><p class="mod_comment_option"><span class="mod_comment_sub"><button type="button" id="commentModule120_postButton" class="bt_tx2">确定</button><a id="commentModule120_cancelButton" href="javascript:;" class="c_tx3">取消</a><span id="commentModule120_extension_bottom" class="mod_comment_extension"></span></span><span class="c_tx3 mod_comment_other"><span id="commentModule120_currentLength">0</span>/<span id="commentModule120_maxLength">2000</span></span></p></div></div></div></div></div></div></div></li><li id="pLi_119" class="bor3"><div class="wrap"><div class="info_guest"><p class="avatar"><a name="link_119" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="user_head_50 q_namecard" link="nameCard_1098939153"><span class="skin_portrait_round">&nbsp;</span><img src="./50" id="user_head_img_119" style="width:50px; height:50px" alt="head_1098939153"></a></p><span rel="user_vip_info_1098939153" class="icon-wrap"></span><p class="checkbox_batch_processing"><input type="checkbox" name="batchItem" value="119" class="item_check_box" commentid="119"></p></div><div class="main"><div class="main_bd"><div class="inner"><p class="tit"><span class="userinfo"><span class="username" rel="user_name_info_1098939153"><a name="link_119" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="c_tx q_namecard" uin="1098939153" link="nameCard_1098939153">星野</a></span><span class="userlevel" rel="user_grade_1098939153" title="等级:24  积分:3202"><a href="javascript:;" onclick="QZONE.FP.toApp(&#39;/qzscore&#39;);window.TCISD &amp;&amp; window.TCISD.hotClick(&#39;point_ic_image&#39;, &#39;flower.qzone.qq.com&#39;);return false;" class="qz_qzone_lv_s qz_qzone_lv qz_qzone_lv_3"><span class="no"><b class="d2"></b><b class="d4"></b></span></a></span><span rel="user_vip_info_1098939153" class="icon-wrap"></span></span><span class="c_tx3 floor">第89楼</span><span class="c_tx3 mode_post"></span></p><div class="op"><div class="toolbar"><ul><li class="drop_list"><span class="line"><span class="bor"></span></span><a href="javascript:;" title="更多选项" class="c_tx drop_list_link"><span class="symbol arrow">▼</span></a><ul class="bg bor" style="width:75px; text-align:center; display:none;"><li class="none"><a rel="quote" uin="1098939153" commentid="119" href="javascript:;" title="引用">引用</a></li><li class="none"><a rel="addEssence" uin="1098939153" commentid="119" href="javascript:;" title="置顶">置顶</a></li><li class=""><a rel="edit" uin="1098939153" commentid="119" href="javascript:;" title="编辑">编辑</a></li><li class=""><a rel="delete" uin="1098939153" commentid="119" href="javascript:;" title="删除">删除</a></li><li class="none"><a rel="sendMsg" uin="1098939153" commentid="119" href="javascript:;" title="短消息">短消息</a></li><li class="none"><a rel="deleteEssence" uin="1098939153" commentid="119" href="javascript:;" title="取消置顶">取消置顶</a></li><li class="none"><a rel="report" href="javascript:;" uin="1098939153" commentid="119" title="举报">举报</a></li><li class="none"><a rel="moveBlack" href="javascript:;" uin="1098939153" commentid="119" title="加黑禁言">加黑禁言</a></li></ul></li><li class="quick_drop_list show_in_owner"><a rel="quote" href="javascript:;" uin="1098939153" commentid="119" title="引用" class="c_tx ">引用</a></li></ul></div><p class="op_batch_processing"><a id="btnDeleteOne2_119" href="javascript:;" title="删除" class="c_tx">删除</a></p></div><div id="commentContentDiv_119" class="cont"><table style="width:100%;"><tbody><tr><td><span style="line-height:1.8em;font-size:48px;color:#ff0000;"><span style="font-weight:bold;">自由之道&nbsp;&nbsp;&nbsp;西星者&nbsp;&nbsp;西行者&nbsp;&nbsp;&nbsp;&nbsp;醒者西行</span><wbr></span><wbr></td></tr></tbody></table><p class="reply_wrap"><span class="c_tx3 mode_post">2013-04-07 12:54</span><a rel="reply" href="javascript:;" title="回复" uin="1098939153" commentid="119" class="c_tx ">回复</a><a rel="sendGift" href="javascript:;" uin="1098939153" commentid="119" title="送礼" class="btnSendGift c_tx none">送礼</a></p></div><div id="singleCommentEditorDiv_119" class="panel_editor" style="display:none;"><div id="singleCommentEditorAnchor_119"></div><div><button rel="editCommentBtn" type="button" commentid="119" class="bt_tx2">发表</button>&nbsp;        <button rel="cancelEditCommentBtn" type="button" commentid="119" class="bt_tx2">取消</button></div></div><div class="comment_wrap"><div class="bor3 none" style="border-width:1px 0 0" id="divComment_119_line"><b class="ui_trigbox ui_trigbox_t"><b class="ui_trig bor3"></b><b class="ui_trig ui_trig_up bor_bg"></b></b></div><div id="divComment_119" style="display: none; width: 376px;" class="mod_comment"><span class="mod_comment_arrow"><span class="c_bg2">◆</span></span><p id="commentModule119_showAllBlock" class="bg2 mod_comment_info" style="display:none;"><a id="commentModule119_showAllLink" class="c_tx">查看全部<span id="commentModule119_totalNumLabel"></span>条评论<span>&gt;&gt;</span></a></p><ol id="commentModule119_commentList" style="display:none;"></ol><div id="commentModule119_paginatorContainer"></div><div id="commentModule119_commentTip" class="bg2 mod_clear mod_comment_post"><p class="mod_comment_default_input textinput" style="width:auto;">我也说一句...</p></div><div id="commentModule119_commentBox" class="bg2 mod_comment_post" style="display:none;"><p id="commentModule119_emoticonButtonWrapper"><a id="commentModule119_emoticonButton" title="表情" class="bg_img mod_comment_emoticons">表情</a></p><p class="mod_comment_textarea"><span><textarea id="commentModule119_content" cols="60" rows="5" class="textarea textinput"></textarea></span></p><p id="commentModule119_hintBox" class="hint" style="display:none;"><span class="icon_hint">提示：</span><span id="commentModule119_hint"></span></p><p class="mod_comment_option"><span class="mod_comment_sub"><button type="button" id="commentModule119_postButton" class="bt_tx2">确定</button><a id="commentModule119_cancelButton" href="javascript:;" class="c_tx3">取消</a><span id="commentModule119_extension_bottom" class="mod_comment_extension"></span></span><span class="c_tx3 mod_comment_other"><span id="commentModule119_currentLength">0</span>/<span id="commentModule119_maxLength">2000</span></span></p></div></div></div></div></div></div></div></li><li id="pLi_118" class="bor3"><div class="wrap"><div class="info_guest"><p class="avatar"><a name="link_118" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="user_head_50 q_namecard" link="nameCard_1098939153"><span class="skin_portrait_round">&nbsp;</span><img src="./50" id="user_head_img_118" style="width:50px; height:50px" alt="head_1098939153"></a></p><span rel="user_vip_info_1098939153" class="icon-wrap"></span><p class="checkbox_batch_processing"><input type="checkbox" name="batchItem" value="118" class="item_check_box" commentid="118"></p></div><div class="main"><div class="main_bd"><div class="inner"><p class="tit"><span class="userinfo"><span class="username" rel="user_name_info_1098939153"><a name="link_118" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="c_tx q_namecard" uin="1098939153" link="nameCard_1098939153">星野</a></span><span class="userlevel" rel="user_grade_1098939153" title="等级:24  积分:3202"><a href="javascript:;" onclick="QZONE.FP.toApp(&#39;/qzscore&#39;);window.TCISD &amp;&amp; window.TCISD.hotClick(&#39;point_ic_image&#39;, &#39;flower.qzone.qq.com&#39;);return false;" class="qz_qzone_lv_s qz_qzone_lv qz_qzone_lv_3"><span class="no"><b class="d2"></b><b class="d4"></b></span></a></span><span rel="user_vip_info_1098939153" class="icon-wrap"></span></span><span class="c_tx3 floor">第88楼</span><span class="c_tx3 mode_post"></span></p><div class="op"><div class="toolbar"><ul><li class="drop_list"><span class="line"><span class="bor"></span></span><a href="javascript:;" title="更多选项" class="c_tx drop_list_link"><span class="symbol arrow">▼</span></a><ul class="bg bor" style="width:75px; text-align:center; display:none;"><li class="none"><a rel="quote" uin="1098939153" commentid="118" href="javascript:;" title="引用">引用</a></li><li class="none"><a rel="addEssence" uin="1098939153" commentid="118" href="javascript:;" title="置顶">置顶</a></li><li class=""><a rel="edit" uin="1098939153" commentid="118" href="javascript:;" title="编辑">编辑</a></li><li class=""><a rel="delete" uin="1098939153" commentid="118" href="javascript:;" title="删除">删除</a></li><li class="none"><a rel="sendMsg" uin="1098939153" commentid="118" href="javascript:;" title="短消息">短消息</a></li><li class="none"><a rel="deleteEssence" uin="1098939153" commentid="118" href="javascript:;" title="取消置顶">取消置顶</a></li><li class="none"><a rel="report" href="javascript:;" uin="1098939153" commentid="118" title="举报">举报</a></li><li class="none"><a rel="moveBlack" href="javascript:;" uin="1098939153" commentid="118" title="加黑禁言">加黑禁言</a></li></ul></li><li class="quick_drop_list show_in_owner"><a rel="quote" href="javascript:;" uin="1098939153" commentid="118" title="引用" class="c_tx ">引用</a></li></ul></div><p class="op_batch_processing"><a id="btnDeleteOne2_118" href="javascript:;" title="删除" class="c_tx">删除</a></p></div><div id="commentContentDiv_118" class="cont"><table style="width:100%;"><tbody><tr><td><span style="line-height:1.8em;font-size:48px;color:#ff0000;">The&nbsp;Ways&nbsp;Out</span><wbr></td></tr></tbody></table><p class="reply_wrap"><span class="c_tx3 mode_post">2013-04-07 12:52</span><a rel="reply" href="javascript:;" title="回复" uin="1098939153" commentid="118" class="c_tx ">回复</a><a rel="sendGift" href="javascript:;" uin="1098939153" commentid="118" title="送礼" class="btnSendGift c_tx none">送礼</a></p></div><div id="singleCommentEditorDiv_118" class="panel_editor" style="display:none;"><div id="singleCommentEditorAnchor_118"></div><div><button rel="editCommentBtn" type="button" commentid="118" class="bt_tx2">发表</button>&nbsp;        <button rel="cancelEditCommentBtn" type="button" commentid="118" class="bt_tx2">取消</button></div></div><div class="comment_wrap"><div class="bor3 none" style="border-width:1px 0 0" id="divComment_118_line"><b class="ui_trigbox ui_trigbox_t"><b class="ui_trig bor3"></b><b class="ui_trig ui_trig_up bor_bg"></b></b></div><div id="divComment_118" style="display: none; width: 376px;" class="mod_comment"><span class="mod_comment_arrow"><span class="c_bg2">◆</span></span><p id="commentModule118_showAllBlock" class="bg2 mod_comment_info" style="display:none;"><a id="commentModule118_showAllLink" class="c_tx">查看全部<span id="commentModule118_totalNumLabel"></span>条评论<span>&gt;&gt;</span></a></p><ol id="commentModule118_commentList" style="display:none;"></ol><div id="commentModule118_paginatorContainer"></div><div id="commentModule118_commentTip" class="bg2 mod_clear mod_comment_post"><p class="mod_comment_default_input textinput" style="width:auto;">我也说一句...</p></div><div id="commentModule118_commentBox" class="bg2 mod_comment_post" style="display:none;"><p id="commentModule118_emoticonButtonWrapper"><a id="commentModule118_emoticonButton" title="表情" class="bg_img mod_comment_emoticons">表情</a></p><p class="mod_comment_textarea"><span><textarea id="commentModule118_content" cols="60" rows="5" class="textarea textinput"></textarea></span></p><p id="commentModule118_hintBox" class="hint" style="display:none;"><span class="icon_hint">提示：</span><span id="commentModule118_hint"></span></p><p class="mod_comment_option"><span class="mod_comment_sub"><button type="button" id="commentModule118_postButton" class="bt_tx2">确定</button><a id="commentModule118_cancelButton" href="javascript:;" class="c_tx3">取消</a><span id="commentModule118_extension_bottom" class="mod_comment_extension"></span></span><span class="c_tx3 mod_comment_other"><span id="commentModule118_currentLength">0</span>/<span id="commentModule118_maxLength">2000</span></span></p></div></div></div></div></div></div></div></li><li id="pLi_117" class="bor3"><div class="wrap"><div class="info_guest"><p class="avatar"><a name="link_117" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="user_head_50 q_namecard" link="nameCard_1098939153"><span class="skin_portrait_round">&nbsp;</span><img src="./50" id="user_head_img_117" style="width:50px; height:50px" alt="head_1098939153"></a></p><span rel="user_vip_info_1098939153" class="icon-wrap"></span><p class="checkbox_batch_processing"><input type="checkbox" name="batchItem" value="117" class="item_check_box" commentid="117"></p></div><div class="main"><div class="main_bd"><div class="inner"><p class="tit"><span class="userinfo"><span class="username" rel="user_name_info_1098939153"><a name="link_117" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="c_tx q_namecard" uin="1098939153" link="nameCard_1098939153">星野</a></span><span class="userlevel" rel="user_grade_1098939153" title="等级:24  积分:3202"><a href="javascript:;" onclick="QZONE.FP.toApp(&#39;/qzscore&#39;);window.TCISD &amp;&amp; window.TCISD.hotClick(&#39;point_ic_image&#39;, &#39;flower.qzone.qq.com&#39;);return false;" class="qz_qzone_lv_s qz_qzone_lv qz_qzone_lv_3"><span class="no"><b class="d2"></b><b class="d4"></b></span></a></span><span rel="user_vip_info_1098939153" class="icon-wrap"></span></span><span class="c_tx3 floor">第87楼</span><span class="c_tx3 mode_post"></span></p><div class="op"><div class="toolbar"><ul><li class="drop_list"><span class="line"><span class="bor"></span></span><a href="javascript:;" title="更多选项" class="c_tx drop_list_link"><span class="symbol arrow">▼</span></a><ul class="bg bor" style="width:75px; text-align:center; display:none;"><li class="none"><a rel="quote" uin="1098939153" commentid="117" href="javascript:;" title="引用">引用</a></li><li class="none"><a rel="addEssence" uin="1098939153" commentid="117" href="javascript:;" title="置顶">置顶</a></li><li class=""><a rel="edit" uin="1098939153" commentid="117" href="javascript:;" title="编辑">编辑</a></li><li class=""><a rel="delete" uin="1098939153" commentid="117" href="javascript:;" title="删除">删除</a></li><li class="none"><a rel="sendMsg" uin="1098939153" commentid="117" href="javascript:;" title="短消息">短消息</a></li><li class="none"><a rel="deleteEssence" uin="1098939153" commentid="117" href="javascript:;" title="取消置顶">取消置顶</a></li><li class="none"><a rel="report" href="javascript:;" uin="1098939153" commentid="117" title="举报">举报</a></li><li class="none"><a rel="moveBlack" href="javascript:;" uin="1098939153" commentid="117" title="加黑禁言">加黑禁言</a></li></ul></li><li class="quick_drop_list show_in_owner"><a rel="quote" href="javascript:;" uin="1098939153" commentid="117" title="引用" class="c_tx ">引用</a></li></ul></div><p class="op_batch_processing"><a id="btnDeleteOne2_117" href="javascript:;" title="删除" class="c_tx">删除</a></p></div><div id="commentContentDiv_117" class="cont"><table style="width:100%;"><tbody><tr><td>~9月份&nbsp;前些阶段&nbsp;做Java编程&nbsp;&nbsp;做出自己的博客网站<br>9月份&nbsp;突击一个月英语单词&nbsp;看政治计算机视频&nbsp;可以到交大等学校去背单词，晚上看教学视频</td></tr></tbody></table><p class="reply_wrap"><span class="c_tx3 mode_post">2013-04-02 21:37</span><a rel="reply" href="javascript:;" title="回复" uin="1098939153" commentid="117" class="c_tx ">回复</a><a rel="sendGift" href="javascript:;" uin="1098939153" commentid="117" title="送礼" class="btnSendGift c_tx none">送礼</a></p></div><div id="singleCommentEditorDiv_117" class="panel_editor" style="display:none;"><div id="singleCommentEditorAnchor_117"></div><div><button rel="editCommentBtn" type="button" commentid="117" class="bt_tx2">发表</button>&nbsp;        <button rel="cancelEditCommentBtn" type="button" commentid="117" class="bt_tx2">取消</button></div></div><div class="comment_wrap"><div class="bor3 none" style="border-width:1px 0 0" id="divComment_117_line"><b class="ui_trigbox ui_trigbox_t"><b class="ui_trig bor3"></b><b class="ui_trig ui_trig_up bor_bg"></b></b></div><div id="divComment_117" style="display: none; width: 376px;" class="mod_comment"><span class="mod_comment_arrow"><span class="c_bg2">◆</span></span><p id="commentModule117_showAllBlock" class="bg2 mod_comment_info" style="display:none;"><a id="commentModule117_showAllLink" class="c_tx">查看全部<span id="commentModule117_totalNumLabel"></span>条评论<span>&gt;&gt;</span></a></p><ol id="commentModule117_commentList" style="display:none;"></ol><div id="commentModule117_paginatorContainer"></div><div id="commentModule117_commentTip" class="bg2 mod_clear mod_comment_post"><p class="mod_comment_default_input textinput" style="width:auto;">我也说一句...</p></div><div id="commentModule117_commentBox" class="bg2 mod_comment_post" style="display:none;"><p id="commentModule117_emoticonButtonWrapper"><a id="commentModule117_emoticonButton" title="表情" class="bg_img mod_comment_emoticons">表情</a></p><p class="mod_comment_textarea"><span><textarea id="commentModule117_content" cols="60" rows="5" class="textarea textinput"></textarea></span></p><p id="commentModule117_hintBox" class="hint" style="display:none;"><span class="icon_hint">提示：</span><span id="commentModule117_hint"></span></p><p class="mod_comment_option"><span class="mod_comment_sub"><button type="button" id="commentModule117_postButton" class="bt_tx2">确定</button><a id="commentModule117_cancelButton" href="javascript:;" class="c_tx3">取消</a><span id="commentModule117_extension_bottom" class="mod_comment_extension"></span></span><span class="c_tx3 mod_comment_other"><span id="commentModule117_currentLength">0</span>/<span id="commentModule117_maxLength">2000</span></span></p></div></div></div></div></div></div></div></li><li id="pLi_116" class="bor3"><div class="wrap"><div class="info_guest"><p class="avatar"><a name="link_116" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="user_head_50 q_namecard" link="nameCard_1098939153"><span class="skin_portrait_round">&nbsp;</span><img src="./50" id="user_head_img_116" style="width:50px; height:50px" alt="head_1098939153"></a></p><span rel="user_vip_info_1098939153" class="icon-wrap"></span><p class="checkbox_batch_processing"><input type="checkbox" name="batchItem" value="116" class="item_check_box" commentid="116"></p></div><div class="main"><div class="main_bd"><div class="inner"><p class="tit"><span class="userinfo"><span class="username" rel="user_name_info_1098939153"><a name="link_116" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="c_tx q_namecard" uin="1098939153" link="nameCard_1098939153">星野</a></span><span class="userlevel" rel="user_grade_1098939153" title="等级:24  积分:3202"><a href="javascript:;" onclick="QZONE.FP.toApp(&#39;/qzscore&#39;);window.TCISD &amp;&amp; window.TCISD.hotClick(&#39;point_ic_image&#39;, &#39;flower.qzone.qq.com&#39;);return false;" class="qz_qzone_lv_s qz_qzone_lv qz_qzone_lv_3"><span class="no"><b class="d2"></b><b class="d4"></b></span></a></span><span rel="user_vip_info_1098939153" class="icon-wrap"></span></span><span class="c_tx3 floor">第86楼</span><span class="c_tx3 mode_post"></span></p><div class="op"><div class="toolbar"><ul><li class="drop_list"><span class="line"><span class="bor"></span></span><a href="javascript:;" title="更多选项" class="c_tx drop_list_link"><span class="symbol arrow">▼</span></a><ul class="bg bor" style="width:75px; text-align:center; display:none;"><li class="none"><a rel="quote" uin="1098939153" commentid="116" href="javascript:;" title="引用">引用</a></li><li class="none"><a rel="addEssence" uin="1098939153" commentid="116" href="javascript:;" title="置顶">置顶</a></li><li class=""><a rel="edit" uin="1098939153" commentid="116" href="javascript:;" title="编辑">编辑</a></li><li class=""><a rel="delete" uin="1098939153" commentid="116" href="javascript:;" title="删除">删除</a></li><li class="none"><a rel="sendMsg" uin="1098939153" commentid="116" href="javascript:;" title="短消息">短消息</a></li><li class="none"><a rel="deleteEssence" uin="1098939153" commentid="116" href="javascript:;" title="取消置顶">取消置顶</a></li><li class="none"><a rel="report" href="javascript:;" uin="1098939153" commentid="116" title="举报">举报</a></li><li class="none"><a rel="moveBlack" href="javascript:;" uin="1098939153" commentid="116" title="加黑禁言">加黑禁言</a></li></ul></li><li class="quick_drop_list show_in_owner"><a rel="quote" href="javascript:;" uin="1098939153" commentid="116" title="引用" class="c_tx ">引用</a></li></ul></div><p class="op_batch_processing"><a id="btnDeleteOne2_116" href="javascript:;" title="删除" class="c_tx">删除</a></p></div><div id="commentContentDiv_116" class="cont"><table style="width:100%;"><tbody><tr><td>没有用心去做，效率低下，所以别人可以成功，而你不行，你只是形式上的努力，还不够！最后一战吧...</td></tr></tbody></table><p class="reply_wrap"><span class="c_tx3 mode_post">2013-04-02 18:44</span><a rel="reply" href="javascript:;" title="回复" uin="1098939153" commentid="116" class="c_tx ">回复</a><a rel="sendGift" href="javascript:;" uin="1098939153" commentid="116" title="送礼" class="btnSendGift c_tx none">送礼</a></p></div><div id="singleCommentEditorDiv_116" class="panel_editor" style="display:none;"><div id="singleCommentEditorAnchor_116"></div><div><button rel="editCommentBtn" type="button" commentid="116" class="bt_tx2">发表</button>&nbsp;        <button rel="cancelEditCommentBtn" type="button" commentid="116" class="bt_tx2">取消</button></div></div><div class="comment_wrap"><div class="bor3 none" style="border-width:1px 0 0" id="divComment_116_line"><b class="ui_trigbox ui_trigbox_t"><b class="ui_trig bor3"></b><b class="ui_trig ui_trig_up bor_bg"></b></b></div><div id="divComment_116" style="display: none; width: 376px;" class="mod_comment"><span class="mod_comment_arrow"><span class="c_bg2">◆</span></span><p id="commentModule116_showAllBlock" class="bg2 mod_comment_info" style="display:none;"><a id="commentModule116_showAllLink" class="c_tx">查看全部<span id="commentModule116_totalNumLabel"></span>条评论<span>&gt;&gt;</span></a></p><ol id="commentModule116_commentList" style="display:none;"></ol><div id="commentModule116_paginatorContainer"></div><div id="commentModule116_commentTip" class="bg2 mod_clear mod_comment_post"><p class="mod_comment_default_input textinput" style="width:auto;">我也说一句...</p></div><div id="commentModule116_commentBox" class="bg2 mod_comment_post" style="display:none;"><p id="commentModule116_emoticonButtonWrapper"><a id="commentModule116_emoticonButton" title="表情" class="bg_img mod_comment_emoticons">表情</a></p><p class="mod_comment_textarea"><span><textarea id="commentModule116_content" cols="60" rows="5" class="textarea textinput"></textarea></span></p><p id="commentModule116_hintBox" class="hint" style="display:none;"><span class="icon_hint">提示：</span><span id="commentModule116_hint"></span></p><p class="mod_comment_option"><span class="mod_comment_sub"><button type="button" id="commentModule116_postButton" class="bt_tx2">确定</button><a id="commentModule116_cancelButton" href="javascript:;" class="c_tx3">取消</a><span id="commentModule116_extension_bottom" class="mod_comment_extension"></span></span><span class="c_tx3 mod_comment_other"><span id="commentModule116_currentLength">0</span>/<span id="commentModule116_maxLength">2000</span></span></p></div></div></div></div></div></div></div></li><li id="pLi_115" class="bor3"><div class="wrap"><div class="info_guest"><p class="avatar"><a name="link_115" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="user_head_50 q_namecard" link="nameCard_1098939153"><span class="skin_portrait_round">&nbsp;</span><img src="./50" id="user_head_img_115" style="width:50px; height:50px" alt="head_1098939153"></a></p><span rel="user_vip_info_1098939153" class="icon-wrap"></span><p class="checkbox_batch_processing"><input type="checkbox" name="batchItem" value="115" class="item_check_box" commentid="115"></p></div><div class="main"><div class="main_bd"><div class="inner"><p class="tit"><span class="userinfo"><span class="username" rel="user_name_info_1098939153"><a name="link_115" href="http://user.qzone.qq.com/1098939153" target="_blank" title="星野" class="c_tx q_namecard" uin="1098939153" link="nameCard_1098939153">星野</a></span><span class="userlevel" rel="user_grade_1098939153" title="等级:24  积分:3202"><a href="javascript:;" onclick="QZONE.FP.toApp(&#39;/qzscore&#39;);window.TCISD &amp;&amp; window.TCISD.hotClick(&#39;point_ic_image&#39;, &#39;flower.qzone.qq.com&#39;);return false;" class="qz_qzone_lv_s qz_qzone_lv qz_qzone_lv_3"><span class="no"><b class="d2"></b><b class="d4"></b></span></a></span><span rel="user_vip_info_1098939153" class="icon-wrap"></span></span><span class="c_tx3 floor">第85楼</span><span class="c_tx3 mode_post"></span></p><div class="op"><div class="toolbar"><ul><li class="drop_list"><span class="line"><span class="bor"></span></span><a href="javascript:;" title="更多选项" class="c_tx drop_list_link"><span class="symbol arrow">▼</span></a><ul class="bg bor" style="width:75px; text-align:center; display:none;"><li class="none"><a rel="quote" uin="1098939153" commentid="115" href="javascript:;" title="引用">引用</a></li><li class="none"><a rel="addEssence" uin="1098939153" commentid="115" href="javascript:;" title="置顶">置顶</a></li><li class=""><a rel="edit" uin="1098939153" commentid="115" href="javascript:;" title="编辑">编辑</a></li><li class=""><a rel="delete" uin="1098939153" commentid="115" href="javascript:;" title="删除">删除</a></li><li class="none"><a rel="sendMsg" uin="1098939153" commentid="115" href="javascript:;" title="短消息">短消息</a></li><li class="none"><a rel="deleteEssence" uin="1098939153" commentid="115" href="javascript:;" title="取消置顶">取消置顶</a></li><li class="none"><a rel="report" href="javascript:;" uin="1098939153" commentid="115" title="举报">举报</a></li><li class="none"><a rel="moveBlack" href="javascript:;" uin="1098939153" commentid="115" title="加黑禁言">加黑禁言</a></li></ul></li><li class="quick_drop_list show_in_owner"><a rel="quote" href="javascript:;" uin="1098939153" commentid="115" title="引用" class="c_tx ">引用</a></li></ul></div><p class="op_batch_processing"><a id="btnDeleteOne2_115" href="javascript:;" title="删除" class="c_tx">删除</a></p></div><div id="commentContentDiv_115" class="cont"><table style="width:100%;"><tbody><tr><td>肖秀荣的时政</td></tr></tbody></table><p class="reply_wrap"><span class="c_tx3 mode_post">2013-04-02 14:49</span><a rel="reply" href="javascript:;" title="回复" uin="1098939153" commentid="115" class="c_tx ">回复</a><a rel="sendGift" href="javascript:;" uin="1098939153" commentid="115" title="送礼" class="btnSendGift c_tx none">送礼</a></p></div><div id="singleCommentEditorDiv_115" class="panel_editor" style="display:none;"><div id="singleCommentEditorAnchor_115"></div><div><button rel="editCommentBtn" type="button" commentid="115" class="bt_tx2">发表</button>&nbsp;        <button rel="cancelEditCommentBtn" type="button" commentid="115" class="bt_tx2">取消</button></div></div><div class="comment_wrap"><div class="bor3 none" style="border-width:1px 0 0" id="divComment_115_line"><b class="ui_trigbox ui_trigbox_t"><b class="ui_trig bor3"></b><b class="ui_trig ui_trig_up bor_bg"></b></b></div><div id="divComment_115" style="display: none; width: 376px;" class="mod_comment"><span class="mod_comment_arrow"><span class="c_bg2">◆</span></span><p id="commentModule115_showAllBlock" class="bg2 mod_comment_info" style="display:none;"><a id="commentModule115_showAllLink" class="c_tx">查看全部<span id="commentModule115_totalNumLabel"></span>条评论<span>&gt;&gt;</span></a></p><ol id="commentModule115_commentList" style="display:none;"></ol><div id="commentModule115_paginatorContainer"></div><div id="commentModule115_commentTip" class="bg2 mod_clear mod_comment_post"><p class="mod_comment_default_input textinput" style="width:auto;">我也说一句...</p></div><div id="commentModule115_commentBox" class="bg2 mod_comment_post" style="display:none;"><p id="commentModule115_emoticonButtonWrapper"><a id="commentModule115_emoticonButton" title="表情" class="bg_img mod_comment_emoticons">表情</a></p><p class="mod_comment_textarea"><span><textarea id="commentModule115_content" cols="60" rows="5" class="textarea textinput"></textarea></span></p><p id="commentModule115_hintBox" class="hint" style="display:none;"><span class="icon_hint">提示：</span><span id="commentModule115_hint"></span></p><p class="mod_comment_option"><span class="mod_comment_sub"><button type="button" id="commentModule115_postButton" class="bt_tx2">确定</button><a id="commentModule115_cancelButton" href="javascript:;" class="c_tx3">取消</a><span id="commentModule115_extension_bottom" class="mod_comment_extension"></span></span><span class="c_tx3 mod_comment_other"><span id="commentModule115_currentLength">0</span>/<span id="commentModule115_maxLength">2000</span></span></p></div></div></div></div></div></div></div></li></ul>
+						</div>
+						<p class="tbor2 toolbar_batch_processing" id="divBatchOperBottom" style="display:none;">
+							<label for="chkSelectAllBottom" rel="selectAll"><input type="checkbox" id="chkSelectAllBottom" rel="selectAll"> 全选</label>
+							<a id="btnDeleteBatchBottom" href="javascript:;" rel="batchDelete" class="c_tx">删除选中的</a>
+							<a id="btnAddEssenceBatchBottom" style="display:none;" href="javascript:;" onclick="MSG.list.addEssenceBatch();return false;" class="c_tx">置顶选中的</a>
+						</p>
+					    <div class="bor other">
+						  <p class="op">
+							<a id="btnWantPost" href="javascript:;" onclick="return false;" title="我要留言" class="c_tx">我要留言</a>
+							<a id="btnBatchBottom" href="javascript:;" rel="toggleBatchMode" title="批量管理" class="c_tx">批量管理</a>
+						  </p>
+			            <div class="pagenav" id="pager_bottom"><div class="mod_pagenav"><p class="mod_pagenav_main"><span class="mod_pagenav_disable none"><span>上一页</span></span><a onclick="QZBlog.Util.PageIndexManager.goPage(-1);return false;" class="c_tx " href="javascript:;">上一页</a> <span class="mod_pagenav_count"><a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(1);return false;">1</a><a> <span class="mod_pagenav_more"><span>…</span></span> </a><a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(4);return false;">4</a> <a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(5);return false;">5</a>  <span class="current"><span>6</span></span> <a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(7);return false;">7</a> <a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(8);return false;">8</a> <span class="mod_pagenav_more"><span>…</span></span> <a href="javascript:;" class="c_tx" onclick="QZBlog.Util.PageIndexManager.goDirectPage(15);return false;">15</a> </span> <span class="mod_pagenav_disable none"><span>下一页</span></span><a class="c_tx " onclick="QZBlog.Util.PageIndexManager.goPage(1);return false;" href="javascript:;">下一页</a> </p><p class="mod_pagenav_option"><span class="mod_pagenav_turn">转到<input class="textinput" type="text" id="pageIndex_input30" value="6"> 页 <button onclick="QZBlog.Util.PageIndexManager.goDirectPage($(&#39;pageIndex_input30&#39;).value.trim());" type="button" class="bt_tx2">确 定</button></span></p></div></div>
+		            </div>
+				</div>
+			</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+document.write(
+	_bJs(new_protocol + "//qzonestyle.gtimg.cn" + '/ac/qzone/qzfl/qzfl'+parent.g_V.qz+'.js')+
+	_bJs(new_protocol + "//qzonestyle.gtimg.cn" + '/qzone/newblog/v5/script/common.js')+
+	_bJs(new_protocol + "//qzonestyle.gtimg.cn" + '/qzone/newblog/v5/script/newubb.js')+
+	_bJs(new_protocol + "//qzonestyle.gtimg.cn" + '/qzone/msgboard/script/msgboard.js')+
+	_bJs(new_protocol + "//qzonestyle.gtimg.cn" + '/qzone/ping.js')
+);
+</script><script type="text/javascript" charset="utf-8" src="./qzfl_v8_2.1.51.js"></script><script type="text/javascript" charset="utf-8" src="./common.js"></script><script type="text/javascript" charset="utf-8" src="./newubb.js"></script><script type="text/javascript" charset="utf-8" src="./msgboard.js"></script><script type="text/javascript" charset="utf-8" src="./ping.js"></script>
+<script type="text/javascript">
+var speedReport4Ajaxmode = function(oData){
+		var url = "http://isdspeed.qq.com/cgi-bin/r.cgi?flag1=175" + "&flag2=113" + "&flag3=1" +
+			"&flag4=0" + "&flag5=0" + "&uin=" + SPACE_UIN + "&hh=" + Math.random();
+		for(var index in oData) {
+			url += "&" + (parseInt(index,10)+5) + "=" + (oData[index] - parent.mgbBasePoint);
+		}
+		var img = new Image();
+		setTimeout(function(){img.src = url;}, 1000);
+	};
+
+onLoadMsgFinished(function(){
+	MSG.authorInfo.init();
+	MSG.list.init();
+
+	if(INIT_DATA && INIT_DATA.code == 0){
+		MSG.pageStart(INIT_DATA);
+		QZBlog.Util.NetRequest.addLoginSuccHandler(function(uin){
+			LOGIN_UIN = uin;
+			IS_OWNER = LOGIN_UIN == SPACE_UIN;
+		});
+	}
+	IS_LITE && QZONE.css.addClassName(document.body, 'mod_simple');
+	QZONE.css.addClassName(document.body, IS_OWNER ? 'mod_owner_state' : 'mod_guest_state');
+
+	QZBlog.Util.Statistic.sendRetCodeStatic({
+		domain: CGI_MSGBOARD_DOMAIN,
+		cgiName: '/cgi-bin/new/get_msgb',
+		code: INIT_DATA.code,
+		time: _o_t
+	});
+	//上报测速
+	speedReport4Ajaxmode(parent.mgbSpeedPoint);
+	parent.mgbSpeedPoint = null;
+      parent.mgbBasePoint = null;
+});
+
+</script>
+
+<div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div><div class="qzfl_emotion_panel" style="display: none; position: absolute; border: 1px solid rgb(153, 153, 153); padding: 3px; font-size: 12px; z-index: 10001; background: rgb(255, 255, 255);"></div></body></html>
